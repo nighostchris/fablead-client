@@ -13,11 +13,9 @@ import TeachersIcon from '@material-ui/icons/School'
 
 const styles = {
   root: {
-    bottom: '0px'
-  },
-  icon: {
-    fontSize: '115%',
-    verticalAlign: 'text-top'
+    position: 'absolute',
+    bottom: '0px',
+    width: '100%'
   }
 };
 
