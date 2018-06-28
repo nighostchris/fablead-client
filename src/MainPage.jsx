@@ -7,6 +7,8 @@ import FooterBar from './FooterBar';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import SeminarList from './SeminarList'
+
 const styles = {
   root: {
     flexShrink: 1
@@ -23,16 +25,8 @@ class MainPage extends React.Component {
       <div className={classes.root}>
         <div className={classes.content}>
           <HeaderBar />
-          <Paper elevation={1}>
-            <Typography variant="headline" component="h3">
-              This is a sheet of paper.
-            </Typography>
-            <Typography component="p">
-              Paper can be used to build surface or other elements for your application.
-            </Typography>
-          </Paper>
+          <SeminarList />
         </div>
-
         <FooterBar />
       </div>
     );
