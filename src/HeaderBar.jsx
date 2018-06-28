@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -32,8 +33,6 @@ class HeaderBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            </IconButton>
             <Typography variant="title" color="inherit" align="center" className={classes.flex}>
               Seminar
             </Typography>
@@ -43,7 +42,7 @@ class HeaderBar extends React.Component {
                 aria-haspopup="true"
                 color="inherit"
               >
-                <i className="fas fa-search" />
+                <SearchIcon />
               </IconButton>
             </div>
           </Toolbar>

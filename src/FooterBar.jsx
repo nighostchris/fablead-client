@@ -6,9 +6,19 @@ import Icon from '@material-ui/core/Icon';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
+import SettingsIcon from '@material-ui/icons/Settings';
+import AlertsIcon from '@material-ui/icons/Notifications';
+import SeminarsIcon from '@material-ui/icons/SpeakerNotes'
+import TeachersIcon from '@material-ui/icons/School'
+
 const styles = {
   root: {
+    bottom: '0px'
   },
+  icon: {
+    fontSize: '115%',
+    verticalAlign: 'text-top'
+  }
 };
 
 class SimpleBottomNavigation extends React.Component {
@@ -17,10 +27,10 @@ class SimpleBottomNavigation extends React.Component {
 
     return (
       <BottomNavigation showLabels className={classes.root} value={0}>
-        <BottomNavigationAction label="Seminars" icon={<Icon><i className="fas fa-chalkboard" /></Icon>} />
-        <BottomNavigationAction label="Teachers" icon={<Icon><i className="fas fa-bell" /></Icon>} />
-        <BottomNavigationAction label="Alerts" icon={<Icon><i className="fas fa-bell" /></Icon>} />
-        <BottomNavigationAction label="Settings" icon={<Icon><i className="fas fa-cog" /></Icon>} />
+        <BottomNavigationAction label="Seminars" icon={<SeminarsIcon />} />
+        <BottomNavigationAction label="Teachers" icon={<TeachersIcon />} />
+        <BottomNavigationAction label="Alerts" icon={<AlertsIcon />} />
+        <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
       </BottomNavigation>
     );
   }
