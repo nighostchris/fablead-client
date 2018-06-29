@@ -18,6 +18,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import SortIcon from '@material-ui/icons/Sort';
+import AddIcon from '@material-ui/icons/Add';
 
 import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
@@ -75,9 +76,11 @@ SeminarListTablePagination.propTypes = {
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 3,
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up('sm')]: {
+      marginTop: theme.spacing.unit * 3,
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+    }
   },
   controlBar: {
     display: 'flex',
@@ -94,10 +97,15 @@ const styles = theme => ({
     display: 'none',
     backgroundColor: 'gainsboro',
     [theme.breakpoints.down('sm')]: {
-      display: 'initial',
-      marginTop: 0,
-      marginLeft: 0,
-      marginRight: 0
+      display: 'flex'
+    }
+  },
+  addButton: {
+    position: 'absolute',
+    marginTop: '330px',
+    right: '30px',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
     }
   },
   tableContainer: {
@@ -241,6 +249,10 @@ class SeminarList extends React.Component {
       <div className={classes.root}>
         {this.controlBar(classes.controlBar)}
         {this.filterBar(classes.filterBar)}
+
+        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
+          <AddIcon />
+        </Button>
 
         <Paper elevation={1} className={classes.tableContainer}>
           {this.tableView(classes.tableView)}
