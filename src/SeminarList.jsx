@@ -18,6 +18,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import SortIcon from '@material-ui/icons/Sort';
+import AddIcon from '@material-ui/icons/Add';
 
 import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
@@ -101,6 +102,14 @@ const styles = theme => ({
       display: 'flex',
       flexFlow: 'row',
       justifyContent: 'flex-end'
+    }
+  },
+  addButton: {
+    position: 'absolute',
+    marginTop: '330px',
+    right: '30px',
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
     }
   },
   tableContainer: {
@@ -231,6 +240,10 @@ class SeminarList extends React.Component {
       <div className={classes.root}>
         {this.controlBar(classes.controlBar)}
         {this.filterBar(classes.filterBar)}
+
+        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
+          <AddIcon />
+        </Button>
 
         <Paper elevation={1} className={classes.tableContainer}>
           {this.tableView(classes.tableView, classes.tableRow)}
