@@ -17,6 +17,7 @@ import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
+import SortIcon from '@material-ui/icons/Sort';
 
 import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
@@ -84,7 +85,20 @@ const styles = theme => ({
     alignItems: 'center',
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
-
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
+  filterBar: {
+    height: '5%',
+    display: 'none',
+    backgroundColor: 'gainsboro',
+    [theme.breakpoints.down('sm')]: {
+      display: 'initial',
+      marginTop: 0,
+      marginLeft: 0,
+      marginRight: 0
+    }
   },
   tableContainer: {
     marginTop: theme.spacing.unit * 3,
@@ -170,6 +184,18 @@ class SeminarList extends React.Component {
     );
   }
 
+  filterBar(classes){
+    return(
+      <div className={classes}>
+        <Button style={{ fontSize: '12px' }}>
+          <SortIcon style={{ fontSize: '12px', marginRight: '5px', color: 'green' }} />
+            Latest
+          <KeyboardArrowRight style={{ fontSize: '12px', marginLeft: '5px', color: 'green' }} />
+        </Button>
+      </div>
+    )
+  }
+
   controlBar(classes) {
     return (
       <div className={classes}>
@@ -211,6 +237,7 @@ class SeminarList extends React.Component {
     return (
       <div className={classes.root}>
         {this.controlBar(classes.controlBar)}
+        {this.filterBar(classes.filterBar)}
 
         <Paper elevation={1} className={classes.tableContainer}>
           {this.tableView(classes.tableView)}

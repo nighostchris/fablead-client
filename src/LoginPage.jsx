@@ -69,6 +69,26 @@ const styles = theme => ({
 });
 
 class LoginPage extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      userIdValue: '',
+      passwordValue: ''
+    };
+  }
+
+  /*handleTextFieldChange = (name, event) => {
+      this.setState({
+        [name]: event.target.value
+      });
+    };
+  }; */
+
+  handleLoginButtonClick(){
+    if (this.state.userIdValue != '' && this.state.passwordValue != '')
+      return <Redirect to="/dashboard" />;
+  }
+
   render() {
     const { classes } = this.props;
     // const { width } = this.props
