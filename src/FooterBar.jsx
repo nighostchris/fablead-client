@@ -7,9 +7,11 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 import SettingsIcon from '@material-ui/icons/Settings';
-import AlertsIcon from '@material-ui/icons/Notifications';
+import ReminderIcon from '@material-ui/icons/Notifications';
 import SeminarsIcon from '@material-ui/icons/SpeakerNotes'
 import TeachersIcon from '@material-ui/icons/School'
+import LibraryIcon from '@material-ui/icons/School'
+import ScheduleIcon from '@material-ui/icons/School'
 
 const styles = {
   root: {
@@ -26,9 +28,10 @@ class SimpleBottomNavigation extends React.Component {
     return (
       <BottomNavigation showLabels className={classes.root} value={0}>
         <BottomNavigationAction label="Seminars" icon={<SeminarsIcon />} />
+        <BottomNavigationAction label="Schedule" icon={<ScheduleIcon />} />
         <BottomNavigationAction label="Teachers" icon={<TeachersIcon />} />
-        <BottomNavigationAction label="Alerts" icon={<AlertsIcon />} />
-        <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
+        <BottomNavigationAction label="Reminder" icon={<ReminderIcon />} />
+        <BottomNavigationAction label="Library" icon={<LibraryIcon />} />
       </BottomNavigation>
     );
   }

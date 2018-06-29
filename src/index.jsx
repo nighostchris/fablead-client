@@ -11,24 +11,27 @@ import MainPage from './MainPage';
 
 const theme = createMuiTheme({
   palette: {
-    primary: Colors.blue,
-    secondary: Colors.pink,
-    error: Colors.red,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
-    contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
-    tonalOffset: 0.2,
+    primary: {
+      main: '#21a9c9',
+      light: '#67dbfc',
+      dark: '#007a98',
+      contrastText: '#fff'
+    },
+    secondary: {
+      main: '#02de72',
+      light: '#64ffa2',
+      dark: '#00ab44',
+      contrastText: '#fff'
+    }
   },
+  
 });
 
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <MainPage />
+      <LoginPage />
     </MuiThemeProvider>
   );
 }

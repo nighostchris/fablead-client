@@ -1,63 +1,113 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import compose from 'recompose/compose';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import HelpIcon from '@material-ui/icons/Help';
+import HelpIcon from '@material-ui/icons/HelpOutline';
 import TextField from '@material-ui/core/TextField';
 import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+import withWidth from '@material-ui/core/withWidth';
 
-const styles = {
+const styles = theme => ({
   root: {
+    height: '100%',
+    display: 'flex', flexDirection: 'column', margin: '0 auto', textAlign: 'center'
   },
-};
+  titleContainer: {
+    display: 'flex',
+    flexFlow: 'column',
+    [theme.breakpoints.up('md')]: {
+      flex: 0.75,
+      alignItems: 'center',
+    },
+    [theme.breakpoints.down('sm')]: {
+      flex: 0.5,
+      alignContent: 'flex-end',
+      justifyContent: 'flex-end',
+    },
+    justifyContent: 'center',
+  },
+  grid: {
+    [theme.breakpoints.up('md')]: {
+      flex: 0.25,
+    },
+    [theme.breakpoints.down('sm')]: {
+      flex: 0.5,
+    },
+    minHeight: '256px',
+    paddingBottom: '128px'
+  },
+  inputFieldsContainer: {
+    display: 'flex',
+    flexFlow: 'column',
+    alignContent: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  inputField: {
+    width: '100%',
+    color: 'grey'
+  },
+  title: {
+    color: theme.palette.primary.dark,
+  },
+  helpButton: {
+    fontSize: '28px',
+    position: 'absolute',
+    right: '30px',
+    marginRight:'30px',
+    marginTop: '30px'
+  },
+  loginButton: {
+    marginTop: '40px',
+    fontSize: '16px',
+    borderRadius: '30px',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    width: '17em'
+  }
+});
 
 class LoginPage extends React.Component {
   render() {
     const { classes } = this.props;
+    const { width } = this.props
     return (
-      <div className="App" style={{ height: '100%' }}>
-        <div style={{ display: 'flex', flexDirection: 'row', margin: '0 auto', textAlign: 'center' }}>
-          <Grid container>
-            <Button variant="fab" color="primary" aria-label="help" style={{ position: 'absolute', right: '30px', marginRight:'30px', marginTop: '30px' }}>
-              <HelpIcon />
-            </Button>
+      <div className={classes.root}>
+        <Button variant="fab" color="secondary" aria-label="help" className={classes.helpButton}>?</Button>
+        <div className={classes.titleContainer}>
+          <Typography variant="subheading">Current width: {width}</Typography>
 
-            <Grid item xs={12}>
-              <div>
-                <p style={{ color: 'darkcyan', fontSize: '90px', fontWeight: 'bold'}}> Fablead</p>
-              </div>
-            </Grid>
-
-            <Grid item xs={1} />
-
-            <Grid item xs={10} md={12}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <TextField
-                  id="userid"
-                  placeholder="User ID"
-                  margin="normal"
-                  style={{ width: '40%', color: 'grey' }}
-                />
-                <TextField
-                  id="password"
-                  placeholder="Password"
-                  margin="normal"
-                  style={{ width: '40%' }}
-                />
-              </div>
-            </Grid>
-
-            <Grid item xs={12}>
-              <div>
-                <Button style={{ marginTop: '40px', fontSize: '12px', borderRadius: '30px', backgroundColor: 'limegreen', color: 'white', paddingTop: '10px', paddingBottom: '10px', width: '17em' }} variant="contained">
-                  Login
-                </Button>
-              </div>
-            </Grid>
-          </Grid>
+          <Typography variant="display4" gutterBottom className={classes.title}>Fablead</Typography>
         </div>
+
+        <Grid container className={classes.grid}>
+          <Grid item xs={3} md={4}></Grid>
+          <Grid item xs={6} md={4} className={classes.inputFieldsContainer}>
+            <TextField
+              id="userid"
+              placeholder="User ID"
+              margin="normal"
+              className={classes.inputField}
+            />
+            <TextField
+              id="password"
+              placeholder="Password"
+              margin="normal"
+              className={classes.inputField}
+            />
+          </Grid>
+          <Grid item xs={3} md={4}></Grid>
+
+          <Grid item xs={12}>
+            <Button color="secondary" className={classes.loginButton} variant="contained">
+              Login
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     );
   }
@@ -65,6 +115,10 @@ class LoginPage extends React.Component {
 
 LoginPage.propTypes = {
   classes: PropTypes.object.isRequired,
+  width: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(LoginPage);
+export default compose(
+  withStyles(styles),
+  withWidth(),
+)(LoginPage);

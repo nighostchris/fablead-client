@@ -178,7 +178,7 @@ class SeminarList extends React.Component {
       <div className={classes}>
         <Grid container spacing={24}>
           <Grid item xs={2}>
-            <Button className="create-button" variant="contained" style={{ backgroundColor: 'mediumseagreen', color: 'white' }}>
+            <Button className="create-button" variant="contained" color="secondary">
               + Create
             </Button>
           </Grid>
