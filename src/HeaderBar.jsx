@@ -12,18 +12,26 @@ import SearchIcon from '@material-ui/icons/Search';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
   flex: {
     flex: 1,
   },
+  titleBar: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    }
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
   },
-};
+});
 
 class HeaderBar extends React.Component {
   render() {
@@ -32,7 +40,7 @@ class HeaderBar extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar className={classes.titleBar}>
             <Typography variant="title" color="inherit" align="center" className={classes.flex}>
               Seminar
             </Typography>

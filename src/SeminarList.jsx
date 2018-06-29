@@ -75,9 +75,11 @@ SeminarListTablePagination.propTypes = {
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 3,
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacing.unit * 3,
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+    }
   },
   controlBar: {
     display: 'flex',
@@ -91,13 +93,14 @@ const styles = theme => ({
   },
   filterBar: {
     height: '5%',
-    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
     backgroundColor: 'gainsboro',
     [theme.breakpoints.down('sm')]: {
-      display: 'initial',
-      marginTop: 0,
-      marginLeft: 0,
-      marginRight: 0
+      display: 'flex',
+      flexFlow: 'row',
+      justifyContent: 'flex-end'
     }
   },
   tableContainer: {
@@ -115,7 +118,6 @@ const styles = theme => ({
       display: 'flex'
     },
   },
-
   row: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default,
@@ -193,7 +195,7 @@ class SeminarList extends React.Component {
           <KeyboardArrowRight style={{ fontSize: '12px', marginLeft: '5px', color: 'green' }} />
         </Button>
       </div>
-    )
+    );
   }
 
   controlBar(classes) {

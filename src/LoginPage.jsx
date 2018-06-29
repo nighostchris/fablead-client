@@ -12,7 +12,10 @@ import withWidth from '@material-ui/core/withWidth';
 const styles = theme => ({
   root: {
     height: '100%',
-    display: 'flex', flexDirection: 'column', margin: '0 auto', textAlign: 'center'
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '0 auto',
+    textAlign: 'center'
   },
   titleContainer: {
     display: 'flex',
