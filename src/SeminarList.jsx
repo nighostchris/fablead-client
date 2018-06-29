@@ -26,6 +26,10 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
 class SeminarListTablePagination extends React.Component {
   render() {
     const { classes, count, page, rowsPerPage, theme } = this.props;
@@ -115,6 +119,10 @@ const styles = theme => ({
   tableContainer: {
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
+
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
   tableRow: {
     '&:nth-of-type(odd)': {
@@ -123,6 +131,23 @@ const styles = theme => ({
   },
   tableView: {
   },
+
+  cardView: {
+    [theme.breakpoints.up('xs')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+      flexFlow: 'column'
+
+    },
+  },
+  card: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+    boxShadow: '0px 0px 0px'
+  }
 });
 
 const tablePaginationActionStyle = theme => ({
@@ -233,6 +258,41 @@ class SeminarList extends React.Component {
     );
   }
 
+  Cards(classes, cardCless) {
+    return (
+      <div className={classes}>
+        {data.map(n => (
+          <Card className={cardCless} key={n.seminarName}>
+            <CardContent>
+              <Grid container={24}>
+                <Grid item xs={8}>
+                  <Typography variant="title" gutterBottom>
+                    {n.seminarName}
+                  </Typography>
+                </Grid>
+                <Grid item xs={4} >
+                  <Typography variant="body2" gutterBottom>
+                    {n.Date}
+                  </Typography>
+                </Grid>
+                <Grid item xs={8}>
+                  <Typography variant="subheading" gutterBottom>
+                    {n.teacherName}
+                  </Typography>
+                </Grid>
+                <Grid item xs={4}>
+                  <Typography variant="body1" gutterBottom>
+                    {n.Location}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -248,6 +308,7 @@ class SeminarList extends React.Component {
         <Paper elevation={1} className={classes.tableContainer}>
           {this.tableView(classes.tableView, classes.tableRow)}
         </Paper>
+        {this.Cards(classes.cardView, classes.card)}
       </div>
     );
   }
