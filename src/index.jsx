@@ -6,8 +6,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import * as Colors from '@material-ui/core/colors';
 
-import LoginPage from './LoginPage';
-import MainPage from './MainPage';
+import App from './App';
 
 const theme = createMuiTheme({
   palette: {
@@ -24,13 +23,12 @@ const theme = createMuiTheme({
   },
 });
 
-
-function App() {
+function Index() {
   return (
     <MuiThemeProvider theme={theme}>
-      <MainPage />
+      <App />
     </MuiThemeProvider>
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<Index />, document.querySelector('#root'));

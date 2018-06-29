@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Redirect from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import HelpIcon from '@material-ui/icons/Help';
 import TextField from '@material-ui/core/TextField';
-import Icon from '@material-ui/core/Icon';
 
 const styles = {
   root: {
@@ -14,6 +14,26 @@ const styles = {
 };
 
 class LoginPage extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      userIdValue: '',
+      passwordValue: ''
+    };
+  };
+
+  /*handleTextFieldChange = (name, event) => {
+      this.setState({
+        [name]: event.target.value
+      });
+    };
+  }; */
+    
+  handleLoginButtonClick(){
+    if (this.state.userIdValue != '' && this.state.passwordValue != '')
+      return <Redirect to="/dashboard" />;
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -38,20 +58,25 @@ class LoginPage extends React.Component {
                   id="userid"
                   placeholder="User ID"
                   margin="normal"
-                  style={{ width: '40%', color: 'grey' }}
+                  style={{ width: '40%' }}
+                  value={ this.state.userIdValue }
+                  onChange={ /*this.handleTextFieldChange*/ e => {this.setState({userIdValue: e.target.value})} }
                 />
                 <TextField
                   id="password"
+                  type="password"
                   placeholder="Password"
                   margin="normal"
                   style={{ width: '40%' }}
+                  value = { this.state.passwordValue }
+                  onChange={ /*this.handleTextFieldChange*/ e => {this.setState({passwordValue: e.target.value})} }
                 />
               </div>
             </Grid>
 
             <Grid item xs={12}>
               <div>
-                <Button style={{ marginTop: '40px', fontSize: '12px', borderRadius: '30px', backgroundColor: 'limegreen', color: 'white', paddingTop: '10px', paddingBottom: '10px', width: '17em' }} variant="contained">
+                <Button onClick={ this.handleLoginButtonClick } style={{ marginTop: '40px', fontSize: '12px', borderRadius: '30px', backgroundColor: 'limegreen', color: 'white', paddingTop: '10px', paddingBottom: '10px', width: '17em' }} variant="contained">
                   Login
                 </Button>
               </div>

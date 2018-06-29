@@ -1,12 +1,20 @@
-import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SearchIcon from '@material-ui/icons/Search';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-export default class App extends Component {
+import LoginPage from './LoginPage';
+import MainPage from './MainPage';
+
+class App extends React.Component {
   render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" component={ MainPage } />
+          <Route path="/dashboard" component={ MainPage } />
+        </Switch>
+      </Router>
+    );
   }
 }
+
+export default App;
