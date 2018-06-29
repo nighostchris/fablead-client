@@ -106,8 +106,8 @@ const styles = theme => ({
   },
   addButton: {
     position: 'absolute',
-    marginTop: '330px',
-    right: '30px',
+    bottom: '72px',
+    right: '32px',
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }
