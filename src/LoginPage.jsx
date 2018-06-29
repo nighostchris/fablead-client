@@ -87,10 +87,10 @@ class LoginPage extends React.Component {
     };
   }; */
 
-  handleLoginButtonClick(){
-    if (this.state.userIdValue != '' && this.state.passwordValue != '')
-      return <Redirect to="/dashboard" />;
-  }
+  // handleLoginButtonClick(){
+  //   if (this.state.userIdValue != '' && this.state.passwordValue != '')
+  //     return <Redirect to="/dashboard" />;
+  // }
 
   render() {
     const { classes } = this.props;

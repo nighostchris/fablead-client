@@ -107,21 +107,12 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
-  tableView: {
-    root: {
-    },
-    row: {
-    },
-    cell: {
-    },
-    pagination: {
-      display: 'flex'
-    },
-  },
-  row: {
+  tableRow: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default,
     },
+  },
+  tableView: {
   },
 });
 
@@ -149,7 +140,7 @@ const data = [
 ];
 
 class SeminarList extends React.Component {
-  tableView(classes) {
+  tableView(classes, rowClass) {
     return (
       <Table className={classes.root}>
         <TableHead>
@@ -162,7 +153,7 @@ class SeminarList extends React.Component {
         </TableHead>
         <TableBody>
           {data.map(n => (
-            <TableRow className={classes.row} key={n.seminarName}>
+            <TableRow className={rowClass} key={n.seminarName}>
               <TableCell numeric>{n.seminarName}</TableCell>
               <TableCell numeric>{n.teacherName}</TableCell>
               <TableCell numeric>{n.Location}</TableCell>
@@ -242,7 +233,7 @@ class SeminarList extends React.Component {
         {this.filterBar(classes.filterBar)}
 
         <Paper elevation={1} className={classes.tableContainer}>
-          {this.tableView(classes.tableView)}
+          {this.tableView(classes.tableView, classes.tableRow)}
         </Paper>
       </div>
     );
