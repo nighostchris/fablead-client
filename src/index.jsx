@@ -6,6 +6,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
+import AddSeminarPage from './AddSeminarPage';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,7 +28,7 @@ const theme = createMuiTheme({
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <MainPage />
+      <AddSeminarPage />
     </MuiThemeProvider>
   );
 }
