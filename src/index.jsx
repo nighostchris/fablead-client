@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import * as Colors from '@material-ui/core/colors';
-
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 
@@ -24,14 +22,13 @@ const theme = createMuiTheme({
       contrastText: '#fff'
     }
   },
-  
 });
 
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <LoginPage />
+      <MainPage />
     </MuiThemeProvider>
   );
 }

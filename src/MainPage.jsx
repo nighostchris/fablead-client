@@ -4,10 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 import HeaderBar from './HeaderBar';
 import FooterBar from './FooterBar';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 
-import SeminarList from './SeminarList'
+import SeminarList from './SeminarList';
 
 const styles = {
   root: {

@@ -121,10 +121,7 @@ const SeminarListTablePaginationWrapped = withStyles(tablePaginationActionStyle,
   SeminarListTablePagination,
 );
 
-let id = 0;
-
 function createData(type, seminarName, teacherName, Location, Date) {
-  id += 1;
   return { type, seminarName, teacherName, Location, Date};
 }
 

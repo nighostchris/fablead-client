@@ -1,14 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import compose from 'recompose/compose';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import HelpIcon from '@material-ui/icons/HelpOutline';
 import TextField from '@material-ui/core/TextField';
-import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 import withWidth from '@material-ui/core/withWidth';
 
@@ -74,13 +71,11 @@ const styles = theme => ({
 class LoginPage extends React.Component {
   render() {
     const { classes } = this.props;
-    const { width } = this.props
+    // const { width } = this.props
     return (
       <div className={classes.root}>
         <Button variant="fab" color="secondary" aria-label="help" className={classes.helpButton}>?</Button>
         <div className={classes.titleContainer}>
-          <Typography variant="subheading">Current width: {width}</Typography>
-
           <Typography variant="display4" gutterBottom className={classes.title}>Fablead</Typography>
         </div>
 
