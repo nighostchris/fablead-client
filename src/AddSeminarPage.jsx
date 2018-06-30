@@ -31,19 +31,16 @@ const styles = theme => ({
         marginLeft: '80px'
     },
     seminarInfo: {
-        display: 'flex',
-        flexDirection: 'column',
         paddingTop: '30px',
-        paddingBottom: '30px',
-        justifyContent: 'center'
+        paddingBottom: '30px'
     },
     schedulingInfo:{
-        paddingBottom: '30px',
-        paddingLeft: '100px'
+        paddingBottom: '30px'
     },
     textFieldStyle:{
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     inputField: {
         width: '60%',
@@ -108,7 +105,7 @@ class AddSeminarPage extends React.Component{
                 <p style={{ marginLeft: '100px', marginTop: '30px', fontSize: '24px', fontWeight: 'bold' }}>Scheduling</p>
                 <div className={ classes.schedulingInfo }>
                     <div className={ classes.textFieldStyle }>
-                        <p style={{ marginRight: '55px' }}>Date</p>
+                        <p style={{ marginLeft: '48px', marginRight: '55px' }}>Date</p>
                         <TextField
                             margin="normal"
                             className={ classes.inputField }
