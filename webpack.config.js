@@ -22,8 +22,7 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: [
-              ]
+              plugins: ["transform-class-properties"]
             }
           }
         ]
@@ -60,4 +59,7 @@ module.exports = {
     //   }
     // }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  }
 };

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
@@ -28,7 +29,13 @@ const theme = createMuiTheme({
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <AddSeminarPage />
+      <Router>
+        <Switch>
+          <Route exact path='/' component={ LoginPage } />
+          <Route exact path='/dashboard' component={ MainPage } />
+          <Route exact path='/addseminar' component={ AddSeminarPage } />
+        </Switch>
+      </Router>
     </MuiThemeProvider>
   );
 }

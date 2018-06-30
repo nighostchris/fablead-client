@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import compose from 'recompose/compose';
+import { Redirect } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -76,25 +77,35 @@ class LoginPage extends React.Component {
     super(props);
     this.state = {
       userIdValue: '',
-      passwordValue: ''
+      passwordValue: '',
+      redirect: false
     };
+
+    this.handleLoginButtonClick = this.handleLoginButtonClick.bind(this);
   }
 
-  /*handleTextFieldChange = (name, event) => {
+  handleTextFieldChange = name => event => {
       this.setState({
         [name]: event.target.value
       });
-    };
-  }; */
+  };
 
-  // handleLoginButtonClick(){
-  //   if (this.state.userIdValue != '' && this.state.passwordValue != '')
-  //     return <Redirect to="/dashboard" />;
-  // }
+  handleLoginButtonClick() {
+    console.log(this.state.userIdValue);
+    console.log(this.state.passwordValue);
+     if (this.state.userIdValue !== '' && this.state.passwordValue !== '')
+      this.setState({ redirect: true }); 
+  }
 
   render() {
     const { classes } = this.props;
-    // const { width } = this.props
+
+    if (this.state.redirect){
+      return(
+        <Redirect to='/dashboard' />
+      );
+    }
+
     return (
       <div className={classes.root}>
         <Button variant="fab" color="secondary" aria-label="help" className={classes.helpButton}>?</Button>
@@ -110,18 +121,21 @@ class LoginPage extends React.Component {
               placeholder="User ID"
               margin="normal"
               className={classes.inputField}
+              onChange={ this.handleTextFieldChange('userIdValue') }
             />
             <TextField
               id="password"
               placeholder="Password"
+              type="password"
               margin="normal"
               className={classes.inputField}
+              onChange={ this.handleTextFieldChange('passwordValue') }
             />
           </Grid>
           <Grid item xs={3} md={4}></Grid>
 
           <Grid item xs={12}>
-            <Button color="secondary" className={classes.loginButton} variant="contained">
+            <Button color="secondary" className={classes.loginButton} variant="contained" onClick={ this.handleLoginButtonClick }>
               Login
             </Button>
           </Grid>
