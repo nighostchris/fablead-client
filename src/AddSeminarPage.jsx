@@ -11,15 +11,21 @@ import DateRangeIcon from '@material-ui/icons/dateRange';
 
 const styles = theme => ({
     topBar: {
-        height: '8%',
+        height: '60px',
         display: 'flex',
-        alignItems: 'center',
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.main,
+        [theme.breakpoints.down('sm')]: {
+            justifyContent: 'center'
+        }
     },
     backButton: {
+        position: 'absolute',
+        height: '60px',
         fontSize: '15px',
         fontWeight: 'bold',
         color: 'white',
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: '0px',
         '&:hover': {
             backgroundColor: theme.palette.primary.main
         }
@@ -28,7 +34,9 @@ const styles = theme => ({
         fontSize: '19px',
         fontWeight: 'bold',
         color: 'white',
-        marginLeft: '80px'
+        [theme.breakpoints.up('md')]: {
+            marginLeft: '170px',
+        }
     },
     seminarInfo: {
         paddingTop: '30px',
@@ -44,17 +52,30 @@ const styles = theme => ({
     },
     inputField: {
         width: '60%',
-        borderTop: '1px solid darkgray',
-        borderLeft: '1px solid darkgray',
-        borderRight: '1px solid darkgray'
+        [theme.breakpoints.up('md')]: {
+            borderTop: '1px solid darkgray',
+            borderLeft: '1px solid darkgray',
+            borderRight: '1px solid darkgray'
+        }
     },
     createButton: {
+        [theme.breakpoints.up('md')]: {
+            borderRadius: '10px',
+            marginLeft: '140px',
+            width: '120px',
+            fontWeight: 'bold',
+        },
+        [theme.breakpoints.down('sm')]: {
+            borderRadius: '0px',
+            fontWeight: 'bold',
+            bottom: '0px',
+            position: 'absolute',
+            width: '100%',
+            height: '60px',
+            fontSize: '20px'
+        },
         backgroundColor: theme.palette.secondary.main,
-        borderRadius: '10px',
         color: 'white',
-        marginLeft: '140px',
-        width: '120px',
-        fontWeight: 'bold',
         '&:hover': {
             backgroundColor: theme.palette.secondary.main,
         }
@@ -67,11 +88,11 @@ class AddSeminarPage extends React.Component{
 
         return(
             <div>
+                <Button className={ classes.backButton }>
+                    <KeyboardArrowLeft style={{ fontSize: '15px', marginRight: '5px', color: 'white' }} />
+                        Back
+                </Button>
                 <div className={ classes.topBar }>
-                    <Button className={ classes.backButton }>
-                        <KeyboardArrowLeft style={{ fontSize: '15px', marginRight: '5px', color: 'white' }} />
-                            Back
-                    </Button>
                     <p className={ classes.topBarInfo }>
                         Create > New Seminar
                     </p>
@@ -102,7 +123,7 @@ class AddSeminarPage extends React.Component{
                     </div>
                 </div>
                 <hr style={{ width: '90%', color: 'darkgrey' }} />
-                <p style={{ marginLeft: '100px', marginTop: '30px', fontSize: '24px', fontWeight: 'bold' }}>Scheduling</p>
+                <p style={{ position: 'relative', left: '10%', marginTop: '30px', fontSize: '24px', fontWeight: 'bold' }}>Scheduling</p>
                 <div className={ classes.schedulingInfo }>
                     <div className={ classes.textFieldStyle }>
                         <p style={{ marginLeft: '48px', marginRight: '55px' }}>Date</p>
