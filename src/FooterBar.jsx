@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-// import Icon from '@material-ui/core/Icon';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
-// import SettingsIcon from '@material-ui/icons/Settings';
 import ReminderIcon from '@material-ui/icons/Notifications';
 import SeminarsIcon from '@material-ui/icons/SpeakerNotes';
 import TeachersIcon from '@material-ui/icons/School';
@@ -22,11 +19,24 @@ const styles = {
 };
 
 class SimpleBottomNavigation extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value: this.props.bottomValue
+    };
+  };
+
+  handleClick = (event, value) => {
+    this.setState({ value });
+  };
+
   render() {
     const { classes } = this.props;
 
+    const { value } = this.state;
+
     return (
-      <BottomNavigation showLabels className={classes.root} value={0}>
+      <BottomNavigation showLabels className={classes.root} value={ value } onChange={ this.handleClick }>
         <BottomNavigationAction label="Seminars" icon={<SeminarsIcon />} />
         <BottomNavigationAction label="Schedule" icon={<ScheduleIcon />} />
         <BottomNavigationAction label="Teachers" icon={<TeachersIcon />} />

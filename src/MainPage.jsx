@@ -25,7 +25,7 @@ class MainPage extends React.Component {
           <HeaderBar />
           <SeminarList />
         </div>
-        <FooterBar />
+        <FooterBar bottomValue={0} />
       </div>
     );
   }
