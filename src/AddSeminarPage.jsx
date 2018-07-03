@@ -30,22 +30,33 @@ const styles = theme => ({
             backgroundColor: theme.palette.primary.main
         }
     },
-    topBarInfo: {
+    topBarInfoFirst: {
         fontSize: '19px',
         fontWeight: 'bold',
         color: 'white',
         [theme.breakpoints.up('md')]: {
-            marginLeft: '170px',
+            marginLeft: '170px'
+        },
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        }
+    },
+    topBarInfoSecond: {
+        fontSize: '19px',
+        fontWeight: 'bold',
+        color: 'white',
+        [theme.breakpoints.up('md')]: {
+            display: 'none'
         }
     },
     seminarInfo: {
         paddingTop: '30px',
         paddingBottom: '30px'
     },
-    schedulingInfo:{
+    schedulingInfo: {
         paddingBottom: '30px'
     },
-    textFieldStyle:{
+    textFieldStyle: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -79,6 +90,35 @@ const styles = theme => ({
         '&:hover': {
             backgroundColor: theme.palette.secondary.main,
         }
+    },
+    breakline: {
+        width: '90%', 
+        color: 'darkgrey',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        }
+    },
+    schedulingBar: {
+        position: 'relative', 
+        left: '10%', 
+        marginTop: '30px', 
+        fontSize: '24px', 
+        fontWeight: 'bold',
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex',
+            height: '50px',
+            marginTop: '0px',
+            backgroundColor: 'darkgrey',
+            left: '0',
+            alignItems: 'center'
+        }
+    },
+    schedulingTag: {
+        [theme.breakpoints.down('sm')]: {
+            color: 'white',
+            marginLeft: '30px',
+            fontSize: '22px'
+        }
     }
 });
 
@@ -93,8 +133,11 @@ class AddSeminarPage extends React.Component{
                         Back
                 </Button>
                 <div className={ classes.topBar }>
-                    <p className={ classes.topBarInfo }>
+                    <p className={ classes.topBarInfoFirst }>
                         Create > New Seminar
+                    </p>
+                    <p className={ classes.topBarInfoSecond }>
+                        New Seminar
                     </p>
                 </div>
                 <div className={ classes.seminarInfo }>
@@ -122,8 +165,10 @@ class AddSeminarPage extends React.Component{
                         />
                     </div>
                 </div>
-                <hr style={{ width: '90%', color: 'darkgrey' }} />
-                <p style={{ position: 'relative', left: '10%', marginTop: '30px', fontSize: '24px', fontWeight: 'bold' }}>Scheduling</p>
+                <hr className={ classes.breakline } />
+                <div className={ classes.schedulingBar }>
+                    <p className={ classes.schedulingTag }>Scheduling</p>
+                </div>
                 <div className={ classes.schedulingInfo }>
                     <div className={ classes.textFieldStyle }>
                         <p style={{ marginLeft: '48px', marginRight: '55px' }}>Date</p>
