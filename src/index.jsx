@@ -9,6 +9,9 @@ import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 import AddSeminarPage from './AddSeminarPage';
 import SchedulingPage from './SchedulingPage';
+import TeacherPage from './TeacherPage';
+import LibraryPage from './LibraryPage';
+import ReminderPage from './ReminderPage';
 
 const theme = createMuiTheme({
   palette: {
@@ -36,6 +39,9 @@ function App() {
           <Route exact path='/dashboard' component={ MainPage } />
           <Route exact path='/addseminar' component={ AddSeminarPage } />
           <Route exact path='/scheduling' component={ SchedulingPage } />
+          <Route exact path='/teacher' component={ TeacherPage } />
+          <Route exact path='/library' component={ LibraryPage } />
+          <Route exact path='/reminder' component={ ReminderPage } />
         </Switch>
       </Router>
     </MuiThemeProvider>

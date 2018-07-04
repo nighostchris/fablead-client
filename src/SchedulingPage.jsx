@@ -147,7 +147,7 @@ class SchedulingPage extends React.Component{
     }
 }
 
-Calendar.propTypes = {
+SchedulingPage.propTypes = {
    classes: PropTypes.object.isRequired
 };
 

@@ -47,7 +47,16 @@ class SimpleBottomNavigation extends React.Component {
       case 1:
         this.setState({ redirect: -1 });
         return <Redirect to='/scheduling' />;
-    }
+      case 2:
+        this.setState({ redirect: -1 });
+        return <Redirect to='/teacher' />;
+      case 3:
+        this.setState({ redirect: -1 });
+        return <Redirect to='/library' />;
+      case 4:
+        this.setState({ redirect: -1 });
+        return <Redirect to='/reminder' />;
+    } 
 
     return (
       <BottomNavigation showLabels className={classes.root} value={ value } onChange={ this.handleClick }>
