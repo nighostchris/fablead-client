@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { Redirect } from 'react-router-dom';
 
 import ReminderIcon from '@material-ui/icons/Notifications';
 import SeminarsIcon from '@material-ui/icons/SpeakerNotes';
@@ -22,18 +23,31 @@ class SimpleBottomNavigation extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      value: this.props.bottomValue
+      value: this.props.bottomValue,
+      redirect: -1
     };
   };
 
   handleClick = (event, value) => {
-    this.setState({ value });
+    if (value !== this.state.value){
+      this.setState({ value: value });
+      this.setState({ redirect: value});
+    }
   };
 
   render() {
     const { classes } = this.props;
 
     const { value } = this.state;
+
+    switch(this.state.redirect){
+      case 0:
+        this.setState({ redirect: -1 });
+        return <Redirect to='/dashboard' />;
+      case 1:
+        this.setState({ redirect: -1 });
+        return <Redirect to='/scheduling' />;
+    }
 
     return (
       <BottomNavigation showLabels className={classes.root} value={ value } onChange={ this.handleClick }>
