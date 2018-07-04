@@ -12,14 +12,14 @@ const styles = theme => ({
         display: 'flex',
         backgroundColor: theme.palette.primary.main,
         color: 'white',
-        height: '50px',
+        height: '64px',
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: '22px',
         fontWeight: 'bold'
     },
     editButton: {
-        height: '50px',
+        height: '64px',
         fontSize: '14px',
         position: 'absolute',
         right: '10px',
