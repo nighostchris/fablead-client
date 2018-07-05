@@ -2,16 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 const styles = theme => ({
     wrapper: {
         flexGrow: '1',
-        marginTop: '50px'
+        [theme.breakpoints.up('md')]: {
+            marginTop: '50px'
+        }
     },
     calendar: {
         borderSpacing: '0',
         borderCollapse: 'collapse',
-        width: '100%'
+        width: '100%',
     },
     weekday: {
         textAlign: 'center',
@@ -24,7 +29,7 @@ const styles = theme => ({
         borderSpacing: '0',
         paddingLeft: '5px',
         textAlign: 'center',
-        height: '40px'
+        height: '28px'
     },
     currentDay: {
         width: '28px',
@@ -37,6 +42,10 @@ const styles = theme => ({
         width: '24px',
         height: '24px',
         lineHeight: '24px'
+    },
+    calendarHeader: {
+        borderSpacing: '0',
+        paddingLeft: '5px'
     },
     calendarBody: {
         textAlign: 'center',
@@ -54,6 +63,28 @@ const styles = theme => ({
         backgroundColor: theme.palette.secondary.main,
         padding: '5px 7px 5px 7px',
         borderRadius: '50%'
+    },
+    monthLabel: {
+        fontSize: '24px',
+        fontWeight: 'bold',
+        cursor: 'pointer'
+    },
+    monthPopUp: {
+        position: 'absolute',
+        padding: '5px',
+        background: 'white',
+        border: '2px solid skyblue'
+    },
+    yearLabel: {
+        fontSize: '22px',
+        fontWeight: 'bold'
+    },
+    yearEditor: {
+        maxWidth: '3.6em'
+    },
+    monthNav: {
+        textAlign: 'center',
+        fontSize: '0.6em'
     }
 });
 
@@ -61,26 +92,98 @@ class Calendar extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            dateContext: moment(),
             today: moment(),
             showMonthPopup: false,
-            showYearPopup: false
+            showYearPopup: false,
+            selectedDay: null
         }
     }
 
     weekdaysShort = moment.weekdaysShort();
     months = moment.months();
 
-    getYear() { return moment().format("Y"); }
+    getYear() { return this.state.dateContext.format("Y"); }
 
-    getMonth() { return moment().format("MMMM"); }
+    getMonth() { return this.state.dateContext.format("MMMM"); }
 
-    getDaysInMonth() { return moment().daysInMonth(); }
+    getDaysInMonth() { return this.state.dateContext.daysInMonth(); }
 
-    getCurrentDate() { return moment().get("date"); }
+    getCurrentDate() { return this.state.dateContext.get("date"); }
 
-    getCurrentDay() { return moment().format("D"); }
+    getCurrentDay() { return this.state.dateContext.format("D"); }
 
-    getFirstDayOfMonth() { return moment().startOf('month').format('d'); }
+    getFirstDayOfMonth() { return this.state.dateContext.startOf('month').format('d'); }
+
+    setMonth(month) {
+        let monthNumber = this.months.indexOf(month);
+        let dateContext = Object.assign({}, this.state.dateContext);
+        dateContext = moment(dateContext).set("month", monthNumber);
+        this.setState({
+            dateContext: dateContext
+        });
+    }
+
+    setYear(year) {
+        let dateContext = Object.assign({}, this.state.dateContext);
+        dateContext = moment(dateContext).set("year", year);
+        this.setState({
+            dateContext: dateContext
+        });
+    }
+
+    prevMonth() {
+        let dateContext = Object.assign({}, this.state.dateContext);
+        dateContext = moment(dateContext).subtract(1, "month");
+        this.setState({
+            dateContext: dateContext
+        });
+    }
+
+    nextMonth() {
+        let dateContext = Object.assign({}, this.state.dateContext);
+        dateContext = moment(dateContext).add(1, "month");
+        this.setState({
+            dateContext: dateContext
+        });
+    }
+
+    onYearChange(e) {
+        this.setYear(e.target.value);
+    }
+
+    onKeyUpYear(e) {
+        if (e.which === 13 || e.which === 27) 
+        {
+            this.setYear(e.target.value);
+            this.setState({
+                showYearNav: false
+            });
+        }
+    }
+
+    onSelectChange(e, data) {
+        this.setMonth(data);
+    }
+
+    onChangeMonth(e, month) {
+        this.setState({
+            showMonthPopup: !this.state.showMonthPopup
+        });
+    }
+
+    onDaySelected(e, day) {
+        let selectedDate = new Date(this.getYear(), this.months.indexOf(this.getMonth()), day);
+        this.setState({
+            selectedDay: selectedDate
+        });
+    }
+
+    showYearEditor() {
+        this.setState({
+            showYearNav: true
+        });
+    }
 
     render(){
         const { classes } = this.props;
@@ -96,14 +199,23 @@ class Calendar extends React.Component {
             days.push(<td key={ i * 80 } className={ classes.emptySlot }>{""}</td>);
         }
 
+        let monthPopUp = this.months.map((data) => {
+            return (
+                <div key={data}>
+                    <a href="#" onClick={ e => { this.onSelectChange(e, data) } }>
+                        { data }
+                    </a>
+                </div>
+            )
+        });
+
         for (let i = 1; i <= this.getDaysInMonth(); i++){
             let className = (seminarDays.includes(i) ? classes.currentDay : classes.normalDay);
-            //let className = (i == this.getCurrentDay() ? classes.currentDay : classes.normalDay);
             days.push(
                 <td key={i} className={ className }>
                 {
                     className === classes.currentDay ? (
-                        <span className={  (i < 10 ? classes.dayDecorateDigits : classes.dayDecorateTens)}>
+                        <span className={ (i < 10 ? classes.dayDecorateDigits : classes.dayDecorateTens) } onClick={ e => { this.onDaySelected(e, i) } }>
                             {i}
                         </span>
                     ) : (
@@ -143,6 +255,44 @@ class Calendar extends React.Component {
                 <table className={ classes.calendar }>
                     <thead>
                         <tr className={ classes.calendarHeader }>
+                            <td colSpan="2" className={ classes.monthNav }>
+                                <IconButton onClick={ e => { this.prevMonth() } }>
+                                    <KeyboardArrowLeft />
+                                </IconButton>
+                            </td>
+                            <td colSpan="3" style={{ textAlign: 'center' }}>
+                                <span className={ classes.monthLabel } onClick={ e => { this.onChangeMonth(e, this.getMonth()) } }>
+                                    { this.getMonth() }
+                                    {
+                                        this.state.showMonthPopup &&
+                                        <div className={ classes.monthPopUp }>
+                                            { monthPopUp }
+                                        </div>
+                                    }
+                                </span>
+                                {" "}
+                                {
+                                    this.state.showYearNav ?
+                                    <input
+                                        defaultValue = { this.getYear() }
+                                        className={ classes.yearEditor }
+                                        ref={ (yearInput) => { this.yearInput = yearInput} }
+                                        onKeyUp= { e => this.onKeyUpYear(e) }
+                                        onChange = { e => this.onYearChange(e) }
+                                        type="number"
+                                        placeholder="year" />
+                                    :
+                                    <span className={ classes.yearLabel }
+                                        onDoubleClick={ e => { this.showYearEditor() } }>
+                                        { this.getYear() }
+                                    </span>
+                                }
+                            </td>
+                            <td colSpan="2" className={ classes.monthNav }>
+                                <IconButton onClick={ e => { this.nextMonth() } }>
+                                    <KeyboardArrowRight />
+                                </IconButton>
+                            </td>
                         </tr>
                     </thead>
                     <tbody className= { classes.calendarBody }>

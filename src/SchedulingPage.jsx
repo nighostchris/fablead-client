@@ -22,12 +22,6 @@ const styles = theme => ({
         fontSize: '22px',
         fontWeight: 'bold'
     },
-    calendar: {
-        [theme.breakpoints.up('md')]: {
-            width: '50%',
-            height: '100%'
-        }
-    },
     middleContent: {
         height: '100%',
         [theme.breakpoints.up('md')]: {
