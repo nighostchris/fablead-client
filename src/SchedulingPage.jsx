@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Calendar from 'react-calendar';
 
 import FooterBar from './FooterBar';
 
@@ -89,11 +88,7 @@ class SchedulingPage extends React.Component{
         this.state = {
             date: new Date()
         };
-    };
-
-    onChange = date => {
-        this.setState({ date });
-    };
+    }
 
     render(){
         const { classes } = this.props;
@@ -106,11 +101,6 @@ class SchedulingPage extends React.Component{
                     </div>
 
                     <div className={ classes.middleContent }>
-                        <Calendar 
-                            onChange={ this.onChange }
-                            value = { this.state.date }
-                            className={ classes.calendar }
-                        />
                         <div className={ classes.wrapper }>
                             <div className={ classes.seminarTag }>
                                 <p style={{ marginLeft: '30px' }}>Seminar</p>
