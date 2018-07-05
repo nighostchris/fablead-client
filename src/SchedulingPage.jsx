@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 import FooterBar from './FooterBar';
 import Calendar from './Calendar';
@@ -35,7 +36,7 @@ const styles = theme => ({
         display: 'flex',
         backgroundColor: theme.palette.secondary.main,
         color: 'white',
-        height: '40px',
+        height: '30px',
         alignItems: 'center',
         fontWeight: 'bold',
         fontSize: '17px',
@@ -74,6 +75,36 @@ const styles = theme => ({
     },
     leftColumn: {
         marginLeft: '30px'
+    },
+    calendarSelector: {
+        textAlign: 'right',
+        [theme.breakpoints.up('md')]: {
+            marginTop: '30px',
+            marginBottom: '10px'
+        },
+        [theme.breakpoints.down('md')]: {
+            backgroundColor: 'lightgrey'
+        }
+    },
+    calendarWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        flexGrow: '1'
+    },
+    selector: {
+        minHeight: '0px',
+        minWidth: '0px',
+        paddingTop: '4px',
+        paddingBottom: '4px',
+        fontSize: '10px',
+        fontWeight: 'bold',
+        color: 'grey',
+        borderRadius: '0',
+        [theme.breakpoints.up('md')]: {
+            border: '1px solid grey',
+            backgroundColor: 'lightgrey',
+            boxShadow: '1px 2px 3px'
+        }
     }
 });
 
@@ -94,9 +125,21 @@ class SchedulingPage extends React.Component{
                     <div className={ classes.topBar }>
                         Scheduling
                     </div>
-
                     <div className={ classes.middleContent }>
-                        <Calendar />
+                        <div className={ classes.calendarWrapper }>
+                            <div className={ classes.calendarSelector }>
+                                <Button className={ classes.selector } style={{ marginRight: '3px', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px', borderTopRightRadius: '5px', borderBottomRightRadius: '5px' }}>
+                                    Year
+                                </Button>
+                                <Button className={ classes.selector } style={{ borderRadius: '3px' }} >
+                                    Month
+                                </Button>
+                                <Button className={ classes.selector } style={{ marginLeft: '3px', borderTopRightRadius: '25px', borderBottomRightRadius: '25px', borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px' }}>
+                                    Week
+                                </Button>
+                            </div>
+                            <Calendar />
+                        </div>
                         <div className={ classes.wrapper }>
                             <div className={ classes.seminarTag }>
                                 <p style={{ marginLeft: '30px' }}>Seminar</p>

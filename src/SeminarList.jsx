@@ -97,7 +97,7 @@ const styles = theme => ({
     }
   },
   filterBar: {
-    height: '5%',
+    height: '3%',
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
@@ -214,7 +214,7 @@ class SeminarList extends React.Component {
   filterBar(classes){
     return(
       <div className={classes}>
-        <Button style={{ fontSize: '12px' }}>
+        <Button style={{ fontSize: '12px', minHeight: '0px', minWidth: '0px', paddingTop: '4px', paddingBottom: '4px' }}>
           <SortIcon style={{ fontSize: '12px', marginRight: '5px', color: 'green' }} />
             Latest
           <KeyboardArrowRight style={{ fontSize: '12px', marginLeft: '5px', color: 'green' }} />

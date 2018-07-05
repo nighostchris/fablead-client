@@ -8,10 +8,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 const styles = theme => ({
     wrapper: {
-        flexGrow: '1',
-        [theme.breakpoints.up('md')]: {
-            marginTop: '50px'
-        }
+        flexGrow: '1'
     },
     calendar: {
         borderSpacing: '0',
