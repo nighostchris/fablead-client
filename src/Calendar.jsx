@@ -62,15 +62,18 @@ const styles = theme => ({
         borderRadius: '50%'
     },
     monthLabel: {
+        position: 'relative',
         fontSize: '24px',
         fontWeight: 'bold',
-        cursor: 'pointer'
+        cursor: 'pointer',
     },
     monthPopUp: {
         position: 'absolute',
-        padding: '5px',
-        background: 'white',
-        border: '2px solid skyblue'
+        left: '-110px',
+        border: '2px solid black',
+        backgroundColor: 'white',
+        fontSize: '14px',
+        padding: '5px 10px'
     },
     yearLabel: {
         fontSize: '22px',
@@ -82,6 +85,11 @@ const styles = theme => ({
     monthNav: {
         textAlign: 'center',
         fontSize: '0.6em'
+    },
+    popUpRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center'
     }
 });
 
@@ -200,13 +208,24 @@ class Calendar extends React.Component {
 
         let monthPopUp = this.months.map((data) => {
             return (
-                <div key={data}>
-                    <a href="#" onClick={ e => { this.onSelectChange(e, data) } }>
+                <div key={data} style={{ minWidth: '70px' }}>
+                    <a href="#" style={{ textDecoration: 'none', color: 'grey' }} onClick={ e => { this.onSelectChange(e, data) } }>
                         { data }
                     </a>
                 </div>
             )
         });
+
+        let dummy = [];
+        let monthPopUpWrapper = [];
+
+        while( monthPopUp.length > 0 ) {
+            dummy.push( monthPopUp.shift() );
+            if ( dummy.length === 4 ) {
+                monthPopUpWrapper.push(<div className={ classes.popUpRow }>{ dummy }</div>);
+                dummy = [];
+            }
+        }
 
         for (let i = 1; i <= this.getDaysInMonth(); i++){
             let className = (seminarDays.includes(i) ? classes.currentDay : classes.normalDay);
@@ -250,7 +269,13 @@ class Calendar extends React.Component {
         })
 
         if (view === 0)
-            return (<div></div>)
+        {
+            return (
+                <div>
+
+                </div>
+            )
+        }
         else if (view === 1)
         {
             return(
@@ -269,7 +294,7 @@ class Calendar extends React.Component {
                                         {
                                             this.state.showMonthPopup &&
                                             <div className={ classes.monthPopUp }>
-                                                { monthPopUp }
+                                                { monthPopUpWrapper }
                                             </div>
                                         }
                                     </span>

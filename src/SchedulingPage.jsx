@@ -82,7 +82,7 @@ const styles = theme => ({
             marginTop: '30px',
             marginBottom: '10px'
         },
-        [theme.breakpoints.down('md')]: {
+        [theme.breakpoints.down('sm')]: {
             backgroundColor: 'lightgrey'
         }
     },
