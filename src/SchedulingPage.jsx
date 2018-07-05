@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import FooterBar from './FooterBar';
+import Calendar from './Calendar';
 
 const styles = theme => ({
     root: {
@@ -101,6 +102,7 @@ class SchedulingPage extends React.Component{
                     </div>
 
                     <div className={ classes.middleContent }>
+                        <Calendar />
                         <div className={ classes.wrapper }>
                             <div className={ classes.seminarTag }>
                                 <p style={{ marginLeft: '30px' }}>Seminar</p>

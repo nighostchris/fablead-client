@@ -5,7 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     wrapper: {
-        border: '2px solid skyblue'
+        flexGrow: '1',
+        marginTop: '50px'
     },
     calendar: {
         borderSpacing: '0',
