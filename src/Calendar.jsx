@@ -185,6 +185,8 @@ class Calendar extends React.Component {
     render(){
         const { classes } = this.props;
 
+        const { view } = this.props;
+
         const seminarDays = [5, 10, 20, 12, 19, 26];
 
         let weekdays = this.weekdaysShort.map((day) => {
@@ -247,65 +249,72 @@ class Calendar extends React.Component {
             return(<tr key={ i*100 }>{d}</tr>);
         })
 
-        return(
-            <div className={ classes.wrapper }>
-                <table className={ classes.calendar }>
-                    <thead>
-                        <tr className={ classes.calendarHeader }>
-                            <td colSpan="2" className={ classes.monthNav }>
-                                <IconButton onClick={ e => { this.prevMonth() } }>
-                                    <KeyboardArrowLeft />
-                                </IconButton>
-                            </td>
-                            <td colSpan="3" style={{ textAlign: 'center' }}>
-                                <span className={ classes.monthLabel } onClick={ e => { this.onChangeMonth(e, this.getMonth()) } }>
-                                    { this.getMonth() }
-                                    {
-                                        this.state.showMonthPopup &&
-                                        <div className={ classes.monthPopUp }>
-                                            { monthPopUp }
-                                        </div>
-                                    }
-                                </span>
-                                {" "}
-                                {
-                                    this.state.showYearNav ?
-                                    <input
-                                        defaultValue = { this.getYear() }
-                                        className={ classes.yearEditor }
-                                        ref={ (yearInput) => { this.yearInput = yearInput} }
-                                        onKeyUp= { e => this.onKeyUpYear(e) }
-                                        onChange = { e => this.onYearChange(e) }
-                                        type="number"
-                                        placeholder="year" />
-                                    :
-                                    <span className={ classes.yearLabel }
-                                        onDoubleClick={ e => { this.showYearEditor() } }>
-                                        { this.getYear() }
+        if (view === 0)
+            return (<div></div>)
+        else if (view === 1)
+        {
+            return(
+                <div className={ classes.wrapper }>
+                    <table className={ classes.calendar }>
+                        <thead>
+                            <tr className={ classes.calendarHeader }>
+                                <td colSpan="2" className={ classes.monthNav }>
+                                    <IconButton onClick={ e => { this.prevMonth() } }>
+                                        <KeyboardArrowLeft />
+                                    </IconButton>
+                                </td>
+                                <td colSpan="3" style={{ textAlign: 'center' }}>
+                                    <span className={ classes.monthLabel } onClick={ e => { this.onChangeMonth(e, this.getMonth()) } }>
+                                        { this.getMonth() }
+                                        {
+                                            this.state.showMonthPopup &&
+                                            <div className={ classes.monthPopUp }>
+                                                { monthPopUp }
+                                            </div>
+                                        }
                                     </span>
-                                }
-                            </td>
-                            <td colSpan="2" className={ classes.monthNav }>
-                                <IconButton onClick={ e => { this.nextMonth() } }>
-                                    <KeyboardArrowRight />
-                                </IconButton>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody className= { classes.calendarBody }>
-                        <tr>
-                            { weekdays }
-                        </tr>
-                        { elements }
-                    </tbody>
-                </table>
-            </div>
-        )
+                                    {" "}
+                                    {
+                                        this.state.showYearNav ?
+                                        <input
+                                            defaultValue = { this.getYear() }
+                                            className={ classes.yearEditor }
+                                            ref={ (yearInput) => { this.yearInput = yearInput} }
+                                            onKeyUp= { e => this.onKeyUpYear(e) }
+                                            onChange = { e => this.onYearChange(e) }
+                                            type="number"
+                                            placeholder="year" />
+                                        :
+                                        <span className={ classes.yearLabel }
+                                            onDoubleClick={ e => { this.showYearEditor() } }>
+                                            { this.getYear() }
+                                        </span>
+                                    }
+                                </td>
+                                <td colSpan="2" className={ classes.monthNav }>
+                                    <IconButton onClick={ e => { this.nextMonth() } }>
+                                        <KeyboardArrowRight />
+                                    </IconButton>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody className= { classes.calendarBody }>
+                            <tr>
+                                { weekdays }
+                            </tr>
+                            { elements }
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+        else
+            return (<div></div>)
     }
 }
 
 Calendar.propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
 };
   
 export default withStyles(styles)(Calendar);

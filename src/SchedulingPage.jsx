@@ -112,8 +112,45 @@ class SchedulingPage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            date: new Date()
+            date: new Date(),
+            yearView: false,
+            monthView: true,
+            weekView: false
         };
+
+        this.setYearView = this.setYearView.bind(this);
+        this.setMonthView = this.setMonthView.bind(this);
+        this.setWeekView = this.setWeekView.bind(this);
+    }
+
+    setYearView() {
+        if (!this.state.yearView) {
+            this.setState({
+                yearView: true,
+                monthView: false,
+                weekView: false
+            });
+        }
+    }
+
+    setMonthView() {
+        if (!this.state.monthView) {
+            this.setState({
+                yearView: false,
+                monthView: true,
+                weekView: false
+            });
+        }
+    }
+
+    setWeekView() {
+        if (!this.state.weekView) {
+            this.setState({
+                yearView: false,
+                monthView: false,
+                weekView: true
+            });
+        }
     }
 
     render(){
@@ -128,17 +165,20 @@ class SchedulingPage extends React.Component{
                     <div className={ classes.middleContent }>
                         <div className={ classes.calendarWrapper }>
                             <div className={ classes.calendarSelector }>
-                                <Button className={ classes.selector } style={{ marginRight: '3px', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px', borderTopRightRadius: '5px', borderBottomRightRadius: '5px' }}>
+                                <Button className={ classes.selector } style={{ marginRight: '3px', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px', borderTopRightRadius: '5px', borderBottomRightRadius: '5px' }} onClick={ this.setYearView }>
                                     Year
                                 </Button>
-                                <Button className={ classes.selector } style={{ borderRadius: '3px' }} >
+                                <Button className={ classes.selector } style={{ borderRadius: '3px' }} onClick={ this.setMonthView }>
                                     Month
                                 </Button>
-                                <Button className={ classes.selector } style={{ marginLeft: '3px', borderTopRightRadius: '25px', borderBottomRightRadius: '25px', borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px' }}>
+                                <Button className={ classes.selector } style={{ marginLeft: '3px', borderTopRightRadius: '25px', borderBottomRightRadius: '25px', borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px' }} onClick={ this.setWeekView }>
                                     Week
                                 </Button>
                             </div>
-                            <Calendar />
+                            {
+                                this.state.yearView ? (<Calendar view={0} />) :
+                                (this.state.monthView ? (<Calendar view={1} />) : (<Calendar view={2} />))                               
+                            }
                         </div>
                         <div className={ classes.wrapper }>
                             <div className={ classes.seminarTag }>
