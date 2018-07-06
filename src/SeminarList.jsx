@@ -10,6 +10,9 @@ import TableFooter from '@material-ui/core/TableFooter';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -297,18 +300,29 @@ class SeminarList extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
-        {this.controlBar(classes.controlBar)}
-        {this.filterBar(classes.filterBar)}
+      <div>
+        <AppBar position="static" style={{ boxShadow: '0px 0px 0px' }}>
+          <Tabs value={0} scrollable scrollButtons="auto" fullWidth>
+            <Tab label="ALL" />
+            <Tab label="Seminar" />
+            <Tab label="Training" />
+            <Tab label="Consulting" />
+            <Tab label="Fablead" />
+          </Tabs>
+        </AppBar>
+        <div className={classes.root}>
+          {this.controlBar(classes.controlBar)}
+          {this.filterBar(classes.filterBar)}
 
-        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
-          <AddIcon />
-        </Button>
+          <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
+            <AddIcon />
+          </Button>
 
-        <Paper elevation={1} className={classes.tableContainer}>
-          {this.tableView(classes.tableView, classes.tableRow)}
-        </Paper>
-        {this.Cards(classes.cardView, classes.card)}
+          <Paper elevation={1} className={classes.tableContainer}>
+            {this.tableView(classes.tableView, classes.tableRow)}
+          </Paper>
+          {this.Cards(classes.cardView, classes.card)}
+        </div>
       </div>
     );
   }

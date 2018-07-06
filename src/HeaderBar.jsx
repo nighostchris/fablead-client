@@ -54,13 +54,6 @@ class HeaderBar extends React.Component {
               </IconButton>
             </div>
           </Toolbar>
-          <Tabs value={0} scrollable scrollButtons="auto" fullWidth>
-            <Tab label="ALL" />
-            <Tab label="Seminar" />
-            <Tab label="Training" />
-            <Tab label="Consulting" />
-            <Tab label="Fablead" />
-          </Tabs>
         </AppBar>
       </div>
     );
