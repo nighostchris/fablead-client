@@ -6,6 +6,10 @@ import HeaderBar from './HeaderBar';
 import FooterBar from './FooterBar';
 
 import SeminarList from './SeminarList';
+import SchedulingPage from './SchedulingPage';
+import TeacherPage from './TeacherPage';
+import LibraryPage from './LibraryPage';
+import ReminderPage from './ReminderPage';
 
 const styles = {
   root: {
@@ -18,15 +22,35 @@ const styles = {
 };
 
 class MainPage extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      page: 0
+    };
+  }
+
+  changePage(page){
+    this.setState({ page: page });
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.content}>
-          <HeaderBar />
-          <SeminarList />
+          <HeaderBar page={ this.state.page } />
+          {
+            this.state.page == 0 ? <SeminarList />
+            : (this.state.page == 1 ? <SchedulingPage />
+              : (this.state.page == 2 ? <TeacherPage />
+                : (this.state.page == 3 ? <LibraryPage />
+                  : <ReminderPage />
+                  )
+                )
+              )
+          }
         </div>
-        <FooterBar bottomValue={0} />
+        <FooterBar handleChangePage={ this.changePage.bind(this) } page={ this.state.page } />
       </div>
     );
   }

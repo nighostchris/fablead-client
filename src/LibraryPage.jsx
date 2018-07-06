@@ -8,30 +8,10 @@ import { List, ListItem, ListItemText } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import AddIcon from '@material-ui/icons/Add';
-import SearchIcon from '@material-ui/icons/Search';
 import FooterBar from './FooterBar';
 import { CardActions } from '@material-ui/core';
 
 const styles = theme => ({
-    topBar: {
-        display: 'flex',
-        backgroundColor: theme.palette.primary.main,
-        color: 'white',
-        height: '64px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '22px',
-        fontWeight: 'bold'
-    },
-    searchButton: {
-        position: 'absolute',
-        right: '10px',
-        backgroundColor: theme.palette.primary.main,
-        boxShadow: '0px 0px 0px',
-        '&:hover': {
-            backgroundColor: theme.palette.primary.main
-        }
-    },
     enterButton: {
         backgroundColor: theme.palette.secondary.main
     },
@@ -95,12 +75,6 @@ class LibraryPage extends React.Component{
 
         return(
             <div>
-                <div className={ classes.topBar }>
-                    Library
-                    <Button color="secondary" className={ classes.searchButton } variant="fab" aria-label="help">
-                        <SearchIcon />
-                    </Button>
-                </div>
                 <div className={ classes.cardWrapper }>
                     <Card className={ classes.card }>
                         <CardContent>

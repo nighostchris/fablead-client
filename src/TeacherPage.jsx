@@ -8,26 +8,6 @@ import AddIcon from '@material-ui/icons/Add';
 import FooterBar from './FooterBar';
 
 const styles = theme => ({
-    topBar: {
-        display: 'flex',
-        backgroundColor: theme.palette.primary.main,
-        color: 'white',
-        height: '64px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '22px',
-        fontWeight: 'bold'
-    },
-    editButton: {
-        height: '64px',
-        fontSize: '14px',
-        position: 'absolute',
-        right: '10px',
-        color: 'white',
-        '&:hover': {
-            backgroundColor: theme.palette.primary.main
-        }
-    },
     teacherWrapper: {
         display: 'flex',
         flexDirection: 'column',
@@ -66,12 +46,6 @@ class TeacherPage extends React.Component{
 
         return(
             <div>
-                <div className={ classes.topBar }>
-                    Teacher
-                    <Button className={ classes.editButton }>
-                        Edit
-                    </Button>
-                </div>
                 <div className={ classes.teacherWrapper }>
                     <List component="nav">
                         <ListItem button className={ classes.teacherCard }>

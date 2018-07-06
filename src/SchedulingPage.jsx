@@ -14,16 +14,6 @@ const styles = theme => ({
         flexShrink: '1',
         marginBottom: '48px'
     },
-    topBar: {
-        display: 'flex',
-        backgroundColor: theme.palette.primary.main,
-        color: 'white',
-        height: '64px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '22px',
-        fontWeight: 'bold'
-    },
     middleContent: {
         height: '100%',
         [theme.breakpoints.up('md')]: {
@@ -160,9 +150,6 @@ class SchedulingPage extends React.Component{
         return(
             <div className={classes.root}>
                 <div className={classes.content}>
-                    <div className={ classes.topBar }>
-                        Scheduling
-                    </div>
                     <div className={ classes.middleContent }>
                         <div className={ classes.calendarWrapper }>
                             <div className={ classes.calendarSelector }>

@@ -8,26 +8,6 @@ import AddIcon from '@material-ui/icons/Add';
 import FooterBar from './FooterBar';
 
 const styles = theme => ({
-    topBar: {
-        display: 'flex',
-        backgroundColor: theme.palette.primary.main,
-        color: 'white',
-        height: '64px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '22px',
-        fontWeight: 'bold'
-    },
-    editButton: {
-        height: '64px',
-        fontSize: '14px',
-        position: 'absolute',
-        right: '10px',
-        color: 'white',
-        '&:hover': {
-            backgroundColor: theme.palette.primary.main
-        }
-    },
     cardWrapper: {
         display: 'flex',
         flexDirection: 'column',
@@ -101,12 +81,6 @@ class ReminderPage extends React.Component{
         const { classes } = this.props;
         return(
             <div>
-                <div className={ classes.topBar }>
-                    Reminder
-                    <Button className={ classes.editButton }>
-                        Edit
-                    </Button>
-                </div>
                 <Button className={ classes.createButton } variant="contained" color="secondary">
                     Create
                 </Button>
