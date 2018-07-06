@@ -78,7 +78,6 @@ SeminarListTablePagination.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired,
-  onChangePage: PropTypes.func.isRequired,
 };
 
 const styles = theme => ({

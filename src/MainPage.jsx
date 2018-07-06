@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import { Route, withRouter } from 'react-router-dom';
+
 import HeaderBar from './HeaderBar';
 import FooterBar from './FooterBar';
-
 import SeminarList from './SeminarList';
 import SchedulingPage from './SchedulingPage';
 import TeacherPage from './TeacherPage';
@@ -18,39 +19,31 @@ const styles = {
   content: {
     flexShrink: 1,
     marginBottom: '48px'
+  },
+  loginRoot: {
+    marginTop: '100px'
   }
 };
 
 class MainPage extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      page: 0
-    };
-  }
-
-  changePage(page){
-    this.setState({ page: page });
   }
 
   render() {
     const { classes } = this.props;
+
     return (
-      <div className={classes.root}>
-        <div className={classes.content}>
-          <HeaderBar page={ this.state.page } />
-          {
-            this.state.page == 0 ? <SeminarList />
-            : (this.state.page == 1 ? <SchedulingPage />
-              : (this.state.page == 2 ? <TeacherPage />
-                : (this.state.page == 3 ? <LibraryPage />
-                  : <ReminderPage />
-                  )
-                )
-              )
-          }
+      <div className={ classes.root }>
+        <div className={ classes.content }>
+          <HeaderBar />
+          <Route path="/dashboard" component={ SeminarList } />
+          <Route path="/scheduling" component={ SchedulingPage } />
+          <Route path="/teacher" component={ TeacherPage } />
+          <Route path="/library" component={ LibraryPage } />
+          <Route path="/reminder" component={ ReminderPage } />
         </div>
-        <FooterBar handleChangePage={ this.changePage.bind(this) } page={ this.state.page } />
+        <FooterBar />
       </div>
     );
   }
@@ -58,7 +51,8 @@ class MainPage extends React.Component {
 
 MainPage.propTypes = {
   classes: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 
-export default withStyles(styles)(MainPage);
+export default withStyles(styles)(withRouter(MainPage));

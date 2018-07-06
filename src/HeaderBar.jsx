@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -56,10 +57,10 @@ class HeaderBar extends React.Component {
             <div className={ classes.headerLayout }>
               <Typography variant="title" color="inherit" align="center" className={classes.flex}>
               {
-                this.props.page == 0 ? "Seminar"
-                : (this.props.page == 1 ? "Scheduling"
-                  : (this.props.page == 2 ? "Teacher"
-                    : (this.props.page == 3 ? "Library"
+                this.props.location.pathname == "/dashboard" ? "Seminar"
+                : (this.props.location.pathname == "/scheduling" ? "Scheduling"
+                  : (this.props.location.pathname == "/teacher" ? "Teacher"
+                    : (this.props.location.pathname == "/library" ? "Library"
                       : "Reminder"
                       )
                     )
@@ -67,7 +68,7 @@ class HeaderBar extends React.Component {
               }
               </Typography>
               {
-                this.props.page == 0 || this.props.page == 3 ? 
+                this.props.location.pathname == "/dashboard" || this.props.location.pathname == "/library" ? 
                 (
                   <IconButton
                     aria-owns='menu-appbar'
@@ -79,7 +80,7 @@ class HeaderBar extends React.Component {
                   </IconButton>
                 )
                 :
-                (this.props.page == 2 || this.props.page == 4 ?
+                (this.props.location.pathname == "/teacher" || this.props.location.pathname == "/reminder" ?
                   (
                     <Button className={ classes.editButton }>
                         Edit
@@ -98,7 +99,7 @@ class HeaderBar extends React.Component {
 
 HeaderBar.propTypes = {
   classes: PropTypes.object.isRequired,
-  page: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(HeaderBar);
+export default withStyles(styles)(withRouter(HeaderBar));
