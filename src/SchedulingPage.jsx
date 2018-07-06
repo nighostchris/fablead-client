@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import FooterBar from './FooterBar';
-import Calendar from './Calendar';
+import Calendar from './Calendar/Calendar';
 
 const styles = theme => ({
     root: {

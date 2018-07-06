@@ -12,7 +12,8 @@ const styles = {
     flexShrink: 1
   },
   content: {
-    flexShrink: 1
+    flexShrink: 1,
+    marginBottom: '48px'
   }
 };
 

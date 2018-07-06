@@ -12,7 +12,6 @@ import SchedulingPage from './SchedulingPage';
 import TeacherPage from './TeacherPage';
 import LibraryPage from './LibraryPage';
 import ReminderPage from './ReminderPage';
-import Calendar from './Calendar';
 
 const theme = createMuiTheme({
   palette: {

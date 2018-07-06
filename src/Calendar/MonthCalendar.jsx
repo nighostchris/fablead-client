@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -357,65 +356,4 @@ MonthCalendar.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-const MonthCalendarWrapper = withStyles(styles, { withTheme: true })(
-    MonthCalendar
-);
-
-const yearStyles = theme => ({
-
-});
-
-class YearCalendar extends React.Component {
-    render(){
-        let dummy = [];
-        let yearWrapper = [];
-        let dateContext = moment().startOf('year');
-
-        for (let i = 0; i < 12; i++) {
-            dummy.push(<Grid item xs={3}><MonthCalendarWrapper clickable={ false } dateContext={ dateContext } /></Grid>);
-            dateContext = moment(dateContext).add(1, "month");
-            if ( dummy.length === 4 ) {
-                yearWrapper.push(<Grid container spacing={24}>{ dummy }</Grid>);
-                dummy = [];
-            }
-        }
-
-        return(
-            <div>
-                { yearWrapper }
-            </div>
-        )
-    }
-}
-
-YearCalendar.propTypes = {
-    classes: PropTypes.object.isRequired
-};
-
-const YearCalendarWrapper = withStyles(yearStyles, { withTheme: true })(
-    YearCalendar
-);
-
-class Calendar extends React.Component {
-    render(){
-        const { view } = this.props;
-
-        if (view == 0) {
-            return(
-                <YearCalendarWrapper />
-            )
-        }
-        else if (view == 1) {
-            return(
-                <MonthCalendarWrapper clickable={ true } dateContext={ moment() }/>
-            )
-        }
-        else {
-            return(
-                <div></div>
-            )
-        }
-    }
-}
-  
-export default (Calendar);
+export default withStyles(styles)(MonthCalendar);
