@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -29,15 +30,11 @@ const styles = theme => ({
         height: '28px'
     },
     currentDay: {
-        width: '24px',
-        height: '24px',
         lineHeight: '28px',
         borderRadius: '2%',
         color: 'white'
     },
     normalDay: {
-        width: '22px',
-        height: '22px',
         lineHeight: '24px'
     },
     calendarHeader: {
@@ -46,8 +43,6 @@ const styles = theme => ({
     },
     calendarBody: {
         textAlign: 'center',
-        borderSpacing: '0',
-        paddingLeft: '5px',
         fontSize: '14px'
     },
     dayDecorateDigits: {
@@ -56,9 +51,21 @@ const styles = theme => ({
         borderRadius: '50%',
         cursor: 'pointer'
     },
+    clickableDayDecorateDigits: {
+        backgroundColor: theme.palette.secondary.main,
+        padding: '2.5px 5px 2.5px 5px',
+        borderRadius: '50%',
+        cursor: 'pointer'
+    },
     dayDecorateTens: {
         backgroundColor: theme.palette.secondary.main,
         padding: '5px 7px 5px 7px',
+        borderRadius: '50%',
+        cursor: 'pointer'
+    },
+    clickableDayDecorateTens: {
+        backgroundColor: theme.palette.secondary.main,
+        padding: '2.5px 3.5px 2.5px 3.5px',
         borderRadius: '50%',
         cursor: 'pointer'
     },
@@ -198,7 +205,10 @@ class MonthCalendar extends React.Component {
         const seminarDays = [5, 10, 20, 12, 19, 26];
 
         let weekdays = this.weekdaysShort.map((day) => {
-            return (<td key={day} className={ classes.weekday }>{ day }</td>)
+            if (clickable)
+                return (<td key={day} className={ classes.weekday }>{ day }</td>);
+            else
+                return (<td key={day} className={ classes.weekday } style={{ fontSize: '8px' }}>{ day }</td>);
         });
 
         let days = [];
@@ -233,11 +243,14 @@ class MonthCalendar extends React.Component {
                 <td key={i} className={ className }>
                 {
                     className === classes.currentDay ? (
-                        <span className={ (i < 10 ? classes.dayDecorateDigits : classes.dayDecorateTens) } onClick={ e => { this.onDaySelected(e, i) } }>
+                        <span className={ (i < 10 ? (clickable ? classes.dayDecorateDigits : classes.clickableDayDecorateDigits) 
+                                                  : (clickable ? classes.dayDecorateTens : classes.clickableDayDecorateTens)) }
+                              onClick={ e => { this.onDaySelected(e, i) } } 
+                              style={ !clickable ? { fontSize: '8px' } : undefined }>
                             {i}
                         </span>
                     ) : (
-                        <span>
+                        <span style={ !clickable ? { fontSize: '8px' } : undefined }>
                             {i}
                         </span>
                     )
@@ -284,7 +297,7 @@ class MonthCalendar extends React.Component {
                                 undefined
                             }
                             <td colSpan={ clickable ? "3" : "7" } style={{ textAlign: 'center' }}>
-                                <span className={ classes.monthLabel } onClick={ clickable ? ( e => { this.onChangeMonth(e, this.getMonth()) } ) : undefined }>
+                                <span className={ classes.monthLabel } onClick={ clickable ? ( e => { this.onChangeMonth(e, this.getMonth()) } ) : undefined } style={ !clickable ? { fontSize: '14px' } : undefined }>
                                     { this.getMonth() }
                                     {
                                         this.state.showMonthPopup &&
@@ -349,25 +362,20 @@ const MonthCalendarWrapper = withStyles(styles, { withTheme: true })(
 );
 
 const yearStyles = theme => ({
-    yearRow: {
-        display: 'flex',
-        flexDirection: 'row'
-    }
+
 });
 
 class YearCalendar extends React.Component {
     render(){
-        const { classes } = this.props;
-
         let dummy = [];
         let yearWrapper = [];
         let dateContext = moment().startOf('year');
 
         for (let i = 0; i < 12; i++) {
-            dummy.push(<MonthCalendarWrapper clickable={ false } dateContext={ dateContext } />);
+            dummy.push(<Grid item xs={3}><MonthCalendarWrapper clickable={ false } dateContext={ dateContext } /></Grid>);
             dateContext = moment(dateContext).add(1, "month");
             if ( dummy.length === 4 ) {
-                yearWrapper.push(<div className={ classes.yearRow }>{ dummy }</div>);
+                yearWrapper.push(<Grid container spacing={24}>{ dummy }</Grid>);
                 dummy = [];
             }
         }
