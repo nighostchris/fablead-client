@@ -48,24 +48,24 @@ const styles = theme => ({
         textAlign: 'center',
         borderSpacing: '0',
         paddingLeft: '5px',
-        fontSize: '14px',
-        cursor: 'pointer'
+        fontSize: '14px'
     },
     dayDecorateDigits: {
         backgroundColor: theme.palette.secondary.main,
         padding: '5px 10px 5px 10px',
-        borderRadius: '50%'
+        borderRadius: '50%',
+        cursor: 'pointer'
     },
     dayDecorateTens: {
         backgroundColor: theme.palette.secondary.main,
         padding: '5px 7px 5px 7px',
-        borderRadius: '50%'
+        borderRadius: '50%',
+        cursor: 'pointer'
     },
     monthLabel: {
         position: 'relative',
         fontSize: '24px',
-        fontWeight: 'bold',
-        cursor: 'pointer',
+        fontWeight: 'bold'
     },
     monthPopUp: {
         position: 'absolute',
@@ -193,6 +193,8 @@ class MonthCalendar extends React.Component {
     render(){
         const { classes } = this.props;
 
+        const { clickable } = this.props;
+
         const seminarDays = [5, 10, 20, 12, 19, 26];
 
         let weekdays = this.weekdaysShort.map((day) => {
@@ -271,13 +273,18 @@ class MonthCalendar extends React.Component {
                 <table className={ classes.calendar }>
                     <thead>
                         <tr className={ classes.calendarHeader }>
-                            <td colSpan="2" className={ classes.monthNav }>
-                                <IconButton onClick={ e => { this.prevMonth() } }>
-                                    <KeyboardArrowLeft />
-                                </IconButton>
-                            </td>
-                            <td colSpan="3" style={{ textAlign: 'center' }}>
-                                <span className={ classes.monthLabel } onClick={ e => { this.onChangeMonth(e, this.getMonth()) } }>
+                            {
+                                clickable ?
+                                <td colSpan="2" className={ classes.monthNav }>
+                                    <IconButton onClick={ e => { this.prevMonth() } }>
+                                        <KeyboardArrowLeft />
+                                    </IconButton>
+                                </td>
+                                :
+                                undefined
+                            }
+                            <td colSpan={ clickable ? "3" : "7" } style={{ textAlign: 'center' }}>
+                                <span className={ classes.monthLabel } onClick={ clickable ? ( e => { this.onChangeMonth(e, this.getMonth()) } ) : undefined }>
                                     { this.getMonth() }
                                     {
                                         this.state.showMonthPopup &&
@@ -297,18 +304,30 @@ class MonthCalendar extends React.Component {
                                         onChange = { e => this.onYearChange(e) }
                                         type="number"
                                         placeholder="year" />
-                                    :
-                                    <span className={ classes.yearLabel }
-                                        onDoubleClick={ e => { this.showYearEditor() } }>
-                                        { this.getYear() }
-                                    </span>
+                                    : 
+                                    (   
+                                        clickable ?
+                                        <span className={ classes.yearLabel }
+                                            onDoubleClick={ e => { this.showYearEditor() } }>
+                                            { this.getYear() }
+                                        </span>
+                                        : 
+                                        <span className={ classes.yearLabel }>
+                                            { this.getYear() }
+                                        </span>
+                                    )
                                 }
                             </td>
-                            <td colSpan="2" className={ classes.monthNav }>
-                                <IconButton onClick={ e => { this.nextMonth() } }>
-                                    <KeyboardArrowRight />
-                                </IconButton>
-                            </td>
+                            {
+                                clickable ?
+                                <td colSpan="2" className={ classes.monthNav }>
+                                    <IconButton onClick={ e => { this.nextMonth() } }>
+                                        <KeyboardArrowRight />
+                                    </IconButton>
+                                </td>
+                                :
+                                undefined
+                            }
                         </tr>
                     </thead>
                     <tbody className= { classes.calendarBody }>
@@ -333,8 +352,6 @@ const MonthCalendarWrapper = withStyles(styles, { withTheme: true })(
 
 class Calendar extends React.Component {
     render(){
-        const { classes } = this.props;
-
         const { view } = this.props;
 
         if (view == 0) {
@@ -344,7 +361,7 @@ class Calendar extends React.Component {
         }
         else if (view == 1) {
             return(
-                <MonthCalendarWrapper />
+                <MonthCalendarWrapper clickable={ true }/>
             )
         }
         else {
