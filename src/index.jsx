@@ -43,7 +43,6 @@ function App() {
           <Route exact path='/teacher' component={ TeacherPage } />
           <Route exact path='/library' component={ LibraryPage } />
           <Route exact path='/reminder' component={ ReminderPage } />
-          <Route exact path='/calendar' component={ Calendar } />
         </Switch>
       </Router>
     </MuiThemeProvider>

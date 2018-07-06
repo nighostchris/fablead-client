@@ -29,15 +29,15 @@ const styles = theme => ({
         height: '28px'
     },
     currentDay: {
-        width: '28px',
-        height: '28px',
+        width: '24px',
+        height: '24px',
         lineHeight: '28px',
         borderRadius: '2%',
         color: 'white'
     },
     normalDay: {
-        width: '24px',
-        height: '24px',
+        width: '22px',
+        height: '22px',
         lineHeight: '24px'
     },
     calendarHeader: {
@@ -97,7 +97,7 @@ class MonthCalendar extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            dateContext: moment(),
+            dateContext: this.props.dateContext,
             today: moment(),
             showMonthPopup: false,
             showYearPopup: false,
@@ -312,9 +312,7 @@ class MonthCalendar extends React.Component {
                                             { this.getYear() }
                                         </span>
                                         : 
-                                        <span className={ classes.yearLabel }>
-                                            { this.getYear() }
-                                        </span>
+                                        undefined
                                     )
                                 }
                             </td>
@@ -350,18 +348,58 @@ const MonthCalendarWrapper = withStyles(styles, { withTheme: true })(
     MonthCalendar
 );
 
+const yearStyles = theme => ({
+    yearRow: {
+        display: 'flex',
+        flexDirection: 'row'
+    }
+});
+
+class YearCalendar extends React.Component {
+    render(){
+        const { classes } = this.props;
+
+        let dummy = [];
+        let yearWrapper = [];
+        let dateContext = moment().startOf('year');
+
+        for (let i = 0; i < 12; i++) {
+            dummy.push(<MonthCalendarWrapper clickable={ false } dateContext={ dateContext } />);
+            dateContext = moment(dateContext).add(1, "month");
+            if ( dummy.length === 4 ) {
+                yearWrapper.push(<div className={ classes.yearRow }>{ dummy }</div>);
+                dummy = [];
+            }
+        }
+
+        return(
+            <div>
+                { yearWrapper }
+            </div>
+        )
+    }
+}
+
+YearCalendar.propTypes = {
+    classes: PropTypes.object.isRequired
+};
+
+const YearCalendarWrapper = withStyles(yearStyles, { withTheme: true })(
+    YearCalendar
+);
+
 class Calendar extends React.Component {
     render(){
         const { view } = this.props;
 
         if (view == 0) {
             return(
-                <div></div>
+                <YearCalendarWrapper />
             )
         }
         else if (view == 1) {
             return(
-                <MonthCalendarWrapper clickable={ true }/>
+                <MonthCalendarWrapper clickable={ true } dateContext={ moment() }/>
             )
         }
         else {
