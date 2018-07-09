@@ -18,7 +18,7 @@ const styles = {
   },
   content: {
     flexShrink: 1,
-    marginBottom: '48px'
+    marginBottom: '72px'
   },
   loginRoot: {
     marginTop: '100px'

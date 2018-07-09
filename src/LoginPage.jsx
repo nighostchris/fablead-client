@@ -91,8 +91,6 @@ class LoginPage extends React.Component {
   };
 
   handleLoginButtonClick() {
-    console.log(this.state.userIdValue);
-    console.log(this.state.passwordValue);
      if (this.state.userIdValue !== '' && this.state.passwordValue !== '')
       this.setState({ redirect: true }); 
   }

@@ -33,6 +33,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
+import { Link } from 'react-router-dom';
+
 class SeminarListTablePagination extends React.Component {
   render() {
     const { classes, count, page, rowsPerPage, theme } = this.props;
@@ -230,7 +232,7 @@ class SeminarList extends React.Component {
       <div className={classes}>
         <Grid container spacing={24}>
           <Grid item xs={2}>
-            <Button className="create-button" variant="contained" color="secondary">
+            <Button className="create-button" variant="contained" color="secondary" component={ Link } to="/addseminar" >
               + Create
             </Button>
           </Grid>
@@ -313,7 +315,7 @@ class SeminarList extends React.Component {
           {this.controlBar(classes.controlBar)}
           {this.filterBar(classes.filterBar)}
 
-          <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
+          <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help" component={ Link } to="/addseminar" >
             <AddIcon />
           </Button>
 

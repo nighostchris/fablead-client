@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -61,7 +62,9 @@ class HeaderBar extends React.Component {
                 : (this.props.location.pathname == "/scheduling" ? "Scheduling"
                   : (this.props.location.pathname == "/teacher" ? "Teacher"
                     : (this.props.location.pathname == "/library" ? "Library"
-                      : "Reminder"
+                      : (this.props.location.pathname == "/reminder" ? "Reminder"
+                        : undefined 
+                        )
                       )
                     )
                   )

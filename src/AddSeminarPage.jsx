@@ -5,9 +5,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import { Link } from 'react-router-dom';
 
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import DateRangeIcon from '@material-ui/icons/dateRange';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 
 const styles = theme => ({
     topBar: {
@@ -128,9 +129,9 @@ class AddSeminarPage extends React.Component{
 
         return(
             <div>
-                <Button className={ classes.backButton }>
+                <Button className={ classes.backButton } component={ Link } to="/dashboard" >
                     <KeyboardArrowLeft style={{ fontSize: '15px', marginRight: '5px', color: 'white' }} />
-                        Back
+                    Back
                 </Button>
                 <div className={ classes.topBar }>
                     <p className={ classes.topBarInfoFirst }>
@@ -193,7 +194,7 @@ class AddSeminarPage extends React.Component{
                 </Button>
             </div>
         );
-    };
+    }
 }
 
 AddSeminarPage.propTypes = {

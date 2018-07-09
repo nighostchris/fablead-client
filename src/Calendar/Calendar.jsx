@@ -28,7 +28,7 @@ class Calendar extends React.Component {
 }
 
 Calendar.propTypes = {
-    view: PropTypes.object.isRequired
+    view: PropTypes.number.isRequired
 };
   
 export default (Calendar);

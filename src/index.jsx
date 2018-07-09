@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
+import AddSeminarPage from './AddSeminarPage';
 
 const theme = createMuiTheme({
   palette: {
@@ -30,6 +31,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={ LoginPage } />
+          <Route path="/addseminar" component={ AddSeminarPage } />
           <MainPage />
         </Switch>
       </Router>
