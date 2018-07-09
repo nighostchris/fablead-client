@@ -12,7 +12,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 
 const styles = theme => ({
     topBar: {
-        height: '60px',
+        height: '64px',
         display: 'flex',
         backgroundColor: theme.palette.primary.main,
         [theme.breakpoints.down('sm')]: {

@@ -191,7 +191,10 @@ class SchedulingPage extends React.Component{
                             </div>
                             <div className={ classes.teacher }>
                                 <p className={ classes.leftColumn } style={{ flexGrow: '1' }}>Teacher</p>
-                                <p style={{ width: '80%', textAlign: 'center' }}>Peter Man<p>Mary Lee</p></p>
+                                <div style={{ width: '80%', textAlign: 'center' }}>
+                                    <p>Peter Man</p>
+                                    <p>Mary Lee</p>
+                                </div>
                             </div>
                             <div>
                             </div>

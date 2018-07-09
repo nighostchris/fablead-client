@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -19,13 +18,7 @@ const styles = theme => ({
     flex: 1,
   },
   titleBar: {
-    justifyContent: 'center',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    }
+    justifyContent: 'center'
   },
   searchButton: {
     position: 'absolute',
@@ -56,14 +49,15 @@ class HeaderBar extends React.Component {
         <AppBar position="static">
           <Toolbar className={classes.titleBar}>
             <div className={ classes.headerLayout }>
-              <Typography variant="title" color="inherit" align="center" className={classes.flex}>
+              <Typography variant="title" color="inherit" align="center" className={ classes.flex }>
               {
                 this.props.location.pathname == "/dashboard" ? "Seminar"
                 : (this.props.location.pathname == "/scheduling" ? "Scheduling"
                   : (this.props.location.pathname == "/teacher" ? "Teacher"
                     : (this.props.location.pathname == "/library" ? "Library"
                       : (this.props.location.pathname == "/reminder" ? "Reminder"
-                        : undefined 
+                        : (this.props.location.pathname == "/basicinfo" ? "Seminar Name"
+                          : undefined)
                         )
                       )
                     )

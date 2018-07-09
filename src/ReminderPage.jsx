@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import { CardContent } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import { Link } from 'react-router-dom';
 import FooterBar from './FooterBar';
 
 const styles = theme => ({
@@ -20,6 +21,7 @@ const styles = theme => ({
         '&:nth-of-type(even)': {
             backgroundColor: theme.palette.background.default,
         },
+        textDecoration: 'none',
         boxShadow: '0px 0px 0px'
     },
     firstCol: {
@@ -86,7 +88,7 @@ class ReminderPage extends React.Component{
                 </Button>
                 <div className={ classes.cardWrapper }>
                     {data.map(n => (
-                    <Card className={ classes.card } key={n.seminarName}>
+                    <Card className={ classes.card } key={n.seminarName} component={ Link } to="/basicinfo" >
                         <CardContent>
                             <div className={ classes.colWrapper }>
                                 <div className={ classes.firstCol }>

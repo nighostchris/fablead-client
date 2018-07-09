@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import HeaderBar from './HeaderBar';
 import FooterBar from './FooterBar';
@@ -50,9 +50,8 @@ class MainPage extends React.Component {
 }
 
 MainPage.propTypes = {
-  classes: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 
-export default withStyles(styles)(withRouter(MainPage));
+export default withStyles(styles)(MainPage);
