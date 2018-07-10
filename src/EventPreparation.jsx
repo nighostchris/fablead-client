@@ -7,6 +7,9 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { Link } from 'react-router-dom';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -49,23 +52,42 @@ const styles = theme => ({
             left: '0px'
         }
     },
-    infoWrapper: {
+    cardWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        [theme.breakpoints.up('md')]: {
+            marginTop: '10px',
+            alignItems: 'center'
+        }
+    },
+    card: {
+        '&:nth-of-type(even)': {
+            backgroundColor: theme.palette.background.default,
+        },
+        textDecoration: 'none',
+        boxShadow: '0px 0px 0px',
+        borderRadius: '0px',
+        [theme.breakpoints.up('md')]: {
+            width: '700px'
+        }
+    },
+    event: {
         display: 'flex',
         flexDirection: 'row',
-        textAlign: 'center'
+        alignItems: 'center'
     },
-    infoLeftText: {
-        flexGrow: '1', 
-        textAlign: 'left',
-        marginLeft: '30px'
+    rightArrow: {
+        width: '20%',
+        color: theme.palette.secondary.main,
+        fontSize: '40px'
     }
 });
 
-class BasicInfoPage extends React.Component{
+class EventPreparation extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            value: 0
+            value: 1
         }
     }
 
@@ -104,29 +126,31 @@ class BasicInfoPage extends React.Component{
                     </AppBar>
                 </div>
                 <div className={ classes.body }>
-                    <div className={ classes.infoWrapper }>
-                        <p className={ classes.infoLeftText }>Name</p>
-                        <p style={{ width: '80%' }}>Seminar Name</p>
-                    </div>
-                    <div className= { classes.infoWrapper }>
-                        <p className={ classes.infoLeftText }>Date</p>
-                        <p style={{ width: '80%' }}>2018-6-01</p>
-                    </div>
-                    <div className= { classes.infoWrapper }>
-                        <p className={ classes.infoLeftText }>Location</p>
-                        <p style={{ width: '80%' }}>北京</p>
-                    </div>
-                    <div className= { classes.infoWrapper }>
-                        <p className={ classes.infoLeftText }>Type</p>
-                        <p style={{ width: '80%' }}>Seminar</p>
-                    </div>
-                    <div className= { classes.infoWrapper }>
-                        <p className={ classes.infoLeftText }>Teacher</p>
-                        <div style={{ width: '80%' }}>
-                            <p>Peter Man</p>
-                            <p>Mary Lee</p>
-                            <p>John Wong</p>
-                        </div>
+                    <div className={ classes.cardWrapper }>
+                        <Card className={ classes.card }>
+                            <CardContent>
+                                <div className={ classes.event }>
+                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 1</p>
+                                    <KeyboardArrowRight className={ classes.rightArrow } />
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className={ classes.card }>
+                            <CardContent>
+                                <div className={ classes.event }>
+                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 2</p>
+                                    <KeyboardArrowRight className={ classes.rightArrow } />
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className={ classes.card }>
+                            <CardContent>
+                                <div className={ classes.event }>
+                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 3</p>
+                                    <KeyboardArrowRight className={ classes.rightArrow } />
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </div>
@@ -134,9 +158,9 @@ class BasicInfoPage extends React.Component{
     }
 }
 
-BasicInfoPage.propTypes = {
+EventPreparation.propTypes = {
    classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(BasicInfoPage);
+export default withStyles(styles)(EventPreparation);
 

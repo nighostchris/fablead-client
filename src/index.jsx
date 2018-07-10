@@ -8,6 +8,7 @@ import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 import AddSeminarPage from './AddSeminarPage';
 import BasicInfoPage from './BasicInfoPage';
+import EventPreparation from './EventPreparation';
 
 const theme = createMuiTheme({
   palette: {
@@ -34,6 +35,7 @@ function App() {
           <Route exact path="/" component={ LoginPage } />
           <Route path="/addseminar" component={ AddSeminarPage } />
           <Route path="/basicinfo" component={ BasicInfoPage } />
+          <Route path="/eventppt" component={ EventPreparation } />
           <MainPage />
         </Switch>
       </Router>
