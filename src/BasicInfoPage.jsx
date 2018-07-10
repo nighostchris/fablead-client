@@ -95,11 +95,11 @@ class BasicInfoPage extends React.Component{
                                 Edit
                             </Button>
                         </Toolbar>
-                        <Tabs value={ value } scrollable scrollButtons="auto" fullWidth onChange={ this.handleChange }>
+                        <Tabs value={ value } scrollButtons="auto" fullWidth onChange={ this.handleChange } centered>
                             <Tab label="Basic Info" component={ Link } to="/basicinfo" />
                             <Tab label="Event Ppt" component={ Link } to="/eventppt" />
                             <Tab label="Class Materials" component={ Link } to="/classmaterial" />
-                            <Tab label="Account Mgt" />
+                            <Tab label="Account Mgt" component={ Link } to="/accountmgt" />
                         </Tabs>
                     </AppBar>
                 </div>

@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -67,6 +68,7 @@ const styles = theme => ({
         textDecoration: 'none',
         boxShadow: '0px 0px 0px',
         borderRadius: '0px',
+        marginTop: '50px',
         [theme.breakpoints.up('md')]: {
             width: '700px'
         }
@@ -80,14 +82,32 @@ const styles = theme => ({
         width: '20%',
         color: theme.palette.secondary.main,
         fontSize: '40px'
+    },
+    upperPart: {
+        marginTop: '20px',
+        [theme.breakpoints.down('md')]: {
+            marginLeft: '50px',
+            marginRight: '50px'
+        }
+    },
+    infoWrapper: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginTop: '10px'
+    },
+    infoLeft: {
+        flexGrow: '1'
+    },
+    inputField: {
+        width: '70%'
     }
 });
 
-class EventPreparation extends React.Component{
+class AccountManagement extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            value: 1
+            value: 3
         }
     }
 
@@ -126,41 +146,53 @@ class EventPreparation extends React.Component{
                     </AppBar>
                 </div>
                 <div className={ classes.body }>
-                    <div className={ classes.cardWrapper }>
-                        <Card className={ classes.card }>
-                            <CardContent>
-                                <div className={ classes.event }>
-                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 1</p>
-                                    <KeyboardArrowRight className={ classes.rightArrow } />
-                                </div>
-                            </CardContent>
-                        </Card>
-                        <Card className={ classes.card }>
-                            <CardContent>
-                                <div className={ classes.event }>
-                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 2</p>
-                                    <KeyboardArrowRight className={ classes.rightArrow } />
-                                </div>
-                            </CardContent>
-                        </Card>
-                        <Card className={ classes.card }>
-                            <CardContent>
-                                <div className={ classes.event }>
-                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 3</p>
-                                    <KeyboardArrowRight className={ classes.rightArrow } />
-                                </div>
-                            </CardContent>
-                        </Card>
+                    <div className={ classes.upperPart }>
+                        <div className={ classes.infoWrapper }>
+                            <p className={ classes.infoLeft }>Customer Name</p>
+                            <TextField
+                                margin="normal"
+                                className={ classes.inputField }
+                            />
+                        </div>
+                        <div className={ classes.infoWrapper }>
+                            <p className={ classes.infoLeft }>Company Name</p>
+                            <TextField
+                                margin="normal"
+                                className={ classes.inputField }
+                            />
+                        </div>
+                        <div className={ classes.infoWrapper }>
+                            <p className={ classes.infoLeft }>Brand</p>
+                            <TextField
+                                margin="normal"
+                                className={ classes.inputField }
+                            />
+                        </div>
+                        <div className={ classes.infoWrapper }>
+                            <p className={ classes.infoLeft }>Remarks</p>
+                            <TextField
+                                margin="normal"
+                                className={ classes.inputField }
+                            />
+                        </div>
                     </div>
+                    <Card className={ classes.card }>
+                        <CardContent>
+                            <div className={ classes.event }>
+                                <p style={{ flexGrow: '1', marginLeft: '30px' }}>學員 check-in</p>
+                                <KeyboardArrowRight className={ classes.rightArrow } />
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         );
     }
 }
 
-EventPreparation.propTypes = {
+AccountManagement.propTypes = {
    classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(EventPreparation);
+export default withStyles(styles)(AccountManagement);
 
