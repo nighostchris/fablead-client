@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import PanoramaFishEye from '@material-ui/icons/PanoramaFishEye';
 import { Link } from 'react-router-dom';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -76,6 +77,15 @@ const styles = theme => ({
         flexDirection: 'row',
         alignItems: 'center'
     },
+    panorama: {
+        fontSize: '30px',
+    },
+    buttonCount: {
+        position: 'absolute', 
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: theme.palette.secondary.main
+    },
     rightArrow: {
         width: '20%',
         color: theme.palette.secondary.main,
@@ -87,7 +97,7 @@ class EventPreparation extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            value: 1
+            value: 2
         }
     }
 
@@ -130,23 +140,18 @@ class EventPreparation extends React.Component{
                         <Card className={ classes.card }>
                             <CardContent>
                                 <div className={ classes.event }>
-                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 1</p>
-                                    <KeyboardArrowRight className={ classes.rightArrow } />
+                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>課程教材 A</p>
+                                    <Button style={{ position: 'relative', width: '20%' }}>
+                                        <PanoramaFishEye className={ classes.panorama } />
+                                        <p className={ classes.buttonCount }>3</p>
+                                    </Button>
                                 </div>
                             </CardContent>
                         </Card>
                         <Card className={ classes.card }>
                             <CardContent>
                                 <div className={ classes.event }>
-                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 2</p>
-                                    <KeyboardArrowRight className={ classes.rightArrow } />
-                                </div>
-                            </CardContent>
-                        </Card>
-                        <Card className={ classes.card }>
-                            <CardContent>
-                                <div className={ classes.event }>
-                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 3</p>
+                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>課程教材 B</p>
                                     <KeyboardArrowRight className={ classes.rightArrow } />
                                 </div>
                             </CardContent>

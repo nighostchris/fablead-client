@@ -98,7 +98,7 @@ class BasicInfoPage extends React.Component{
                         <Tabs value={ value } scrollable scrollButtons="auto" fullWidth onChange={ this.handleChange }>
                             <Tab label="Basic Info" component={ Link } to="/basicinfo" />
                             <Tab label="Event Ppt" component={ Link } to="/eventppt" />
-                            <Tab label="Class Materials" />
+                            <Tab label="Class Materials" component={ Link } to="/classmaterial" />
                             <Tab label="Account Mgt" />
                         </Tabs>
                     </AppBar>

@@ -9,6 +9,7 @@ import MainPage from './MainPage';
 import AddSeminarPage from './AddSeminarPage';
 import BasicInfoPage from './BasicInfoPage';
 import EventPreparation from './EventPreparation';
+import ClassMaterial from './ClassMaterial';
 
 const theme = createMuiTheme({
   palette: {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/addseminar" component={ AddSeminarPage } />
           <Route path="/basicinfo" component={ BasicInfoPage } />
           <Route path="/eventppt" component={ EventPreparation } />
+          <Route path="/classmaterial" component={ ClassMaterial } />
           <MainPage />
         </Switch>
       </Router>
