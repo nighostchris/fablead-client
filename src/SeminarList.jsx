@@ -303,7 +303,7 @@ class SeminarList extends React.Component {
     return (
       <div>
         <AppBar position="static" style={{ boxShadow: '0px 0px 0px' }}>
-          <Tabs value={0} scrollable scrollButtons="auto" fullWidth>
+          <Tabs value={0} scrollButtons="auto" fullWidth centered>
             <Tab label="ALL" />
             <Tab label="Seminar" />
             <Tab label="Training" />

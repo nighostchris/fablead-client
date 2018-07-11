@@ -11,6 +11,7 @@ import BasicInfoPage from './BasicInfoPage';
 import EventPreparation from './EventPreparation';
 import ClassMaterial from './ClassMaterial';
 import AccountManagement from './AccountManagement';
+import NotesTaking from './NotesTaking';
 
 const theme = createMuiTheme({
   palette: {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/eventppt" component={ EventPreparation } />
           <Route path="/classmaterial" component={ ClassMaterial } />
           <Route path="/accountmgt" component={ AccountManagement } />
+          <Route path="/notestaking" component={ NotesTaking } />
           <MainPage />
         </Switch>
       </Router>
