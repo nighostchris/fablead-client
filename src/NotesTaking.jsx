@@ -213,15 +213,15 @@ class NotesTaking extends React.Component{
                             </div>
                         </div>
                         <div className={ classes.editBar }>
-                            <Button classes={{ label: classes.label }}>
+                            <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
                                 <Mail />
                                 Send
                             </Button>
-                            <Button classes={{ label: classes.label }}>
+                            <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
                                 <Download />
                                 Download
                             </Button>
-                            <Button classes={{ label: classes.label }}>
+                            <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
                                 <TrashCan />
                                 Delete
                             </Button>
