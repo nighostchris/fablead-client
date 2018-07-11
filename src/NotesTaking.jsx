@@ -189,11 +189,15 @@ class NotesTaking extends React.Component{
                     <div className={ classes.card }>
                         <Card className={ classes.cardWrapper }>
                             <p style={{ flexGrow: '3', textAlign: 'center' }}>Note 1</p>
-                            <KeyboardArrowRight className={ classes.rightArrow } style={{ flexGrow: '1' }} />
+                            <Button component={ Link } to="/notes" style={{ flexGrow: '1' }}>
+                                <KeyboardArrowRight className={ classes.rightArrow } />
+                            </Button>
                         </Card>
                         <Card className={ classes.cardWrapper }>
                             <p style={{ flexGrow: '3', textAlign: 'center' }}>Note 2</p>
-                            <KeyboardArrowRight style={{ flexGrow: '1' }} />
+                            <Button component={ Link } to="/notes" style={{ flexGrow: '1' }}>
+                                <KeyboardArrowRight className={ classes.rightArrow } />
+                            </Button>
                         </Card>
                     </div>
                     <div className={ classes.seperateBar }>
