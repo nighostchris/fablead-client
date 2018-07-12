@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import TextField from '@material-ui/core/TextField';
@@ -95,7 +96,9 @@ class AccountManagement extends React.Component{
         const { value } = this.state;
 
         const subpage = ["學員 check-in", "停車證需求", "繳費附檔", "發票附檔", "租用合同附檔"];
-       
+
+        const subpageLink = ["/checkin", "/carparkpass", "/payment", "/invoice", "/tenancy"];
+        
         return(
             <div className={ classes.root }>
                 <div className={ classes.headerLayout }>
@@ -148,7 +151,9 @@ class AccountManagement extends React.Component{
                                         <CardContent>
                                             <div className={ classes.event }>
                                                 <p style={{ flexGrow: '1', marginLeft: '30px' }}>{d}</p>
-                                                <KeyboardArrowRight className={ classes.rightArrow } />
+                                                <Button component={ Link } to={ subpageLink[i] }>
+                                                    <KeyboardArrowRight className={ classes.rightArrow } />
+                                                </Button>
                                             </div>
                                         </CardContent>
                                     </Card>

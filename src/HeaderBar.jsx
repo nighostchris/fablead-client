@@ -73,7 +73,11 @@ class HeaderBar extends React.Component {
       "/classmaterial": "Seminar Name",
       "/accountmgt": "Seminar Name",
       "/notestaking": "Notes Taking",
-      "/notes": "Notes Taking"
+      "/notes": "Notes Taking",
+      "/carparkpass": "Car Park Pass",
+      "/payment": "Payment Attachment",
+      "/invoice": "Invoice Attachment",
+      "/tenancy": "Tenancy Agreement"
     };
 
     return (
