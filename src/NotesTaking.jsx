@@ -70,6 +70,19 @@ const styles = theme => ({
       borderRadius: '20px'
     }
   },
+  documentMargin: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '10px',
+    backgroundColor: 'gainsboro',
+    [theme.breakpoints.up('md')]: {
+      width: '600px',
+      borderRadius: '20px'
+    }
+  },
   documentInfo: {
     display: 'flex',
     flexDirection: 'column',
@@ -119,8 +132,73 @@ const styles = theme => ({
 });
 
 class NotesTaking extends React.Component{
+  constructor(props){
+    super(props);
+    let array = new Array(2);
+    for (let i = 0; i < array.length; i++)
+      array[i] = false;
+    this.state = {
+      expandControl: array
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(key){
+    let array = this.state.expandControl;
+    array[key] = !array[key];
+    this.setState({
+      expandControl: array
+    });
+  }
+
   render(){
     const { classes } = this.props;
+
+    let document = [];
+
+    for (let i = 0; i < 2; i++) {
+      document.push(
+        <div>
+          <div key={i} className={ this.state.expandControl[i] == true ? classes.document : classes.documentMargin } onClick={() => { this.handleClick(i) }}>
+            <div style={{ flexGrow: '1', textAlign: 'center' }}>
+              <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px"/>
+            </div>
+            <div className={ classes.documentInfo }>
+              <p>123.jpg</p>
+              <p>2.1MB</p>
+            </div>
+            <div style={{ flexGrow: '1' }}>
+              <p>6月18日</p>
+            </div>
+          </div>
+          {
+            this.state.expandControl[i] == true ?
+              (
+                <div className={ classes.editBar }>
+                  <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
+                    <Mail />
+                    Send
+                  </Button>
+                  <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
+                    <Download />
+                    Download
+                  </Button>
+                  <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
+                    <TrashCan />
+                    Delete
+                  </Button>
+                </div>
+              ) : undefined
+          }
+        </div>
+      );
+    }
+
+    let elements = document.map((document, i) => {
+      return(<div key={i} className={ classes.documentWrapper }>{document}</div>);
+    });
+
     return(
       <div className={ classes.root }>
         <div className={ classes.headerLayout }>
@@ -168,46 +246,7 @@ class NotesTaking extends React.Component{
           <div className={ classes.seperateBar }>
             <p style={{ marginLeft: '20px' }}>Document</p>
           </div>
-          <div className={ classes.documentWrapper }>
-            <div className={ classes.document }>
-              <div style={{ flexGrow: '1', textAlign: 'center' }}>
-                <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px"/>
-              </div>
-              <div className={ classes.documentInfo }>
-                <p>123.jpg</p>
-                <p>2.1MB</p>
-              </div>
-              <div style={{ flexGrow: '1' }}>
-                <p>6月18日</p>
-              </div>
-            </div>
-            <div className={ classes.editBar }>
-              <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
-                <Mail />
-                Send
-              </Button>
-              <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
-                <Download />
-                Download
-              </Button>
-              <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
-                <TrashCan />
-                Delete
-              </Button>
-            </div>
-            <div className={ classes.document }>
-              <div style={{ flexGrow: '1', textAlign: 'center' }}>
-                <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px"/>
-              </div>
-              <div className={ classes.documentInfo }>
-                <p>456.jpg</p>
-                <p>3.5MB</p>
-              </div>
-              <div style= {{ flexGrow: '1' }}>
-                <p>6月8日</p>
-              </div>
-            </div>
-          </div>
+          { elements }
           <Button className={ classes.createButton }>
             Create
           </Button>
