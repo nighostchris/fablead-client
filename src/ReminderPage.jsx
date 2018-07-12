@@ -52,7 +52,7 @@ const styles = theme => ({
   createButton: {
     position: 'absolute',
     marginTop: '20px',
-    marginLeft: '2%',
+    marginLeft: '10%',
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }

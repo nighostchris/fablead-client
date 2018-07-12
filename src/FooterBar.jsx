@@ -16,6 +16,9 @@ const styles = {
     position: 'absolute',
     bottom: '0px',
     width: '100%'
+  },
+  bottomBar: {
+    minWidth: '0px'
   }
 };
 
@@ -41,11 +44,11 @@ class SimpleBottomNavigation extends React.Component {
                                 (this.props.location.pathname == "/teacher" ? 2 :
                                 (this.props.location.pathname == "/library" ? 3 : 4))) } 
                         onChange={ this.handleClick }>
-        <BottomNavigationAction label="Seminars" icon={<SeminarsIcon />} component={ Link } to="/dashboard" />
-        <BottomNavigationAction label="Schedule" icon={<ScheduleIcon />} component={ Link } to="/scheduling" />
-        <BottomNavigationAction label="Teachers" icon={<TeachersIcon />} component={ Link } to="/teacher" />
-        <BottomNavigationAction label="Library" icon={<LibraryIcon />} component={ Link } to="/library" />
-        <BottomNavigationAction label="Reminder" icon={<ReminderIcon />} component={ Link } to="/reminder" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Seminars" icon={<SeminarsIcon />} component={ Link } to="/dashboard" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Schedule" icon={<ScheduleIcon />} component={ Link } to="/scheduling" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Teachers" icon={<TeachersIcon />} component={ Link } to="/teacher" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Library" icon={<LibraryIcon />} component={ Link } to="/library" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Reminder" icon={<ReminderIcon />} component={ Link } to="/reminder" />
       </BottomNavigation>
     );
   }
