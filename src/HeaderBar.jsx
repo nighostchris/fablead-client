@@ -56,43 +56,43 @@ class HeaderBar extends React.Component {
   render() {
     const { classes } = this.props;
 
+    const backButtonArray = ["/basicinfo", "/eventppt", "/classmaterial", "/accountmgt", "/notestaking", "/notes", "/carparkpass", "/payment", "/invoice", "/tenancy"];
+    
+    const editButtonArray = ["/teacher", "/reminder", "/basicinfo", "/eventppt", "/classmaterial", "/accountmgt", "/notestaking", "/notes"];
+
+    const accountMGTArray = ["/carparkpass", "/payment", "/invoice", "/tenancy"];
+
+    const headerMapping = {
+      "/dashboard": "Seminar",
+      "/scheduling": "Scheduling",
+      "/teacher": "Teacher",
+      "/library": "Library",
+      "/reminder": "Reminder",
+      "/basicinfo": "Seminar Name",
+      "/eventppt": "Seminar Name",
+      "/classmaterial": "Seminar Name",
+      "/accountmgt": "Seminar Name",
+      "/notestaking": "Notes Taking",
+      "/notes": "Notes Taking"
+    };
+
     return (
       <div className={classes.root}>
-        <AppBar position="static" className={ this.props.location.pathname == "/basicinfo" || this.props.location.pathname == "/eventppt" ||
-                this.props.location.pathname == "/classmaterial" || this.props.location.pathname == "/accountmgt" ||
-                this.props.location.pathname == "/notestaking" || this.props.location.pathname == "/notes" ? classes.headerLayoutNew : undefined }>
+        <AppBar position="static" className={ backButtonArray.includes(this.props.location.pathname) ? classes.headerLayoutNew : undefined }>
           <Toolbar className={classes.titleBar}>
             <div className={ classes.headerLayout }>
               {
-                this.props.location.pathname == "/basicinfo" || this.props.location.pathname == "/eventppt" ||
-                this.props.location.pathname == "/classmaterial" || this.props.location.pathname == "/accountmgt" ||
-                this.props.location.pathname == "/notestaking" || this.props.location.pathname == "/notes" ?
+                backButtonArray.includes(this.props.location.pathname) ?
                 ( 
-                  <Button className={ classes.backButton } component={ Link } to={ this.props.location.pathname == "/notes" ? "/notestaking" : "/reminder" }>
+                  <Button className={ classes.backButton } component={ Link } to={ this.props.location.pathname == "/notes" ? "/notestaking" :
+                      (accountMGTArray.includes(this.props.location.pathname) ? "/accountmgt" : "/reminder") }>
                     <ArrowBackIcon />
                   </Button>
                 )
                 : undefined
               }
               <Typography variant="title" color="inherit" align="center" className={ classes.flex }>
-              {
-                this.props.location.pathname == "/dashboard" ? "Seminar"
-                : (this.props.location.pathname == "/scheduling" ? "Scheduling"
-                  : (this.props.location.pathname == "/teacher" ? "Teacher"
-                    : (this.props.location.pathname == "/library" ? "Library"
-                      : (this.props.location.pathname == "/reminder" ? "Reminder"
-                        : (this.props.location.pathname == "/basicinfo" ||
-                           this.props.location.pathname == "/eventppt" ||
-                           this.props.location.pathname == "/classmaterial" ||
-                           this.props.location.pathname == "/accountmgt" ? "Seminar Name"
-                          : (this.props.location.pathname == "/notestaking" || this.props.location.pathname == "/notes" ? "Notes Taking"
-                            : undefined)
-                          )
-                        )
-                      )
-                    )
-                  )
-              }
+                { headerMapping[this.props.location.pathname] }
               </Typography>
               {
                 this.props.location.pathname == "/dashboard" || this.props.location.pathname == "/library" ? 
@@ -105,19 +105,8 @@ class HeaderBar extends React.Component {
                   >
                     <SearchIcon />
                   </IconButton>
-                )
-                :
-                (this.props.location.pathname == "/teacher" || this.props.location.pathname == "/reminder" ||
-                 this.props.location.pathname == "/basicinfo" || this.props.location.pathname == "/eventppt" ||
-                 this.props.location.pathname == "/classmaterial" || this.props.location.pathname == "/accountmgt" ||
-                 this.props.location.pathname == "/notestaking" || this.props.location.pathname == "/notes" ?
-                  (
-                    <Button className={ classes.editButton }>
-                        Edit
-                    </Button>
-                  )
-                  : undefined
-                )
+                ) :
+                (editButtonArray.includes(this.props.location.pathname) ? <Button className={ classes.editButton }>Edit</Button> : undefined)
               }
             </div>
           </Toolbar>

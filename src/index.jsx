@@ -16,6 +16,11 @@ import AccountManagement from './Seminar/AccountManagement';
 import NotesTaking from './NotesTaking';
 import Notes from './Notes';
 
+import CarparkPass from './Seminar/CarparkPass';
+import Payment from './Seminar/Payment';
+import Invoice from './Seminar/Invoice';
+import Tenancy from './Seminar/Tenancy';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -46,6 +51,10 @@ function App() {
           <Route path="/accountmgt" component={ AccountManagement } />
           <Route path="/notestaking" component={ NotesTaking } />
           <Route path="/notes" component={ Notes } />
+          <Route path="/carparkpass" component={CarparkPass} />
+          <Route path="/payment" component={ Payment } />
+          <Route path="/invoice" component={ Invoice } />
+          <Route path="/tenancy" component={ Tenancy } />
           <MainPage />
         </Switch>
       </Router>
