@@ -2,18 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import PanoramaFishEye from '@material-ui/icons/PanoramaFishEye';
 import { Link } from 'react-router-dom';
 
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import HeaderBar from '../HeaderBar';
 
 const styles = theme => ({
     body: {
@@ -29,29 +25,6 @@ const styles = theme => ({
     },
     root: {
         flexGrow: 1,
-    },
-    titleBar: {
-        justifyContent: 'center'
-    },
-    editButton: {
-        fontSize: '14px',
-        color: 'white',
-        position: 'absolute',
-        right: '20px',
-        '&:hover': {
-          backgroundColor: theme.palette.primary.main
-        },
-        [theme.breakpoints.down('sm')]: {
-            right: '0px'
-        }
-    },
-    backButton: {
-        position: 'absolute',
-        left: '20px',
-        color: 'white',
-        [theme.breakpoints.down('sm')]: {
-            left: '0px'
-        }
     },
     cardWrapper: {
         display: 'flex',
@@ -77,15 +50,6 @@ const styles = theme => ({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    panorama: {
-        fontSize: '30px',
-    },
-    buttonCount: {
-        position: 'absolute', 
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: theme.palette.secondary.main
-    },
     rightArrow: {
         width: '20%',
         color: theme.palette.secondary.main,
@@ -97,7 +61,7 @@ class EventPreparation extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            value: 2
+            value: 1
         }
     }
 
@@ -116,17 +80,7 @@ class EventPreparation extends React.Component{
             <div className={ classes.root }>
                 <div className={ classes.headerLayout }>
                     <AppBar position="static">
-                        <Toolbar className={ classes.titleBar }>
-                            <Button className={ classes.backButton } component={ Link } to="/reminder">
-                                <ArrowBackIcon />
-                            </Button>
-                            <Typography variant="title" color="inherit" align="center" className={ classes.flex }>
-                                Seminar Name
-                            </Typography>
-                            <Button className={ classes.editButton }>
-                                Edit
-                            </Button>
-                        </Toolbar>
+                        <HeaderBar />
                         <Tabs value={ value } scrollButtons="auto" fullWidth onChange={ this.handleChange } centered>
                             <Tab label="Basic Info" component={ Link } to="/basicinfo" />
                             <Tab label="Event Ppt" component={ Link } to="/eventppt" />
@@ -140,18 +94,23 @@ class EventPreparation extends React.Component{
                         <Card className={ classes.card }>
                             <CardContent>
                                 <div className={ classes.event }>
-                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>課程教材 A</p>
-                                    <Button style={{ position: 'relative', width: '20%' }}>
-                                        <PanoramaFishEye className={ classes.panorama } />
-                                        <p className={ classes.buttonCount }>3</p>
-                                    </Button>
+                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 1</p>
+                                    <KeyboardArrowRight className={ classes.rightArrow } />
                                 </div>
                             </CardContent>
                         </Card>
                         <Card className={ classes.card }>
                             <CardContent>
                                 <div className={ classes.event }>
-                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>課程教材 B</p>
+                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 2</p>
+                                    <KeyboardArrowRight className={ classes.rightArrow } />
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className={ classes.card }>
+                            <CardContent>
+                                <div className={ classes.event }>
+                                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>Event 3</p>
                                     <KeyboardArrowRight className={ classes.rightArrow } />
                                 </div>
                             </CardContent>

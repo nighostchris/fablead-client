@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import AddIcon from '@material-ui/icons/Add';
 import Mail from '@material-ui/icons/MailOutline';
@@ -16,30 +12,9 @@ import TrashCan from '@material-ui/icons/Delete';
 
 import { Link } from 'react-router-dom';
 
+import HeaderBar from './HeaderBar';
+
 const styles = theme => ({
-    titleBar: {
-        justifyContent: 'center'
-    },
-    editButton: {
-        fontSize: '14px',
-        color: 'white',
-        position: 'absolute',
-        right: '20px',
-        '&:hover': {
-          backgroundColor: theme.palette.primary.main
-        },
-        [theme.breakpoints.down('sm')]: {
-            right: '0px'
-        }
-    },
-    backButton: {
-        position: 'absolute',
-        left: '20px',
-        color: 'white',
-        [theme.breakpoints.down('sm')]: {
-            left: '0px'
-        }
-    },
     basicInfo: {
         marginTop: '20px',
         alignItems: 'center'
@@ -150,17 +125,7 @@ class NotesTaking extends React.Component{
             <div className={ classes.root }>
                 <div className={ classes.headerLayout }>
                     <AppBar position="static">
-                        <Toolbar className={ classes.titleBar }>
-                            <Button className={ classes.backButton } component={ Link } to="/reminder">
-                                <ArrowBackIcon />
-                            </Button>
-                            <Typography variant="title" color="inherit" align="center" className={ classes.flex }>
-                                Notes Taking
-                            </Typography>
-                            <Button className={ classes.editButton }>
-                                Edit
-                            </Button>
-                        </Toolbar>
+                        <HeaderBar />
                     </AppBar>
                 </div>
                 <div className={ classes.basicInfo }>

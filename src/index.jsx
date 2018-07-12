@@ -7,10 +7,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 import AddSeminarPage from './AddSeminarPage';
-import BasicInfoPage from './BasicInfoPage';
-import EventPreparation from './EventPreparation';
-import ClassMaterial from './ClassMaterial';
-import AccountManagement from './AccountManagement';
+
+import BasicInfoPage from './Seminar/BasicInfoPage';
+import EventPreparation from './Seminar/EventPreparation';
+import ClassMaterial from './Seminar/ClassMaterial';
+import AccountManagement from './Seminar/AccountManagement';
+
 import NotesTaking from './NotesTaking';
 import Notes from './Notes';
 

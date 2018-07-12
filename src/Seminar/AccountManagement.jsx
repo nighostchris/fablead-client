@@ -2,18 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { Link } from 'react-router-dom';
 
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import HeaderBar from '../HeaderBar';
 
 const styles = theme => ({
     body: {
@@ -29,29 +26,6 @@ const styles = theme => ({
     },
     root: {
         flexGrow: 1,
-    },
-    titleBar: {
-        justifyContent: 'center'
-    },
-    editButton: {
-        fontSize: '14px',
-        color: 'white',
-        position: 'absolute',
-        right: '20px',
-        '&:hover': {
-          backgroundColor: theme.palette.primary.main
-        },
-        [theme.breakpoints.down('sm')]: {
-            right: '0px'
-        }
-    },
-    backButton: {
-        position: 'absolute',
-        left: '20px',
-        color: 'white',
-        [theme.breakpoints.down('sm')]: {
-            left: '0px'
-        }
     },
     cardWrapper: {
         display: 'flex',
@@ -126,17 +100,7 @@ class AccountManagement extends React.Component{
             <div className={ classes.root }>
                 <div className={ classes.headerLayout }>
                     <AppBar position="static">
-                        <Toolbar className={ classes.titleBar }>
-                            <Button className={ classes.backButton } component={ Link } to="/reminder">
-                                <ArrowBackIcon />
-                            </Button>
-                            <Typography variant="title" color="inherit" align="center" className={ classes.flex }>
-                                Seminar Name
-                            </Typography>
-                            <Button className={ classes.editButton }>
-                                Edit
-                            </Button>
-                        </Toolbar>
+                        <HeaderBar />
                         <Tabs value={ value } scrollButtons="auto" fullWidth onChange={ this.handleChange } centered>
                             <Tab label="Basic Info" component={ Link } to="/basicinfo" />
                             <Tab label="Event Ppt" component={ Link } to="/eventppt" />
