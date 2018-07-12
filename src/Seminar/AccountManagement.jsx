@@ -28,10 +28,9 @@ const styles = theme => ({
         flexGrow: 1,
     },
     cardWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
+        marginTop: '20px',
         [theme.breakpoints.up('md')]: {
-            marginTop: '10px',
+            marginTop: '50px',
             alignItems: 'center'
         }
     },
@@ -42,7 +41,6 @@ const styles = theme => ({
         textDecoration: 'none',
         boxShadow: '0px 0px 0px',
         borderRadius: '0px',
-        marginTop: '50px',
         [theme.breakpoints.up('md')]: {
             width: '700px'
         }
@@ -95,6 +93,8 @@ class AccountManagement extends React.Component{
         const { classes } = this.props;
 
         const { value } = this.state;
+
+        const subpage = ["學員 check-in", "停車證需求", "繳費附檔", "發票附檔", "租用合同附檔"];
        
         return(
             <div className={ classes.root }>
@@ -140,14 +140,22 @@ class AccountManagement extends React.Component{
                             />
                         </div>
                     </div>
-                    <Card className={ classes.card }>
-                        <CardContent>
-                            <div className={ classes.event }>
-                                <p style={{ flexGrow: '1', marginLeft: '30px' }}>學員 check-in</p>
-                                <KeyboardArrowRight className={ classes.rightArrow } />
-                            </div>
-                        </CardContent>
-                    </Card>
+                    <div className={ classes.cardWrapper }>
+                        {
+                            subpage.map((d, i) => {
+                                return(
+                                    <Card key={i} className={ classes.card }>
+                                        <CardContent>
+                                            <div className={ classes.event }>
+                                                <p style={{ flexGrow: '1', marginLeft: '30px' }}>{d}</p>
+                                                <KeyboardArrowRight className={ classes.rightArrow } />
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                );
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         );
