@@ -60,15 +60,15 @@ class HeaderBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static" className={ this.props.location.pathname == "/basicinfo" || this.props.location.pathname == "/eventppt" ||
                 this.props.location.pathname == "/classmaterial" || this.props.location.pathname == "/accountmgt" ||
-                this.props.location.pathname == "/notestaking" ? classes.headerLayoutNew : undefined }>
+                this.props.location.pathname == "/notestaking" || this.props.location.pathname == "/notes" ? classes.headerLayoutNew : undefined }>
           <Toolbar className={classes.titleBar}>
             <div className={ classes.headerLayout }>
               {
                 this.props.location.pathname == "/basicinfo" || this.props.location.pathname == "/eventppt" ||
                 this.props.location.pathname == "/classmaterial" || this.props.location.pathname == "/accountmgt" ||
-                this.props.location.pathname == "/notestaking" ?
+                this.props.location.pathname == "/notestaking" || this.props.location.pathname == "/notes" ?
                 ( 
-                  <Button className={ classes.backButton } component={ Link } to="/reminder">
+                  <Button className={ classes.backButton } component={ Link } to={ this.props.location.pathname == "/notes" ? "/notestaking" : "/reminder" }>
                     <ArrowBackIcon />
                   </Button>
                 )
@@ -85,7 +85,7 @@ class HeaderBar extends React.Component {
                            this.props.location.pathname == "/eventppt" ||
                            this.props.location.pathname == "/classmaterial" ||
                            this.props.location.pathname == "/accountmgt" ? "Seminar Name"
-                          : (this.props.location.pathname == "/notestaking" ? "Notes Taking"
+                          : (this.props.location.pathname == "/notestaking" || this.props.location.pathname == "/notes" ? "Notes Taking"
                             : undefined)
                           )
                         )
