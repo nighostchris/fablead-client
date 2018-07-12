@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
-import AddSeminarPage from './AddSeminarPage';
+import AddSeminarPage from './Dashboard/AddSeminarPage';
 
 import BasicInfoPage from './Seminar/BasicInfoPage';
 import EventPreparation from './Seminar/EventPreparation';

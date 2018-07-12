@@ -6,11 +6,11 @@ import { Route } from 'react-router-dom';
 
 import HeaderBar from './HeaderBar';
 import FooterBar from './FooterBar';
-import SeminarList from './SeminarList';
-import SchedulingPage from './SchedulingPage';
-import TeacherPage from './TeacherPage';
-import LibraryPage from './LibraryPage';
-import ReminderPage from './ReminderPage';
+import SeminarList from './Dashboard/SeminarList';
+import SchedulingPage from './Dashboard/SchedulingPage';
+import TeacherPage from './Dashboard/TeacherPage';
+import LibraryPage from './Dashboard/LibraryPage';
+import ReminderPage from './Dashboard/ReminderPage';
 
 const styles = {
   root: {

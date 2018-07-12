@@ -59,7 +59,8 @@ const styles = theme => ({
         position: 'absolute', 
         fontWeight: 'bold',
         textAlign: 'center',
-        color: theme.palette.secondary.main
+        margin: '0px',
+        color: theme.palette.secondary.main,
     },
     rightArrow: {
         width: '20%',

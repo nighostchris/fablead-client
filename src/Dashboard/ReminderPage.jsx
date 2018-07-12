@@ -6,7 +6,7 @@ import { CardContent } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom';
-import FooterBar from './FooterBar';
+import FooterBar from '../FooterBar';
 
 const styles = theme => ({
   cardWrapper: {
