@@ -47,7 +47,7 @@ const styles = theme => ({
     left: '20px',
     color: 'white',
     [theme.breakpoints.down('sm')]: {
-        left: '0px'
+      left: '0px'
     }
   }
 });
