@@ -208,6 +208,7 @@ class SeminarList extends React.Component {
               rowsPerPageOptions={[]}
               page={0}
               ActionsComponent={SeminarListTablePaginationWrapped}
+              onChangePage={() => {}}
             />
           </TableRow>
         </TableFooter>

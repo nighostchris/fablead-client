@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import FooterBar from '../FooterBar';
 import Calendar from '../Calendar/Calendar';
 
 const styles = theme => ({
@@ -201,7 +200,6 @@ class SchedulingPage extends React.Component{
             </div>
           </div>
         </div>
-        <FooterBar bottomValue = {1} />
       </div>
     );
   }

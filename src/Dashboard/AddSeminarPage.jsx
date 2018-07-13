@@ -129,18 +129,6 @@ class AddSeminarPage extends React.Component{
 
     return(
       <div>
-        <Button className={ classes.backButton } component={ Link } to="/dashboard" >
-          <KeyboardArrowLeft style={{ fontSize: '15px', marginRight: '5px', color: 'white' }} />
-          Back
-        </Button>
-        <div className={ classes.topBar }>
-          <p className={ classes.topBarInfoFirst }>
-            Create > New Seminar
-          </p>
-          <p className={ classes.topBarInfoSecond }>
-            New Seminar
-          </p>
-        </div>
         <div className={ classes.seminarInfo }>
           <div className={ classes.textFieldStyle }>
             <p style={{ marginRight: '50px' }}>Name</p>

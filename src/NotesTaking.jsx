@@ -12,8 +12,6 @@ import TrashCan from '@material-ui/icons/Delete';
 
 import { Link } from 'react-router-dom';
 
-import HeaderBar from './HeaderBar';
-
 const styles = theme => ({
   basicInfo: {
     marginTop: '20px',
@@ -201,11 +199,6 @@ class NotesTaking extends React.Component{
 
     return(
       <div className={ classes.root }>
-        <div className={ classes.headerLayout }>
-          <AppBar position="static">
-            <HeaderBar />
-          </AppBar>
-        </div>
         <div className={ classes.basicInfo }>
           <div className={ classes.infoWrapper }>
             <p className={ classes.leftColumn }>Name</p>

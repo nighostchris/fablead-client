@@ -8,7 +8,6 @@ import { List, ListItem, ListItemText } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import AddIcon from '@material-ui/icons/Add';
-import FooterBar from '../FooterBar';
 import { CardActions } from '@material-ui/core';
 
 const styles = theme => ({
@@ -121,7 +120,6 @@ class LibraryPage extends React.Component{
         <Button color="secondary" className={ classes.addButton } variant="fab" aria-label="help">
           <AddIcon />
         </Button>
-        <FooterBar bottomValue = {3} />
       </div>
     );
   }

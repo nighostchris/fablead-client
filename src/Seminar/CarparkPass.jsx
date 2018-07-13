@@ -6,8 +6,6 @@ import Button from '@material-ui/core/Button';
 
 import AddIcon from '@material-ui/icons/Add';
 
-import HeaderBar from '../HeaderBar';
-
 const styles = theme => ({
   documentMargin: {
     display: 'flex',
@@ -49,11 +47,6 @@ class CarparkPass extends React.Component{
     const { classes } = this.props;
     return(
       <div>
-        <div className={ classes.headerLayout }>
-          <AppBar position="static">
-            <HeaderBar />
-          </AppBar>
-        </div>
         <div className={ classes.documentWrapper }>
           <div className={ classes.documentMargin }>
             <div style={{ flexGrow: '1', textAlign: 'center' }}>

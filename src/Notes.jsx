@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-
-import HeaderBar from './HeaderBar';
 
 const styles = theme => ({
   textareaWrapper: {
@@ -41,11 +38,6 @@ class Notes extends React.Component{
 
     return(
       <div className={ classes.root }>
-        <div className={ classes.headerLayout }>
-          <AppBar position="static">
-            <HeaderBar />
-          </AppBar>
-        </div>
         <div className={ classes.textareaWrapper }>
           <textarea className={ classes.textarea } value={ value } onChange={ this.handleChange }></textarea>
         </div>

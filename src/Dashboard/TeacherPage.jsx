@@ -5,7 +5,6 @@ import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
 import { ListItem, ListItemText } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import FooterBar from '../FooterBar';
 
 const styles = theme => ({
   teacherWrapper: {
@@ -67,7 +66,6 @@ class TeacherPage extends React.Component{
         <Button color="secondary" className={ classes.addButton } variant="fab" aria-label="help">
           <AddIcon />
         </Button>
-        <FooterBar bottomValue = {2} />
       </div>
     );
   }
