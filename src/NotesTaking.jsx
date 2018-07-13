@@ -246,7 +246,9 @@ class NotesTaking extends React.Component{
           <div className={ classes.seperateBar }>
             <p style={{ marginLeft: '20px' }}>Document</p>
           </div>
-          { elements }
+          <div className={ classes.documentWrapper }>
+            { elements }
+          </div>
           <Button className={ classes.createButton }>
             Create
           </Button>
