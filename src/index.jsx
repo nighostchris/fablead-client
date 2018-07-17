@@ -13,14 +13,14 @@ const theme = createMuiTheme({
       main: '#21a9c9',
       light: '#67dbfc',
       dark: '#007a98',
-      contrastText: '#fff'
+      contrastText: '#fff',
     },
     secondary: {
       main: '#02de72',
       light: '#64ffa2',
       dark: '#00ab44',
-      contrastText: '#fff'
-    }
+      contrastText: '#fff',
+    },
   },
 });
 
@@ -29,7 +29,7 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <Router>
         <Switch>
-          <Route exact path="/" component={ LoginPage } />
+          <Route exact path="/" component={LoginPage} />
           <MainPage />
         </Switch>
       </Router>

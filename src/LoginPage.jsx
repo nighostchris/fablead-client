@@ -16,7 +16,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     margin: '0 auto',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   titleContainer: {
     display: 'flex',
@@ -40,7 +40,7 @@ const styles = theme => ({
       flex: 0.5,
     },
     minHeight: '256px',
-    paddingBottom: '128px'
+    paddingBottom: '128px',
   },
   inputFieldsContainer: {
     display: 'flex',
@@ -50,7 +50,7 @@ const styles = theme => ({
   },
   inputField: {
     width: '100%',
-    color: 'grey'
+    color: 'grey',
   },
   title: {
     color: theme.palette.primary.dark,
@@ -59,8 +59,8 @@ const styles = theme => ({
     fontSize: '28px',
     position: 'absolute',
     right: '30px',
-    marginRight:'30px',
-    marginTop: '30px'
+    marginRight: '30px',
+    marginTop: '30px',
   },
   loginButton: {
     marginTop: '40px',
@@ -68,58 +68,61 @@ const styles = theme => ({
     borderRadius: '30px',
     paddingTop: '10px',
     paddingBottom: '10px',
-    width: '17em'
-  }
+    width: '17em',
+  },
 });
 
 class LoginPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       userIdValue: '',
       passwordValue: '',
-      redirect: false
+      redirect: false,
     };
 
     this.handleLoginButtonClick = this.handleLoginButtonClick.bind(this);
   }
 
-  handleTextFieldChange = name => event => {
-      this.setState({
-        [name]: event.target.value
-      });
+  handleTextFieldChange = name => (event) => {
+    this.setState({
+      [name]: event.target.value,
+    });
   };
 
   handleLoginButtonClick() {
-     if (this.state.userIdValue !== '' && this.state.passwordValue !== '')
-      this.setState({ redirect: true }); 
+    if (this.state.userIdValue !== '' && this.state.passwordValue !== '') this.setState({ redirect: true });
   }
 
   render() {
     const { classes } = this.props;
 
-    if (this.state.redirect){
-      return(
-        <Redirect to='/dashboard' />
+    if (this.state.redirect) {
+      return (
+        <Redirect to="/dashboard" />
       );
     }
 
     return (
       <div className={classes.root}>
-        <Button variant="fab" color="secondary" aria-label="help" className={classes.helpButton}>?</Button>
+        <Button variant="fab" color="secondary" aria-label="help" className={classes.helpButton}>
+?
+        </Button>
         <div className={classes.titleContainer}>
-          <Typography variant="display4" gutterBottom className={classes.title}>Fablead</Typography>
+          <Typography variant="display4" gutterBottom className={classes.title}>
+Fablead
+          </Typography>
         </div>
 
         <Grid container className={classes.grid}>
-          <Grid item xs={3} md={4}></Grid>
+          <Grid item xs={3} md={4} />
           <Grid item xs={6} md={4} className={classes.inputFieldsContainer}>
             <TextField
               id="userid"
               placeholder="User ID"
               margin="normal"
               className={classes.inputField}
-              onChange={ this.handleTextFieldChange('userIdValue') }
+              onChange={this.handleTextFieldChange('userIdValue')}
             />
             <TextField
               id="password"
@@ -127,13 +130,13 @@ class LoginPage extends React.Component {
               type="password"
               margin="normal"
               className={classes.inputField}
-              onChange={ this.handleTextFieldChange('passwordValue') }
+              onChange={this.handleTextFieldChange('passwordValue')}
             />
           </Grid>
-          <Grid item xs={3} md={4}></Grid>
+          <Grid item xs={3} md={4} />
 
           <Grid item xs={12}>
-            <Button color="secondary" className={classes.loginButton} variant="contained" onClick={ this.handleLoginButtonClick }>
+            <Button color="secondary" className={classes.loginButton} variant="contained" onClick={this.handleLoginButtonClick}>
               Login
             </Button>
           </Grid>

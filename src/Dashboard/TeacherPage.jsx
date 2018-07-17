@@ -11,59 +11,57 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: '10px'
+    marginTop: '10px',
   },
   teacherCard: {
     width: '700px',
     textAlign: 'center',
     height: '50px',
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   },
   createButton: {
     float: 'right',
     marginTop: '40px',
     marginRight: '20%',
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   addButton: {
     position: 'absolute',
     bottom: '72px',
     right: '32px',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
-  }
+      display: 'none',
+    },
+  },
 });
 
-class TeacherPage extends React.Component{
-  render(){
+class TeacherPage extends React.Component {
+  render() {
     const { classes } = this.props;
 
-    const data = ["Chan Li Li", "Yuen Ka Yan", "Wong Man Man", "Sze Lai Yu"];
+    const data = ['Chan Li Li', 'Yuen Ka Yan', 'Wong Man Man', 'Sze Lai Yu'];
 
-    return(
+    return (
       <div>
-        <div className={ classes.teacherWrapper }>
+        <div className={classes.teacherWrapper}>
           <List component="nav">
             {
-              data.map((data, i) => {
-                return (
-                  <ListItem key={i} button className={ classes.teacherCard }>
-                    <ListItemText primary={ data } />
-                  </ListItem>
-                );
-              })
+              data.map((data, i) => (
+                <ListItem key={i} button className={classes.teacherCard}>
+                  <ListItemText primary={data} />
+                </ListItem>
+              ))
             }
           </List>
         </div>
-        <Button className={ classes.createButton } variant="contained" color="secondary">
+        <Button className={classes.createButton} variant="contained" color="secondary">
                     Create
         </Button>
-        <Button color="secondary" className={ classes.addButton } variant="fab" aria-label="help">
+        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
           <AddIcon />
         </Button>
       </div>
@@ -72,8 +70,7 @@ class TeacherPage extends React.Component{
 }
 
 TeacherPage.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(TeacherPage);
-

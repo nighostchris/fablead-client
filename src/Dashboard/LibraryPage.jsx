@@ -12,112 +12,116 @@ import { CardActions } from '@material-ui/core';
 
 const styles = theme => ({
   enterButton: {
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
-  enterButtonHidden:{
+  enterButtonHidden: {
     color: theme.palette.secondary.main,
-    fontSize:'30px',
-    fontWeight: 'bold'
+    fontSize: '30px',
+    fontWeight: 'bold',
   },
-  cardWrapper:{
+  cardWrapper: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: '40px',
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   card: {
     width: '200px',
     height: '250px',
     boxShadow: '1px 4px 5px',
     '&:nth-of-type(even)': {
-      marginLeft: '50px'
-    }
+      marginLeft: '50px',
+    },
   },
   libraryWrapper: {
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   libraryCard: {
     '&:nth-of-type(even)': {
-      backgroundColor: theme.palette.background.default
+      backgroundColor: theme.palette.background.default,
     },
   },
   libraryText: {
     marginLeft: '30px',
     fontWeight: 'bold',
-    fontSize: '16px'
+    fontSize: '16px',
   },
   addButton: {
     position: 'absolute',
     bottom: '72px',
     right: '32px',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   createButton: {
     float: 'right',
     marginTop: '80px',
     marginRight: '10%',
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
-  }
+      display: 'none',
+    },
+  },
 });
 
-class LibraryPage extends React.Component{
-  render(){
-    const { classes } = this.props;    
+class LibraryPage extends React.Component {
+  render() {
+    const { classes } = this.props;
 
-    return(
+    return (
       <div>
-        <div className={ classes.cardWrapper }>
-          <Card className={ classes.card }>
+        <div className={classes.cardWrapper}>
+          <Card className={classes.card}>
             <CardContent>
-              <p style={{ fontWeight: 'bold', fontSize: '20px' }}>課程教材</p>
-              <hr/>
+              <p style={{ fontWeight: 'bold', fontSize: '20px' }}>
+課程教材
+              </p>
+              <hr />
             </CardContent>
             <CardActions style={{ justifyContent: 'center', marginTop: '50px' }}>
-              <Button className={ classes.enterButton } variant="fab">
+              <Button className={classes.enterButton} variant="fab">
                 <KeyboardArrowRight style={{ fontSize: '30px', fontWeight: 'bold', color: 'white' }} />
               </Button>
             </CardActions>
           </Card>
-          <Card className={ classes.card }>
+          <Card className={classes.card}>
             <CardContent>
-              <p style={{ fontWeight: 'bold', fontSize: '20px' }}>演講資料</p>
-              <hr/>
+              <p style={{ fontWeight: 'bold', fontSize: '20px' }}>
+演講資料
+              </p>
+              <hr />
             </CardContent>
             <CardActions style={{ justifyContent: 'center', marginTop: '50px' }}>
-              <Button className={ classes.enterButton } variant="fab">
+              <Button className={classes.enterButton} variant="fab">
                 <AddIcon style={{ fontSize: '30px', fontWeight: 'bold', color: 'white' }} />
               </Button>
             </CardActions>
           </Card>
         </div>
-        <div className={ classes.libraryWrapper }>
+        <div className={classes.libraryWrapper}>
           <List component="nav">
-            <ListItem button className={ classes.libraryCard }>
-              <ListItemText className={ classes.libraryText } primary="課程教材" />
+            <ListItem button className={classes.libraryCard}>
+              <ListItemText className={classes.libraryText} primary="課程教材" />
               <IconButton style={{ width: '30px', height: '30px' }}>
-                <KeyboardArrowRight className={ classes.enterButtonHidden } />
+                <KeyboardArrowRight className={classes.enterButtonHidden} />
               </IconButton>
             </ListItem>
-            <ListItem button className={ classes.libraryCard }>
-              <ListItemText className={ classes.libraryText } primary="演講資料" />
-              <IconButton className={ classes.enterButton } style={{ width: '20px', height: '20px', marginRight: '5px' }}>
+            <ListItem button className={classes.libraryCard}>
+              <ListItemText className={classes.libraryText} primary="演講資料" />
+              <IconButton className={classes.enterButton} style={{ width: '20px', height: '20px', marginRight: '5px' }}>
                 <AddIcon style={{ fontSize: '20px', fontWeight: 'bold', color: 'white' }} />
               </IconButton>
             </ListItem>
           </List>
         </div>
-        <Button className={ classes.createButton } variant="contained" color="secondary">
+        <Button className={classes.createButton} variant="contained" color="secondary">
             Create
         </Button>
-        <Button color="secondary" className={ classes.addButton } variant="fab" aria-label="help">
+        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
           <AddIcon />
         </Button>
       </div>
@@ -126,8 +130,7 @@ class LibraryPage extends React.Component{
 }
 
 LibraryPage.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(LibraryPage);
-

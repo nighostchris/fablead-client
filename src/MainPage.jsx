@@ -29,49 +29,49 @@ import Tenancy from './Seminar/Tenancy';
 
 const styles = {
   root: {
-    flexShrink: 1
+    flexShrink: 1,
   },
   content: {
     flexShrink: 1,
-    marginBottom: '72px'
+    marginBottom: '72px',
   },
   loginRoot: {
-    marginTop: '100px'
-  }
+    marginTop: '100px',
+  },
 };
 
 class MainPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
   render() {
     const { classes } = this.props;
 
-    const headerBarArray = ["/basicinfo", "/eventppt", "/classmaterial", "/accountmgt"];
+    const headerBarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt'];
 
-    const footerBarArray = ["/dashboard", "/scheduling", "/teacher", "/library", "/reminder"];
+    const footerBarArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
 
     return (
-      <div className={ classes.root }>
-        <div className={ classes.content }>
+      <div className={classes.root}>
+        <div className={classes.content}>
           { headerBarArray.includes(this.props.location.pathname) ? undefined : <HeaderBar /> }
-          <Route path="/dashboard" component={ SeminarList } />
-          <Route path="/scheduling" component={ SchedulingPage } />
-          <Route path="/teacher" component={ TeacherPage } />
-          <Route path="/library" component={ LibraryPage } />
-          <Route path="/reminder" component={ ReminderPage } />
-          <Route path="/addseminar" component={ AddSeminarPage } />
-          <Route path="/basicinfo" component={ BasicInfoPage } />
-          <Route path="/eventppt" component={ EventPreparation } />
-          <Route path="/classmaterial" component={ ClassMaterial } />
-          <Route path="/accountmgt" component={ AccountManagement } />
-          <Route path="/notestaking" component={ NotesTaking } />
-          <Route path="/notes" component={ Notes } />
+          <Route path="/dashboard" component={SeminarList} />
+          <Route path="/scheduling" component={SchedulingPage} />
+          <Route path="/teacher" component={TeacherPage} />
+          <Route path="/library" component={LibraryPage} />
+          <Route path="/reminder" component={ReminderPage} />
+          <Route path="/addseminar" component={AddSeminarPage} />
+          <Route path="/basicinfo" component={BasicInfoPage} />
+          <Route path="/eventppt" component={EventPreparation} />
+          <Route path="/classmaterial" component={ClassMaterial} />
+          <Route path="/accountmgt" component={AccountManagement} />
+          <Route path="/notestaking" component={NotesTaking} />
+          <Route path="/notes" component={Notes} />
           <Route path="/carparkpass" component={CarparkPass} />
-          <Route path="/payment" component={ Payment } />
-          <Route path="/invoice" component={ Invoice } />
-          <Route path="/tenancy" component={ Tenancy } />
+          <Route path="/payment" component={Payment} />
+          <Route path="/invoice" component={Invoice} />
+          <Route path="/tenancy" component={Tenancy} />
         </div>
         { footerBarArray.includes(this.props.location.pathname) ? <FooterBar /> : undefined }
       </div>
@@ -81,7 +81,7 @@ class MainPage extends React.Component {
 
 MainPage.propTypes = {
   classes: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
 };
 
 

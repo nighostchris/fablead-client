@@ -13,100 +13,112 @@ const styles = theme => ({
     flexDirection: 'column',
     [theme.breakpoints.up('md')]: {
       marginTop: '10px',
-      alignItems: 'center'
-    }
+      alignItems: 'center',
+    },
   },
   card: {
     '&:nth-of-type(even)': {
       backgroundColor: theme.palette.background.default,
     },
     textDecoration: 'none',
-    boxShadow: '0px 0px 0px'
+    boxShadow: '0px 0px 0px',
   },
   firstCol: {
     marginTop: '0',
     marginBottom: '0',
     width: '40%',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   secondCol: {
     width: '40%',
     textAlign: 'center',
     color: 'grey',
-    fontSize: '18px'
+    fontSize: '18px',
   },
   thirdCol: {
     width: '20%',
     textAlign: 'center',
     color: theme.palette.secondary.main,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   colWrapper: {
-    display: 'flex', 
+    display: 'flex',
     flexDirection: 'row',
     [theme.breakpoints.up('md')]: {
       width: '700px',
-    }
+    },
   },
   createButton: {
     position: 'absolute',
     marginTop: '20px',
     marginLeft: '10%',
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   addButton: {
     position: 'absolute',
     bottom: '72px',
     right: '32px',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
-  }
+      display: 'none',
+    },
+  },
 });
 
 function createData(type, seminarName, teacherName, Location, Date, Countdown) {
-  return { type, seminarName, teacherName, Location, Date, Countdown};
+  return {
+    type, seminarName, teacherName, Location, Date, Countdown,
+  };
 }
-  
+
 const data = [
   createData('Seminar', 'Semiar Name', 'Teacher Name', '北京', '6月20日', '10 days'),
   createData('Training', 'Semiar Name', 'Teacher Name', '香港', '6月15日', '5 days'),
   createData('Consulting', 'Semiar Name', 'Teacher Name', '上海', '6月10日', '0 days'),
-  createData('Fablead', 'Semiar Name', 'Teacher Name', '香港', '6月1日', 'Expired')
+  createData('Fablead', 'Semiar Name', 'Teacher Name', '香港', '6月1日', 'Expired'),
 ];
 
-class ReminderPage extends React.Component{
-  render(){
+class ReminderPage extends React.Component {
+  render() {
     const { classes } = this.props;
-    return(
+    return (
       <div>
-        <Button className={ classes.createButton } variant="contained" color="secondary">
+        <Button className={classes.createButton} variant="contained" color="secondary">
             Create
         </Button>
-        <div className={ classes.cardWrapper }>
+        <div className={classes.cardWrapper}>
           {data.map(n => (
-            <Card className={ classes.card } key={n.seminarName} component={ Link } to="/basicinfo" >
+            <Card className={classes.card} key={n.seminarName} component={Link} to="/basicinfo">
               <CardContent>
-                <div className={ classes.colWrapper }>
-                  <div className={ classes.firstCol }>
-                    <p style={{ marginTop: '0', marginBottom: '0' }}>{ n.seminarName }</p>
-                    <p style={{ marginBottom: '0' }}>{ n.teacherName }</p>
+                <div className={classes.colWrapper}>
+                  <div className={classes.firstCol}>
+                    <p style={{ marginTop: '0', marginBottom: '0' }}>
+                      { n.seminarName }
+                    </p>
+                    <p style={{ marginBottom: '0' }}>
+                      { n.teacherName }
+                    </p>
                   </div>
-                  <div className={ classes.secondCol }>
-                    <p style={{ marginTop: '0', marginBottom: '0' }}>{ n.Date }</p>
-                    <p style={{ marginBottom: '0' }}>{ n.Location }</p>
+                  <div className={classes.secondCol}>
+                    <p style={{ marginTop: '0', marginBottom: '0' }}>
+                      { n.Date }
+                    </p>
+                    <p style={{ marginBottom: '0' }}>
+                      { n.Location }
+                    </p>
                   </div>
-                  <div className={ classes.thirdCol }>
-                    <p>{ n.Countdown }</p>
+                  <div className={classes.thirdCol}>
+                    <p>
+                      { n.Countdown }
+                    </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
-        <Button color="secondary" className={ classes.addButton } variant="fab" aria-label="help">
+        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
           <AddIcon />
         </Button>
       </div>
@@ -115,8 +127,7 @@ class ReminderPage extends React.Component{
 }
 
 ReminderPage.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ReminderPage);
-

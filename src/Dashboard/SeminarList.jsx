@@ -37,7 +37,9 @@ import { Link } from 'react-router-dom';
 
 class SeminarListTablePagination extends React.Component {
   render() {
-    const { classes, count, page, rowsPerPage, theme } = this.props;
+    const {
+      classes, count, page, rowsPerPage, theme,
+    } = this.props;
 
     return (
       <div className={classes.root}>
@@ -88,7 +90,7 @@ const styles = theme => ({
       marginTop: theme.spacing.unit * 3,
       marginLeft: theme.spacing.unit * 3,
       marginRight: theme.spacing.unit * 3,
-    }
+    },
   },
   controlBar: {
     display: 'flex',
@@ -97,8 +99,8 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   filterBar: {
     height: '3%',
@@ -109,16 +111,16 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexFlow: 'row',
-      justifyContent: 'flex-end'
-    }
+      justifyContent: 'flex-end',
+    },
   },
   addButton: {
     position: 'absolute',
     bottom: '72px',
     right: '32px',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   tableContainer: {
     marginTop: theme.spacing.unit * 3,
@@ -142,7 +144,7 @@ const styles = theme => ({
     },
     [theme.breakpoints.down('xs')]: {
       display: 'flex',
-      flexFlow: 'column'
+      flexFlow: 'column',
 
     },
   },
@@ -150,16 +152,16 @@ const styles = theme => ({
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default,
     },
-    boxShadow: '0px 0px 0px'
-  }
+    boxShadow: '0px 0px 0px',
+  },
 });
 
 const tablePaginationActionStyle = theme => ({
   root: {
     flexShrink: 0,
     color: theme.palette.text.secondary,
-    marginLeft: theme.spacing.unit * 2.5
-  }
+    marginLeft: theme.spacing.unit * 2.5,
+  },
 });
 
 const SeminarListTablePaginationWrapped = withStyles(tablePaginationActionStyle, { withTheme: true })(
@@ -167,14 +169,16 @@ const SeminarListTablePaginationWrapped = withStyles(tablePaginationActionStyle,
 );
 
 function createData(type, seminarName, teacherName, Location, Date) {
-  return { type, seminarName, teacherName, Location, Date};
+  return {
+    type, seminarName, teacherName, Location, Date,
+  };
 }
 
 const data = [
   createData('Seminar', 'Semiar 0', 'Teacher 0', 'Beijing', '2018-06-20'),
   createData('Training', 'Semiar 1', 'Teacher 1', 'Hong Kong', '2018-06-15'),
   createData('Consulting', 'Semiar 2', 'Teacher 2', 'Shanghai', '2018-06-10'),
-  createData('Fablead', 'Semiar 3', 'Teacher 3', 'Hong Kong', '2018-06-01')
+  createData('Fablead', 'Semiar 3', 'Teacher 3', 'Hong Kong', '2018-06-01'),
 ];
 
 class SeminarList extends React.Component {
@@ -183,19 +187,35 @@ class SeminarList extends React.Component {
       <Table className={classes.root}>
         <TableHead>
           <TableRow>
-            <TableCell numeric>Seminar Name</TableCell>
-            <TableCell numeric>Teacher Name</TableCell>
-            <TableCell numeric>Location</TableCell>
-            <TableCell numeric>Date</TableCell>
+            <TableCell numeric>
+Seminar Name
+            </TableCell>
+            <TableCell numeric>
+Teacher Name
+            </TableCell>
+            <TableCell numeric>
+Location
+            </TableCell>
+            <TableCell numeric>
+Date
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map(n => (
             <TableRow className={rowClass} key={n.seminarName}>
-              <TableCell numeric>{n.seminarName}</TableCell>
-              <TableCell numeric>{n.teacherName}</TableCell>
-              <TableCell numeric>{n.Location}</TableCell>
-              <TableCell numeric>{n.Date}</TableCell>
+              <TableCell numeric>
+                {n.seminarName}
+              </TableCell>
+              <TableCell numeric>
+                {n.teacherName}
+              </TableCell>
+              <TableCell numeric>
+                {n.Location}
+              </TableCell>
+              <TableCell numeric>
+                {n.Date}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -216,10 +236,13 @@ class SeminarList extends React.Component {
     );
   }
 
-  filterBar(classes){
-    return(
+  filterBar(classes) {
+    return (
       <div className={classes}>
-        <Button style={{ fontSize: '12px', minHeight: '0px', minWidth: '0px', paddingTop: '4px', paddingBottom: '4px' }}>
+        <Button style={{
+          fontSize: '12px', minHeight: '0px', minWidth: '0px', paddingTop: '4px', paddingBottom: '4px',
+        }}
+        >
           <SortIcon style={{ fontSize: '12px', marginRight: '5px', color: 'green' }} />
             Latest
           <KeyboardArrowRight style={{ fontSize: '12px', marginLeft: '5px', color: 'green' }} />
@@ -233,14 +256,14 @@ class SeminarList extends React.Component {
       <div className={classes}>
         <Grid container spacing={24}>
           <Grid item xs={2}>
-            <Button className="create-button" variant="contained" color="secondary" component={ Link } to="/addseminar" >
+            <Button className="create-button" variant="contained" color="secondary" component={Link} to="/addseminar">
               + Create
             </Button>
           </Grid>
           <Grid item xs={7} />
           <Grid item xs={2} justify-content="flex-end">
             <TextField
-              fullWidth={true}
+              fullWidth
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -251,11 +274,19 @@ class SeminarList extends React.Component {
             />
           </Grid>
           <Grid item xs={1}>
-            <NativeSelect fullWidth={true}>
-              <option value="">None</option>
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
+            <NativeSelect fullWidth>
+              <option value="">
+None
+              </option>
+              <option value={10}>
+Ten
+              </option>
+              <option value={20}>
+Twenty
+              </option>
+              <option value={30}>
+Thirty
+              </option>
             </NativeSelect>
           </Grid>
         </Grid>
@@ -275,7 +306,7 @@ class SeminarList extends React.Component {
                     {n.seminarName}
                   </Typography>
                 </Grid>
-                <Grid item xs={4} >
+                <Grid item xs={4}>
                   <Typography variant="body2" gutterBottom>
                     {n.Date}
                   </Typography>
@@ -316,7 +347,7 @@ class SeminarList extends React.Component {
           {this.controlBar(classes.controlBar)}
           {this.filterBar(classes.filterBar)}
 
-          <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help" component={ Link } to="/addseminar" >
+          <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help" component={Link} to="/addseminar">
             <AddIcon />
           </Button>
 

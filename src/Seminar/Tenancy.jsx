@@ -15,64 +15,76 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: '600px',
       borderRadius: '20px',
-      marginBottom: '10px'
+      marginBottom: '10px',
     },
     '&:nth-of-type(even)': {
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   },
   documentInfo: {
     display: 'flex',
     flexDirection: 'column',
-    flexGrow: '3'
+    flexGrow: '3',
   },
   documentWrapper: {
     [theme.breakpoints.up('md')]: {
-      marginTop: '20px'
-    }
+      marginTop: '20px',
+    },
   },
   addButton: {
     position: 'absolute',
     bottom: '72px',
     right: '32px',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
-  }
+      display: 'none',
+    },
+  },
 });
 
-class Tenancy extends React.Component{
-  render(){
+class Tenancy extends React.Component {
+  render() {
     const { classes } = this.props;
-    return(
+    return (
       <div>
-        <div className={ classes.documentWrapper }>
-          <div className={ classes.documentMargin }>
+        <div className={classes.documentWrapper}>
+          <div className={classes.documentMargin}>
             <div style={{ flexGrow: '1', textAlign: 'center' }}>
-              <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px"/>
+              <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px" />
             </div>
-            <div className={ classes.documentInfo }>
-              <p>tenancy2018.pdf</p>
-              <p>100KB</p>
+            <div className={classes.documentInfo}>
+              <p>
+tenancy2018.pdf
+              </p>
+              <p>
+100KB
+              </p>
             </div>
             <div style={{ flexGrow: '1' }}>
-              <p>6月20日</p>
+              <p>
+6月20日
+              </p>
             </div>
           </div>
-          <div className={ classes.documentMargin }>
+          <div className={classes.documentMargin}>
             <div style={{ flexGrow: '1', textAlign: 'center' }}>
-              <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px"/>
+              <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px" />
             </div>
-            <div className={ classes.documentInfo }>
-              <p>tenancy2017.jpg</p>
-              <p>6MB</p>
+            <div className={classes.documentInfo}>
+              <p>
+tenancy2017.jpg
+              </p>
+              <p>
+6MB
+              </p>
             </div>
             <div style={{ flexGrow: '1' }}>
-              <p>6月18日</p>
+              <p>
+6月18日
+              </p>
             </div>
           </div>
         </div>
-        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help" >
+        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
           <AddIcon />
         </Button>
       </div>
@@ -81,7 +93,7 @@ class Tenancy extends React.Component{
 }
 
 Tenancy.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Tenancy);

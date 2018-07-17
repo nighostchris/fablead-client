@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 const styles = theme => ({
   basicInfo: {
     marginTop: '20px',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   infoWrapper: {
     display: 'flex',
@@ -23,16 +23,16 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     [theme.breakpoints.up('md')]: {
-      width: '700px'
-    }
+      width: '700px',
+    },
   },
   leftColumn: {
     flexGrow: '1',
-    marginLeft: '50px'
+    marginLeft: '50px',
   },
   rightColumn: {
     flexGrow: '7',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   seperateBar: {
     color: 'white',
@@ -41,9 +41,9 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     lineHeight: '40px',
-    [theme.breakpoints.up('md')]:{
-      width: '700px'
-    }
+    [theme.breakpoints.up('md')]: {
+      width: '700px',
+    },
   },
   cardWrapper: {
     display: 'flex',
@@ -53,8 +53,8 @@ const styles = theme => ({
     marginRight: 'auto',
     borderRadius: '0',
     [theme.breakpoints.up('md')]: {
-      width: '600px'
-    }
+      width: '600px',
+    },
   },
   document: {
     display: 'flex',
@@ -65,8 +65,8 @@ const styles = theme => ({
     backgroundColor: 'gainsboro',
     [theme.breakpoints.up('md')]: {
       width: '600px',
-      borderRadius: '20px'
-    }
+      borderRadius: '20px',
+    },
   },
   documentMargin: {
     display: 'flex',
@@ -78,13 +78,13 @@ const styles = theme => ({
     backgroundColor: 'gainsboro',
     [theme.breakpoints.up('md')]: {
       width: '600px',
-      borderRadius: '20px'
-    }
+      borderRadius: '20px',
+    },
   },
   documentInfo: {
     display: 'flex',
     flexDirection: 'column',
-    flexGrow: '3'
+    flexGrow: '3',
   },
   createButton: {
     backgroundColor: theme.palette.secondary.main,
@@ -102,16 +102,16 @@ const styles = theme => ({
       fontWeight: 'bold',
     },
     [theme.breakpoints.down('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   addButton: {
     position: 'absolute',
     bottom: '72px',
     right: '32px',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   editBar: {
     marginLeft: 'auto',
@@ -121,59 +121,64 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.main,
     [theme.breakpoints.up('md')]: {
       width: '600px',
-      borderRadius: '15px'
-    }
+      borderRadius: '15px',
+    },
   },
   label: {
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 });
 
-class NotesTaking extends React.Component{
-  constructor(props){
+class NotesTaking extends React.Component {
+  constructor(props) {
     super(props);
-    let array = new Array(2);
-    for (let i = 0; i < array.length; i++)
-      array[i] = false;
+    const array = new Array(2);
+    for (let i = 0; i < array.length; i++) array[i] = false;
     this.state = {
-      expandControl: array
+      expandControl: array,
     };
 
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(key){
-    let array = this.state.expandControl;
+  handleClick(key) {
+    const array = this.state.expandControl;
     array[key] = !array[key];
     this.setState({
-      expandControl: array
+      expandControl: array,
     });
   }
 
-  render(){
+  render() {
     const { classes } = this.props;
 
-    let document = [];
+    const document = [];
 
     for (let i = 0; i < 2; i++) {
       document.push(
         <div>
-          <div key={i} className={ this.state.expandControl[i] == true ? classes.document : classes.documentMargin } onClick={() => { this.handleClick(i) }}>
+          <div key={i} className={this.state.expandControl[i] == true ? classes.document : classes.documentMargin} onClick={() => { this.handleClick(i); }}>
             <div style={{ flexGrow: '1', textAlign: 'center' }}>
-              <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px"/>
+              <img src="https://www.zamzar.com/images/filetypes/jpg.png" width="42px" height="42px" />
             </div>
-            <div className={ classes.documentInfo }>
-              <p>123.jpg</p>
-              <p>2.1MB</p>
+            <div className={classes.documentInfo}>
+              <p>
+123.jpg
+              </p>
+              <p>
+2.1MB
+              </p>
             </div>
             <div style={{ flexGrow: '1' }}>
-              <p>6月18日</p>
+              <p>
+6月18日
+              </p>
             </div>
           </div>
           {
-            this.state.expandControl[i] == true ?
-              (
-                <div className={ classes.editBar }>
+            this.state.expandControl[i] == true
+              ? (
+                <div className={classes.editBar}>
                   <Button style={{ color: 'white' }} classes={{ label: classes.label }}>
                     <Mail />
                     Send
@@ -189,63 +194,89 @@ class NotesTaking extends React.Component{
                 </div>
               ) : undefined
           }
-        </div>
+        </div>,
       );
     }
 
-    let elements = document.map((document, i) => {
-      return(<div key={i} className={ classes.documentWrapper }>{document}</div>);
-    });
+    const elements = document.map((document, i) => (
+      <div key={i} className={classes.documentWrapper}>
+        {document}
+      </div>
+    ));
 
-    return(
-      <div className={ classes.root }>
-        <div className={ classes.basicInfo }>
-          <div className={ classes.infoWrapper }>
-            <p className={ classes.leftColumn }>Name</p>
-            <p className={ classes.rightColumn }>Seminar 1</p>
+    return (
+      <div className={classes.root}>
+        <div className={classes.basicInfo}>
+          <div className={classes.infoWrapper}>
+            <p className={classes.leftColumn}>
+Name
+            </p>
+            <p className={classes.rightColumn}>
+Seminar 1
+            </p>
           </div>
-          <div className={ classes.infoWrapper }>
-            <p className={ classes.leftColumn }>Type</p>
-            <p style={{ flexGrow: '1', textAlign: 'center' }}>Seminar</p>
+          <div className={classes.infoWrapper}>
+            <p className={classes.leftColumn}>
+Type
+            </p>
+            <p style={{ flexGrow: '1', textAlign: 'center' }}>
+Seminar
+            </p>
             <Button style={{ width: '20%' }}>
-              <KeyboardArrowRight className={ classes.rightArrow } />
+              <KeyboardArrowRight className={classes.rightArrow} />
             </Button>
           </div>
-          <div className={ classes.infoWrapper }>
-            <p className={ classes.leftColumn }>Teacher</p>
-            <div className={ classes.rightColumn }>
-              <p>Peter Man</p>
-              <p>Mary Lee</p>
-              <p>John Wong</p>
+          <div className={classes.infoWrapper}>
+            <p className={classes.leftColumn}>
+Teacher
+            </p>
+            <div className={classes.rightColumn}>
+              <p>
+Peter Man
+              </p>
+              <p>
+Mary Lee
+              </p>
+              <p>
+John Wong
+              </p>
             </div>
           </div>
-          <div className={ classes.seperateBar }>
-            <p style={{ marginLeft: '20px' }}>Notes</p>
+          <div className={classes.seperateBar}>
+            <p style={{ marginLeft: '20px' }}>
+Notes
+            </p>
           </div>
-          <div className={ classes.card }>
-            <Card className={ classes.cardWrapper }>
-              <p style={{ flexGrow: '3', textAlign: 'center' }}>Note 1</p>
-              <Button component={ Link } to="/notes" style={{ flexGrow: '1' }}>
-                <KeyboardArrowRight className={ classes.rightArrow } />
+          <div className={classes.card}>
+            <Card className={classes.cardWrapper}>
+              <p style={{ flexGrow: '3', textAlign: 'center' }}>
+Note 1
+              </p>
+              <Button component={Link} to="/notes" style={{ flexGrow: '1' }}>
+                <KeyboardArrowRight className={classes.rightArrow} />
               </Button>
             </Card>
-            <Card className={ classes.cardWrapper }>
-              <p style={{ flexGrow: '3', textAlign: 'center' }}>Note 2</p>
-              <Button component={ Link } to="/notes" style={{ flexGrow: '1' }}>
-                <KeyboardArrowRight className={ classes.rightArrow } />
+            <Card className={classes.cardWrapper}>
+              <p style={{ flexGrow: '3', textAlign: 'center' }}>
+Note 2
+              </p>
+              <Button component={Link} to="/notes" style={{ flexGrow: '1' }}>
+                <KeyboardArrowRight className={classes.rightArrow} />
               </Button>
             </Card>
           </div>
-          <div className={ classes.seperateBar }>
-            <p style={{ marginLeft: '20px' }}>Document</p>
+          <div className={classes.seperateBar}>
+            <p style={{ marginLeft: '20px' }}>
+Document
+            </p>
           </div>
-          <div className={ classes.documentWrapper }>
+          <div className={classes.documentWrapper}>
             { elements }
           </div>
-          <Button className={ classes.createButton }>
+          <Button className={classes.createButton}>
             Create
           </Button>
-          <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help" component={ Link } to="/addseminar" >
+          <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help" component={Link} to="/addseminar">
             <AddIcon />
           </Button>
         </div>
@@ -255,8 +286,7 @@ class NotesTaking extends React.Component{
 }
 
 NotesTaking.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(NotesTaking);
-

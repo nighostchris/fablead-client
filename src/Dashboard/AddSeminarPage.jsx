@@ -16,8 +16,8 @@ const styles = theme => ({
     display: 'flex',
     backgroundColor: theme.palette.primary.main,
     [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center'
-    }
+      justifyContent: 'center',
+    },
   },
   backButton: {
     position: 'absolute',
@@ -28,47 +28,47 @@ const styles = theme => ({
     backgroundColor: theme.palette.primary.main,
     borderRadius: '0px',
     '&:hover': {
-      backgroundColor: theme.palette.primary.main
-    }
+      backgroundColor: theme.palette.primary.main,
+    },
   },
   topBarInfoFirst: {
     fontSize: '19px',
     fontWeight: 'bold',
     color: 'white',
     [theme.breakpoints.up('md')]: {
-      marginLeft: '170px'
+      marginLeft: '170px',
     },
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   topBarInfoSecond: {
     fontSize: '19px',
     fontWeight: 'bold',
     color: 'white',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   seminarInfo: {
     paddingTop: '30px',
-    paddingBottom: '30px'
+    paddingBottom: '30px',
   },
   schedulingInfo: {
-    paddingBottom: '30px'
+    paddingBottom: '30px',
   },
   textFieldStyle: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   inputField: {
     width: '60%',
     [theme.breakpoints.up('md')]: {
       borderTop: '1px solid darkgray',
       borderLeft: '1px solid darkgray',
-      borderRight: '1px solid darkgray'
-    }
+      borderRight: '1px solid darkgray',
+    },
   },
   createButton: {
     [theme.breakpoints.up('md')]: {
@@ -84,26 +84,26 @@ const styles = theme => ({
       position: 'absolute',
       width: '100%',
       height: '60px',
-      fontSize: '20px'
+      fontSize: '20px',
     },
     backgroundColor: theme.palette.secondary.main,
     color: 'white',
     '&:hover': {
       backgroundColor: theme.palette.secondary.main,
-    }
+    },
   },
   breakline: {
-    width: '90%', 
+    width: '90%',
     color: 'darkgrey',
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   schedulingBar: {
-    position: 'relative', 
-    left: '10%', 
-    marginTop: '30px', 
-    fontSize: '24px', 
+    position: 'relative',
+    left: '10%',
+    marginTop: '30px',
+    fontSize: '24px',
     fontWeight: 'bold',
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
@@ -111,73 +111,91 @@ const styles = theme => ({
       marginTop: '0px',
       backgroundColor: 'darkgrey',
       left: '0',
-      alignItems: 'center'
-    }
+      alignItems: 'center',
+    },
   },
   schedulingTag: {
     [theme.breakpoints.down('sm')]: {
       color: 'white',
       marginLeft: '30px',
-      fontSize: '22px'
-    }
-  }
+      fontSize: '22px',
+    },
+  },
 });
 
-class AddSeminarPage extends React.Component{
-  render(){
+class AddSeminarPage extends React.Component {
+  render() {
     const { classes } = this.props;
 
-    return(
+    return (
       <div>
-        <div className={ classes.seminarInfo }>
-          <div className={ classes.textFieldStyle }>
-            <p style={{ marginRight: '50px' }}>Name</p>
+        <div className={classes.seminarInfo}>
+          <div className={classes.textFieldStyle}>
+            <p style={{ marginRight: '50px' }}>
+Name
+            </p>
             <TextField
               margin="normal"
-              className={ classes.inputField }
+              className={classes.inputField}
             />
           </div>
-          <div className={ classes.textFieldStyle }>
-            <p style={{ marginRight: '55px' }}>Type</p>
-            <NativeSelect style={{ width: '60%'}}>
-              <option value=""></option>
-              <option value={10}>Seminar 1</option>
-              <option value={20}>Seminar 2</option>
-              <option value={30}>Seminar 3</option>
+          <div className={classes.textFieldStyle}>
+            <p style={{ marginRight: '55px' }}>
+Type
+            </p>
+            <NativeSelect style={{ width: '60%' }}>
+              <option value="" />
+              <option value={10}>
+Seminar 1
+              </option>
+              <option value={20}>
+Seminar 2
+              </option>
+              <option value={30}>
+Seminar 3
+              </option>
             </NativeSelect>
           </div>
-          <div className={ classes.textFieldStyle }>
-            <p style={{ marginRight: '36px' }}>Teacher</p>
+          <div className={classes.textFieldStyle}>
+            <p style={{ marginRight: '36px' }}>
+Teacher
+            </p>
             <TextField
               margin="normal"
-              className={ classes.inputField }
+              className={classes.inputField}
             />
           </div>
         </div>
-        <hr className={ classes.breakline } />
-        <div className={ classes.schedulingBar }>
-          <p className={ classes.schedulingTag }>Scheduling</p>
+        <hr className={classes.breakline} />
+        <div className={classes.schedulingBar}>
+          <p className={classes.schedulingTag}>
+Scheduling
+          </p>
         </div>
-        <div className={ classes.schedulingInfo }>
-          <div className={ classes.textFieldStyle }>
-            <p style={{ marginLeft: '48px', marginRight: '55px' }}>Date</p>
+        <div className={classes.schedulingInfo}>
+          <div className={classes.textFieldStyle}>
+            <p style={{ marginLeft: '48px', marginRight: '55px' }}>
+Date
+            </p>
             <TextField
               margin="normal"
-              className={ classes.inputField }
+              className={classes.inputField}
             />
             <IconButton>
-              <DateRangeIcon/>
+              <DateRangeIcon />
             </IconButton>
           </div>
-          <div className={ classes.textFieldStyle }>
-            <p style={{ marginRight: '28px' }}>Location</p>
+          <div className={classes.textFieldStyle}>
+            <p style={{ marginRight: '28px' }}>
+Location
+            </p>
             <TextField
               margin="normal"
-              className={ classes.inputField }
+              className={classes.inputField}
             />
           </div>
         </div>
-        <Button className={ classes.createButton }>
+        <Button className={classes.createButton}>
             Create
         </Button>
       </div>
@@ -188,5 +206,5 @@ class AddSeminarPage extends React.Component{
 AddSeminarPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-  
+
 export default withStyles(styles)(AddSeminarPage);
