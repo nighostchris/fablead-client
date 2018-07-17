@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-// import Icon from '@material-ui/core/Icon';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { withRouter, Link } from 'react-router-dom';
 
-// import SettingsIcon from '@material-ui/icons/Settings';
 import ReminderIcon from '@material-ui/icons/Notifications';
 import SeminarsIcon from '@material-ui/icons/SpeakerNotes';
 import TeachersIcon from '@material-ui/icons/School';
@@ -18,20 +16,39 @@ const styles = {
     position: 'absolute',
     bottom: '0px',
     width: '100%'
+  },
+  bottomBar: {
+    minWidth: '0px'
   }
 };
 
 class SimpleBottomNavigation extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value: 0
+    };
+  }
+
+  handleClick = (event, value) => {
+    this.setState({ 'value': value });
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
-      <BottomNavigation showLabels className={classes.root} value={0}>
-        <BottomNavigationAction label="Seminars" icon={<SeminarsIcon />} />
-        <BottomNavigationAction label="Schedule" icon={<ScheduleIcon />} />
-        <BottomNavigationAction label="Teachers" icon={<TeachersIcon />} />
-        <BottomNavigationAction label="Library" icon={<LibraryIcon />} />
-        <BottomNavigationAction label="Reminder" icon={<ReminderIcon />} />
+      <BottomNavigation showLabels className={ classes.root } 
+                        value={ this.props.location.pathname == "/dashboard" ? 0 :
+                                (this.props.location.pathname == "/scheduling" ? 1 :
+                                (this.props.location.pathname == "/teacher" ? 2 :
+                                (this.props.location.pathname == "/library" ? 3 : 4))) } 
+                        onChange={ this.handleClick }>
+        <BottomNavigationAction className={ classes.bottomBar } label="Seminars" icon={<SeminarsIcon />} component={ Link } to="/dashboard" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Schedule" icon={<ScheduleIcon />} component={ Link } to="/scheduling" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Teachers" icon={<TeachersIcon />} component={ Link } to="/teacher" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Library" icon={<LibraryIcon />} component={ Link } to="/library" />
+        <BottomNavigationAction className={ classes.bottomBar } label="Reminder" icon={<ReminderIcon />} component={ Link } to="/reminder" />
       </BottomNavigation>
     );
   }
@@ -39,6 +56,7 @@ class SimpleBottomNavigation extends React.Component {
 
 SimpleBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleBottomNavigation);
+export default withStyles(styles)(withRouter(SimpleBottomNavigation));

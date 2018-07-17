@@ -10,6 +10,9 @@ import TableFooter from '@material-ui/core/TableFooter';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -29,6 +32,8 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+
+import { Link } from 'react-router-dom';
 
 class SeminarListTablePagination extends React.Component {
   render() {
@@ -75,7 +80,6 @@ SeminarListTablePagination.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired,
-  onChangePage: PropTypes.func.isRequired,
 };
 
 const styles = theme => ({
@@ -97,7 +101,7 @@ const styles = theme => ({
     }
   },
   filterBar: {
-    height: '5%',
+    height: '3%',
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
@@ -204,6 +208,7 @@ class SeminarList extends React.Component {
               rowsPerPageOptions={[]}
               page={0}
               ActionsComponent={SeminarListTablePaginationWrapped}
+              onChangePage={() => {}}
             />
           </TableRow>
         </TableFooter>
@@ -214,7 +219,7 @@ class SeminarList extends React.Component {
   filterBar(classes){
     return(
       <div className={classes}>
-        <Button style={{ fontSize: '12px' }}>
+        <Button style={{ fontSize: '12px', minHeight: '0px', minWidth: '0px', paddingTop: '4px', paddingBottom: '4px' }}>
           <SortIcon style={{ fontSize: '12px', marginRight: '5px', color: 'green' }} />
             Latest
           <KeyboardArrowRight style={{ fontSize: '12px', marginLeft: '5px', color: 'green' }} />
@@ -228,7 +233,7 @@ class SeminarList extends React.Component {
       <div className={classes}>
         <Grid container spacing={24}>
           <Grid item xs={2}>
-            <Button className="create-button" variant="contained" color="secondary">
+            <Button className="create-button" variant="contained" color="secondary" component={ Link } to="/addseminar" >
               + Create
             </Button>
           </Grid>
@@ -297,18 +302,29 @@ class SeminarList extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
-        {this.controlBar(classes.controlBar)}
-        {this.filterBar(classes.filterBar)}
+      <div>
+        <AppBar position="static" style={{ boxShadow: '0px 0px 0px' }}>
+          <Tabs value={0} scrollButtons="auto" fullWidth centered>
+            <Tab label="ALL" />
+            <Tab label="Seminar" />
+            <Tab label="Training" />
+            <Tab label="Consulting" />
+            <Tab label="Fablead" />
+          </Tabs>
+        </AppBar>
+        <div className={classes.root}>
+          {this.controlBar(classes.controlBar)}
+          {this.filterBar(classes.filterBar)}
 
-        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
-          <AddIcon />
-        </Button>
+          <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help" component={ Link } to="/addseminar" >
+            <AddIcon />
+          </Button>
 
-        <Paper elevation={1} className={classes.tableContainer}>
-          {this.tableView(classes.tableView, classes.tableRow)}
-        </Paper>
-        {this.Cards(classes.cardView, classes.card)}
+          <Paper elevation={1} className={classes.tableContainer}>
+            {this.tableView(classes.tableView, classes.tableRow)}
+          </Paper>
+          {this.Cards(classes.cardView, classes.card)}
+        </div>
       </div>
     );
   }
