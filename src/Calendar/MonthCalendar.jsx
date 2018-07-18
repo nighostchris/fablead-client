@@ -13,7 +13,7 @@ const styles = theme => ({
   calendar: {
     borderSpacing: '0',
     borderCollapse: 'collapse',
-    width: '100%',
+    width: '100%'
   },
   weekday: {
     textAlign: 'center',
@@ -27,14 +27,16 @@ const styles = theme => ({
     paddingLeft: '5px',
     textAlign: 'center',
     height: '28px',
+    width: '80px'
   },
   currentDay: {
     lineHeight: '28px',
-    borderRadius: '2%',
-    color: 'white',
+    width: '80px',
+    color: 'white'
   },
   normalDay: {
     lineHeight: '24px',
+    width: '80px'
   },
   calendarHeader: {
     borderSpacing: '0',

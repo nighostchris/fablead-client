@@ -33,7 +33,6 @@ class YearCalendar extends React.Component {
 }
 
 YearCalendar.propTypes = {
-  classes: PropTypes.object.isRequired,
 };
 
 export default (YearCalendar);
