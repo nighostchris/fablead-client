@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
 
 import Calendar from '../Calendar/Calendar';
 
@@ -39,7 +40,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: '50%',
       lineHeight: '30px',
-      marginLeft: '30px',
+      marginLeft: '30px'
     },
   },
   name: {
@@ -66,36 +67,50 @@ const styles = theme => ({
   leftColumn: {
     marginLeft: '30px',
   },
-  calendarSelector: {
-    textAlign: 'right',
-    [theme.breakpoints.up('md')]: {
-      marginTop: '30px',
-      marginBottom: '10px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      backgroundColor: 'lightgrey',
-    },
-  },
   calendarWrapper: {
     display: 'flex',
     flexDirection: 'column',
     flexGrow: '1',
   },
-  selector: {
-    minHeight: '0px',
-    minWidth: '0px',
-    paddingTop: '4px',
-    paddingBottom: '4px',
-    fontSize: '10px',
-    fontWeight: 'bold',
-    color: 'grey',
-    borderRadius: '0',
-    [theme.breakpoints.up('md')]: {
-      border: '1px solid grey',
-      backgroundColor: 'lightgrey',
-      boxShadow: '1px 2px 3px',
-    },
+  calendarTabSelector: {
+    marginTop: '20px',
+    marginBottom: '10px',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '0px',
+      marginBottom: '0px',
+      backgroundColor: 'lightgrey'
+    }
   },
+  calendarTabs: {
+    [theme.breakpoints.down('sm')]: {
+      minHeight: '0px',
+      float: 'right',
+    }
+  },
+  calendarTab: {
+    textTransform: 'none',
+    minHeight: '12px',
+    fontWeight: 'bold',
+    [theme.breakpoints.down('sm')]: {
+      color: 'dimgrey'
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: 'grey',
+      color: 'white'
+    }
+  },
+  calendarTabActive: {
+    textTransform: 'none',
+    minHeight: '12px',
+    fontWeight: 'bold',
+    [theme.breakpoints.down('sm')]: {
+      color: 'white'
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: 'lightgrey',
+      color: 'grey'
+    }
+  }
 });
 
 class SchedulingPage extends React.Component {
@@ -103,44 +118,14 @@ class SchedulingPage extends React.Component {
     super(props);
     this.state = {
       date: new Date(),
-      yearView: false,
-      monthView: true,
-      weekView: false,
+      value: 1
     };
-
-    this.setYearView = this.setYearView.bind(this);
-    this.setMonthView = this.setMonthView.bind(this);
-    this.setWeekView = this.setWeekView.bind(this);
   }
 
-  setYearView() {
-    if (!this.state.yearView) {
-      this.setState({
-        yearView: true,
-        monthView: false,
-        weekView: false,
-      });
-    }
-  }
-
-  setMonthView() {
-    if (!this.state.monthView) {
-      this.setState({
-        yearView: false,
-        monthView: true,
-        weekView: false,
-      });
-    }
-  }
-
-  setWeekView() {
-    if (!this.state.weekView) {
-      this.setState({
-        yearView: false,
-        monthView: false,
-        weekView: true,
-      });
-    }
+  handleChange = (event, value) => {
+    this.setState({
+      value: value
+    });
   }
 
   render() {
@@ -151,32 +136,24 @@ class SchedulingPage extends React.Component {
         <div className={classes.content}>
           <div className={classes.middleContent}>
             <div className={classes.calendarWrapper}>
-              <div className={classes.calendarSelector}>
-                <Button
-                  className={classes.selector}
-                  style={{
-                    marginRight: '3px', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px', borderTopRightRadius: '5px', borderBottomRightRadius: '5px',
-                  }}
-                  onClick={this.setYearView}
+              <div className={classes.calendarTabSelector}>
+                <Tabs
+                  className={classes.calendarTabs}
+                  indicatorColor=""
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  scrollButtons="auto"
+                  fullWidth
+                  centered
                 >
-                    Year
-                </Button>
-                <Button className={classes.selector} style={{ borderRadius: '3px' }} onClick={this.setMonthView}>
-                    Month
-                </Button>
-                <Button
-                  className={classes.selector}
-                  style={{
-                    marginLeft: '3px', borderTopRightRadius: '25px', borderBottomRightRadius: '25px', borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px',
-                  }}
-                  onClick={this.setWeekView}
-                >
-                    Week
-                </Button>
+                  <Tab label="Year" className={this.state.value == 0 ? classes.calendarTabActive : classes.calendarTab} />
+                  <Tab label="Month" className={this.state.value == 1 ? classes.calendarTabActive : classes.calendarTab} />
+                  <Tab label="Week" className={this.state.value == 2 ? classes.calendarTabActive : classes.calendarTab} />
+                </Tabs>
               </div>
               {
-                this.state.yearView ? (<Calendar view={0} />)
-                  : (this.state.monthView ? (<Calendar view={1} />) : (<Calendar view={2} />))
+                this.state.value == 0 ? (<Calendar view={0} />)
+                  : (this.state.value == 1 ? (<Calendar view={1} />) : (<Calendar view={2} />))
               }
             </div>
             <div className={classes.wrapper}>
