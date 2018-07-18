@@ -38,7 +38,8 @@ const styles = theme => ({
   wrapper: {
     lineHeight: '1px',
     [theme.breakpoints.up('md')]: {
-      width: '50%',
+      flex: '1',
+      flexGrow: '1',
       lineHeight: '30px',
       marginLeft: '30px'
     },
@@ -51,6 +52,12 @@ const styles = theme => ({
   date: {
     display: 'flex',
     flexDirection: 'row',
+  },
+  dateDetails: {
+    display: 'flex',
+    flexDirection: 'row',
+    flex: '1',
+    flexGrow: '8'
   },
   location: {
     display: 'flex',
@@ -66,11 +73,26 @@ const styles = theme => ({
   },
   leftColumn: {
     marginLeft: '30px',
+    flex: '1',
+    flexGrow: '1'
+  },
+  rightColumn: {
+    flex: '1', 
+    flexGrow: '4',
+    textAlign: 'center'
+  },
+  thirdColumn: {
+    position: 'absolute', 
+    right: '50px',
+    [theme.breakpoints.down('sm')]: {
+      right: '30px'
+    }
   },
   calendarWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    flexGrow: '1',
+    flex: '1',
+    flexGrow: '1'
   },
   calendarTabSelector: {
     marginTop: '20px',
@@ -159,58 +181,57 @@ class SchedulingPage extends React.Component {
             <div className={classes.wrapper}>
               <div className={classes.seminarTag}>
                 <p style={{ marginLeft: '30px' }}>
-Seminar
+                  Seminar
                 </p>
               </div>
               <div className={classes.name}>
-                <p className={classes.leftColumn} style={{ flexGrow: '1' }}>
-Name
+                <p className={classes.leftColumn}>
+                  Name
                 </p>
-                <p style={{ width: '80%', textAlign: 'center' }}>
-Seminar Name
+                <p className={classes.rightColumn}>
+                  Seminar Name
                 </p>
               </div>
               <div className={classes.date}>
-                <p className={classes.leftColumn} style={{ flexGrow: '1' }}>
-Date
+                <p className={classes.leftColumn}>
+                  Date
                 </p>
-                <p style={{ flexGrow: '1', textAlign: 'center' }}>
-2018-6-20
+                <p className={classes.rightColumn}>
+                  2018-6-20
                 </p>
-                <p style={{ width: '20%', textAlign: 'center' }}>
-10 days
+                <p className={classes.thirdColumn}>
+                  10 days
                 </p>
               </div>
               <div className={classes.location}>
-                <p className={classes.leftColumn} style={{ flexGrow: '1' }}>
-Location
+                <p className={classes.leftColumn}>
+                  Location
                 </p>
-                <p style={{ width: '80%', textAlign: 'center' }}>
-Beijing
+                <p className={classes.rightColumn}>
+                  Beijing
                 </p>
               </div>
               <div className={classes.type}>
-                <p className={classes.leftColumn} style={{ flexGrow: '1' }}>
-Type
+                <p className={classes.leftColumn}>
+                  Type
                 </p>
-                <p style={{ width: '80%', textAlign: 'center' }}>
-Seminar
+                <p className={classes.rightColumn}>
+                  Seminar
                 </p>
               </div>
               <div className={classes.teacher}>
-                <p className={classes.leftColumn} style={{ flexGrow: '1' }}>
-Teacher
+                <p className={classes.leftColumn}>
+                  Teacher
                 </p>
-                <div style={{ width: '80%', textAlign: 'center' }}>
+                <div className={classes.rightColumn}>
                   <p>
-Peter Man
+                    Peter Man
                   </p>
                   <p>
-Mary Lee
+                    Mary Lee
                   </p>
                 </div>
               </div>
-              <div />
             </div>
           </div>
         </div>

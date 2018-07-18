@@ -29,10 +29,16 @@ const styles = theme => ({
     textAlign: 'center',
   },
   infoLeftText: {
+    flex: '1',
     flexGrow: '1',
     textAlign: 'left',
     marginLeft: '30px',
   },
+  infoRightText: {
+    flex: '1',
+    flexGrow: '4',
+    textAlign: 'center'
+  }
 });
 
 class BasicInfoPage extends React.Component {
@@ -70,49 +76,49 @@ class BasicInfoPage extends React.Component {
           <div className={classes.body}>
             <div className={classes.infoWrapper}>
               <p className={classes.infoLeftText}>
-Name
+                Name
               </p>
-              <p style={{ width: '80%' }}>
-Seminar Name
-              </p>
-            </div>
-            <div className={classes.infoWrapper}>
-              <p className={classes.infoLeftText}>
-Date
-              </p>
-              <p style={{ width: '80%' }}>
-2018-6-01
+              <p className={classes.infoRightText}>
+                Seminar Name
               </p>
             </div>
             <div className={classes.infoWrapper}>
               <p className={classes.infoLeftText}>
-Location
+                Date
               </p>
-              <p style={{ width: '80%' }}>
-北京
-              </p>
-            </div>
-            <div className={classes.infoWrapper}>
-              <p className={classes.infoLeftText}>
-Type
-              </p>
-              <p style={{ width: '80%' }}>
-Seminar
+              <p className={classes.infoRightText}>
+                2018-6-01
               </p>
             </div>
             <div className={classes.infoWrapper}>
               <p className={classes.infoLeftText}>
-Teacher
+                Location
               </p>
-              <div style={{ width: '80%' }}>
+              <p className={classes.infoRightText}>
+                北京
+              </p>
+            </div>
+            <div className={classes.infoWrapper}>
+              <p className={classes.infoLeftText}>
+                Type
+              </p>
+              <p className={classes.infoRightText}>
+                Seminar
+              </p>
+            </div>
+            <div className={classes.infoWrapper}>
+              <p className={classes.infoLeftText}>
+                Teacher
+              </p>
+              <div className={classes.infoRightText}>
                 <p>
-Peter Man
+                  Peter Man
                 </p>
                 <p>
-Mary Lee
+                  Mary Lee
                 </p>
                 <p>
-John Wong
+                  John Wong
                 </p>
               </div>
             </div>

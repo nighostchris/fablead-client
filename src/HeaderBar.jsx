@@ -29,7 +29,7 @@ const styles = theme => ({
     fontSize: '14px',
     color: 'white',
     position: 'absolute',
-    right: '20px',
+    right: '0px',
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
     },

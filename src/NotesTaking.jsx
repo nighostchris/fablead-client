@@ -18,6 +18,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   infoWrapper: {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'row',
     marginLeft: 'auto',
@@ -27,12 +28,21 @@ const styles = theme => ({
     },
   },
   leftColumn: {
+    flex: '1',
     flexGrow: '1',
     marginLeft: '50px',
   },
   rightColumn: {
-    flexGrow: '7',
+    flex: '1',
+    flexGrow: '4',
     textAlign: 'center',
+  },
+  thirdColumn: {
+    position: 'absolute', 
+    right: '50px',
+    [theme.breakpoints.down('sm')]: {
+      right: '0px'
+    }
   },
   seperateBar: {
     color: 'white',
@@ -163,15 +173,15 @@ class NotesTaking extends React.Component {
             </div>
             <div className={classes.documentInfo}>
               <p>
-123.jpg
+                123.jpg
               </p>
               <p>
-2.1MB
+                2.1MB
               </p>
             </div>
             <div style={{ flexGrow: '1' }}>
               <p>
-6月18日
+                6月18日
               </p>
             </div>
           </div>
@@ -209,48 +219,48 @@ class NotesTaking extends React.Component {
         <div className={classes.basicInfo}>
           <div className={classes.infoWrapper}>
             <p className={classes.leftColumn}>
-Name
+              Name
             </p>
             <p className={classes.rightColumn}>
-Seminar 1
+              Seminar 1
             </p>
           </div>
-          <div className={classes.infoWrapper}>
+          <div className={classes.infoWrapper} style={{alignItems: 'center'}}>
             <p className={classes.leftColumn}>
-Type
+              Type
             </p>
-            <p style={{ flexGrow: '1', textAlign: 'center' }}>
-Seminar
+            <p className={classes.rightColumn}>
+              Seminar
             </p>
-            <Button style={{ width: '20%' }}>
+            <Button className={classes.thirdColumn}>
               <KeyboardArrowRight className={classes.rightArrow} />
             </Button>
           </div>
           <div className={classes.infoWrapper}>
             <p className={classes.leftColumn}>
-Teacher
+              Teacher
             </p>
             <div className={classes.rightColumn}>
               <p>
-Peter Man
+                Peter Man
               </p>
               <p>
-Mary Lee
+                Mary Lee
               </p>
               <p>
-John Wong
+                John Wong
               </p>
             </div>
           </div>
           <div className={classes.seperateBar}>
             <p style={{ marginLeft: '20px' }}>
-Notes
+              Notes
             </p>
           </div>
           <div className={classes.card}>
             <Card className={classes.cardWrapper}>
               <p style={{ flexGrow: '3', textAlign: 'center' }}>
-Note 1
+                Note 1
               </p>
               <Button component={Link} to="/notes" style={{ flexGrow: '1' }}>
                 <KeyboardArrowRight className={classes.rightArrow} />
@@ -258,7 +268,7 @@ Note 1
             </Card>
             <Card className={classes.cardWrapper}>
               <p style={{ flexGrow: '3', textAlign: 'center' }}>
-Note 2
+                Note 2
               </p>
               <Button component={Link} to="/notes" style={{ flexGrow: '1' }}>
                 <KeyboardArrowRight className={classes.rightArrow} />
@@ -267,7 +277,7 @@ Note 2
           </div>
           <div className={classes.seperateBar}>
             <p style={{ marginLeft: '20px' }}>
-Document
+              Document
             </p>
           </div>
           <div className={classes.documentWrapper}>
