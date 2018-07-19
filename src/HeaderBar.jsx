@@ -13,12 +13,13 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
   },
   flex: {
     flex: 1,
+    fontWeight: 'unset',
   },
   titleBar: {
+    height: '64px',
     justifyContent: 'center',
   },
   searchButton: {
@@ -56,7 +57,8 @@ class HeaderBar extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy'];
+    const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', 
+    '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan'];
 
     const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
 
@@ -79,6 +81,7 @@ class HeaderBar extends React.Component {
       '/payment': 'Payment Attachment',
       '/invoice': 'Invoice Attachment',
       '/tenancy': 'Tenancy Agreement',
+      '/addseatingplan': '學員座位表生成',
     };
 
     return (

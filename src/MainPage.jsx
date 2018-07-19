@@ -26,25 +26,15 @@ import CarparkPass from './Seminar/CarparkPass';
 import Payment from './Seminar/Payment';
 import Invoice from './Seminar/Invoice';
 import Tenancy from './Seminar/Tenancy';
+import AddSeatingPlan from './Seminar/AddSeatingPlan';
 
 const styles = {
   root: {
     height: 'inherit',
   },
-  content: {
-    height: 'inherit',
-    marginBottom: '72px',
-  },
-  loginRoot: {
-    marginTop: '100px',
-  },
 };
 
 class MainPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { classes } = this.props;
 
@@ -54,25 +44,24 @@ class MainPage extends React.Component {
 
     return (
       <div className={classes.root}>
-        <div className={classes.content}>
-          { headerBarArray.includes(this.props.location.pathname) ? undefined : <HeaderBar /> }
-          <Route path="/dashboard" component={SeminarList} />
-          <Route path="/scheduling" component={SchedulingPage} />
-          <Route path="/teacher" component={TeacherPage} />
-          <Route path="/library" component={LibraryPage} />
-          <Route path="/reminder" component={ReminderPage} />
-          <Route path="/addseminar" component={AddSeminarPage} />
-          <Route path="/basicinfo" component={BasicInfoPage} />
-          <Route path="/eventppt" component={EventPreparation} />
-          <Route path="/classmaterial" component={ClassMaterial} />
-          <Route path="/accountmgt" component={AccountManagement} />
-          <Route path="/notestaking" component={NotesTaking} />
-          <Route path="/notes" component={Notes} />
-          <Route path="/carparkpass" component={CarparkPass} />
-          <Route path="/payment" component={Payment} />
-          <Route path="/invoice" component={Invoice} />
-          <Route path="/tenancy" component={Tenancy} />
-        </div>
+        { headerBarArray.includes(this.props.location.pathname) ? undefined : <HeaderBar /> }
+        <Route path="/dashboard" component={SeminarList} />
+        <Route path="/scheduling" component={SchedulingPage} />
+        <Route path="/teacher" component={TeacherPage} />
+        <Route path="/library" component={LibraryPage} />
+        <Route path="/reminder" component={ReminderPage} />
+        <Route path="/addseminar" component={AddSeminarPage} />
+        <Route path="/basicinfo" component={BasicInfoPage} />
+        <Route path="/eventppt" component={EventPreparation} />
+        <Route path="/classmaterial" component={ClassMaterial} />
+        <Route path="/accountmgt" component={AccountManagement} />
+        <Route path="/notestaking" component={NotesTaking} />
+        <Route path="/notes" component={Notes} />
+        <Route path="/carparkpass" component={CarparkPass} />
+        <Route path="/payment" component={Payment} />
+        <Route path="/invoice" component={Invoice} />
+        <Route path="/tenancy" component={Tenancy} />
+        <Route path="/addseatingplan" component={AddSeatingPlan} />
         { footerBarArray.includes(this.props.location.pathname) ? <FooterBar /> : undefined }
       </div>
     );

@@ -18,7 +18,6 @@ const styles = theme => ({
   },
   body: {
     height: '100%',
-    flexGrow: '1',
     backgroundColor: '#F0F0F0',
     [theme.breakpoints.up('sm')]: {
       marginLeft: 'auto',

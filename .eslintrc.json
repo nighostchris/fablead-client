@@ -7,6 +7,7 @@
     "es6": true
   },
   "rules": {
+    "react/prefer-stateless-function": 0
   },
   "parserOptions": {
     "ecmaVersion": 9,

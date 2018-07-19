@@ -5,51 +5,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import { Link } from 'react-router-dom';
 
 import DateRangeIcon from '@material-ui/icons/dateRange';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 
 const styles = theme => ({
-  topBar: {
-    height: '64px',
-    display: 'flex',
-    backgroundColor: theme.palette.primary.main,
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
-    },
-  },
-  backButton: {
-    position: 'absolute',
-    height: '60px',
-    fontSize: '15px',
-    fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: theme.palette.primary.main,
-    borderRadius: '0px',
-    '&:hover': {
-      backgroundColor: theme.palette.primary.main,
-    },
-  },
-  topBarInfoFirst: {
-    fontSize: '19px',
-    fontWeight: 'bold',
-    color: 'white',
-    [theme.breakpoints.up('md')]: {
-      marginLeft: '170px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    },
-  },
-  topBarInfoSecond: {
-    fontSize: '19px',
-    fontWeight: 'bold',
-    color: 'white',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
   seminarInfo: {
     paddingTop: '30px',
     paddingBottom: '30px',
