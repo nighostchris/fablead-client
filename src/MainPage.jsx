@@ -29,10 +29,10 @@ import Tenancy from './Seminar/Tenancy';
 
 const styles = {
   root: {
-    flexShrink: 1,
+    height: 'inherit',
   },
   content: {
-    flexShrink: 1,
+    height: 'inherit',
     marginBottom: '72px',
   },
   loginRoot: {

@@ -4,41 +4,48 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
 
 import HeaderBar from '../HeaderBar';
 
 const styles = theme => ({
+  headerLayout: {
+    flexGrow: '1',
+  },
   body: {
-    marginTop: '10px',
+    height: '100%',
+    flexGrow: '1',
+    backgroundColor: '#F0F0F0',
     [theme.breakpoints.up('sm')]: {
       marginLeft: 'auto',
       marginRight: 'auto',
       width: '700px',
     },
   },
-  flex: {
-    flex: 1,
-  },
   root: {
-    flexGrow: 1,
-  },
-  infoWrapper: {
+    height: '100%',
     display: 'flex',
-    flexDirection: 'row',
-    textAlign: 'center',
+    flexDirection: 'column',
   },
-  infoLeftText: {
-    flex: '1',
-    flexGrow: '1',
-    textAlign: 'left',
+  divider: {
+    height: '2px',
+  },
+  list: {
+    backgroundColor: 'white',
+  },
+  listItemLeft: {
     marginLeft: '30px',
+    fontSize: '18px',
   },
-  infoRightText: {
-    flex: '1',
-    flexGrow: '4',
-    textAlign: 'center'
-  }
+  listItemRight: {
+    textAlign: 'right',
+    marginRight: '30px',
+    fontSize: '18px',
+  },
 });
 
 class BasicInfoPage extends React.Component {
@@ -65,7 +72,7 @@ class BasicInfoPage extends React.Component {
           <div className={classes.headerLayout}>
             <AppBar position="static">
               <HeaderBar />
-              <Tabs value={value} scrollButtons="auto" fullWidth onChange={this.handleChange} centered>
+              <Tabs value={value} scrollButtons="auto" fullWidth onChange={this.handleChange} centered style={{ textAlign: 'center' }}>
                 <Tab label="Basic Info" component={Link} to="/basicinfo" />
                 <Tab label="Event Ppt" component={Link} to="/eventppt" />
                 <Tab label="Class Materials" component={Link} to="/classmaterial" />
@@ -74,54 +81,43 @@ class BasicInfoPage extends React.Component {
             </AppBar>
           </div>
           <div className={classes.body}>
-            <div className={classes.infoWrapper}>
-              <p className={classes.infoLeftText}>
-                Name
-              </p>
-              <p className={classes.infoRightText}>
-                Seminar Name
-              </p>
-            </div>
-            <div className={classes.infoWrapper}>
-              <p className={classes.infoLeftText}>
-                Date
-              </p>
-              <p className={classes.infoRightText}>
-                2018-6-01
-              </p>
-            </div>
-            <div className={classes.infoWrapper}>
-              <p className={classes.infoLeftText}>
-                Location
-              </p>
-              <p className={classes.infoRightText}>
-                北京
-              </p>
-            </div>
-            <div className={classes.infoWrapper}>
-              <p className={classes.infoLeftText}>
-                Type
-              </p>
-              <p className={classes.infoRightText}>
-                Seminar
-              </p>
-            </div>
-            <div className={classes.infoWrapper}>
-              <p className={classes.infoLeftText}>
-                Teacher
-              </p>
-              <div className={classes.infoRightText}>
-                <p>
-                  Peter Man
-                </p>
-                <p>
-                  Mary Lee
-                </p>
-                <p>
-                  John Wong
-                </p>
-              </div>
-            </div>
+            <List className={classes.list}>
+              <ListItem>
+                <ListItemText primary="Name" classes={{ primary: classes.listItemLeft }} />
+                <ListItemText primary="Seminar Name" classes={{ primary: classes.listItemRight }} />
+              </ListItem>
+              <Divider inset component="li" className={classes.divider} />
+              <ListItem>
+                <ListItemText primary="Type" classes={{ primary: classes.listItemLeft }} />
+                <ListItemText primary="Seminar" classes={{ primary: classes.listItemRight }} />
+              </ListItem>
+              <Divider inset component="li" className={classes.divider} />
+              <ListItem>
+                <ListItemText primary="Teacher #1" classes={{ primary: classes.listItemLeft }} />
+                <ListItemText primary="Peter Chan" classes={{ primary: classes.listItemRight }} />
+              </ListItem>
+              <Divider inset component="li" className={classes.divider} />
+              <ListItem>
+                <ListItemText primary="Teacher #2" classes={{ primary: classes.listItemLeft }} />
+                <ListItemText primary="Mary Lee" classes={{ primary: classes.listItemRight }} />
+              </ListItem>
+            </List>
+            <List className={classes.list} style={{ marginTop: '50px' }}>
+              <ListItem>
+                <ListItemText primary="Date #1" classes={{ primary: classes.listItemLeft }} />
+                <ListItemText primary="2018-6-01, 14:00 - 16:00" classes={{ primary: classes.listItemRight }} />
+              </ListItem>
+              <Divider inset component="li" className={classes.divider} />
+              <ListItem>
+                <ListItemText primary="Date #2" classes={{ primary: classes.listItemLeft }} />
+                <ListItemText primary="2018-6-10, 15:00 - 17:00" classes={{ primary: classes.listItemRight }} />
+              </ListItem>
+              <Divider inset component="li" className={classes.divider} />
+              <ListItem>
+                <ListItemText primary="Location" classes={{ primary: classes.listItemLeft }} />
+                <ListItemText primary="Hong Kong" classes={{ primary: classes.listItemRight }} />
+              </ListItem>
+            </List>
           </div>
         </div>
       );
