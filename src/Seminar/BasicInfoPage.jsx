@@ -18,8 +18,8 @@ const styles = theme => ({
   },
   body: {
     height: '100%',
-    backgroundColor: '#F0F0F0',
     [theme.breakpoints.up('sm')]: {
+      marginTop: '20px',
       marginLeft: 'auto',
       marginRight: 'auto',
       width: '700px',
@@ -50,6 +50,19 @@ const styles = theme => ({
 class BasicInfoPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      value: 0,
+    };
+  }
+
+    handleChange = (event, value) => {
+      this.setState({
+        value,
+      });
+    }
+
+    render() {
+      const { classes } = this.props;
     this.state = {
       value: 0,
     };
