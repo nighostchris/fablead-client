@@ -58,7 +58,7 @@ class HeaderBar extends React.Component {
     const { classes } = this.props;
 
     const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', 
-    '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan'];
+    '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap'];
 
     const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
 
@@ -82,6 +82,7 @@ class HeaderBar extends React.Component {
       '/invoice': 'Invoice Attachment',
       '/tenancy': 'Tenancy Agreement',
       '/addseatingplan': '學員座位表生成',
+      '/seatmap': '學員座位表生成 #1',
     };
 
     return (
@@ -121,7 +122,7 @@ class HeaderBar extends React.Component {
                   )
                   : (editButtonArray.includes(this.props.location.pathname) ? (
                     <Button className={classes.editButton}>
-Edit
+                      Edit
                     </Button>
                   ) : undefined)
               }
