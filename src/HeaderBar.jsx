@@ -100,7 +100,8 @@ class HeaderBar extends React.Component {
                       component={Link}
                       to={this.props.location.pathname == '/notes' ? '/notestaking'
                         : (this.props.location.pathname == '/addseminar' ? '/dashboard'
-                          : (accountMGTArray.includes(this.props.location.pathname) ? '/accountmgt' : '/reminder'))}
+                          : (this.props.location.pathname == '/addteacher' ? '/teacher'
+                            : (accountMGTArray.includes(this.props.location.pathname) ? '/accountmgt' : '/reminder')))}
                     >
                       <ArrowBackIcon />
                     </Button>
