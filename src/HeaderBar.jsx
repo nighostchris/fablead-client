@@ -13,6 +13,10 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const styles = theme => ({
   root: {
+    position: 'absolute',
+    top: '0px',
+    zIndex: '2',
+    width: '100%',
   },
   flex: {
     flex: 1,
@@ -89,7 +93,11 @@ class HeaderBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" className={backButtonArray.includes(this.props.location.pathname) ? classes.headerLayoutNew : undefined}>
+        <AppBar
+          position="static"
+          className={backButtonArray.includes(this.props.location.pathname) ? classes.headerLayoutNew : undefined}
+          style={{ boxShadow: this.props.location.pathname === '/dashboard' ? '0 0 0' : undefined }}
+        >
           <Toolbar className={classes.titleBar}>
             <div className={classes.headerLayout}>
               {

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import Calendar from '../Calendar/Calendar';
 
 const styles = theme => ({
@@ -35,64 +37,37 @@ const styles = theme => ({
       display: 'none',
     },
   },
-  wrapper: {
-    lineHeight: '1px',
+  cardWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
     [theme.breakpoints.up('md')]: {
-      flex: '1',
-      flexGrow: '1',
-      lineHeight: '30px',
-      marginLeft: '30px'
+      marginTop: '10px',
+      alignItems: 'center',
     },
   },
-  name: {
+  card: {
+    '&:nth-of-type(even)': {
+      backgroundColor: theme.palette.background.default,
+    },
+    textDecoration: 'none',
+    boxShadow: '0px 0px 0px',
+  },
+  rowWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      width: '700px',
+    },
+  },
+  row: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '5px',
-  },
-  date: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  dateDetails: {
-    display: 'flex',
-    flexDirection: 'row',
-    flex: '1',
-    flexGrow: '8'
-  },
-  location: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  type: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  teacher: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  leftColumn: {
-    marginLeft: '30px',
-    flex: '1',
-    flexGrow: '1'
-  },
-  rightColumn: {
-    flex: '1', 
-    flexGrow: '4',
-    textAlign: 'center'
-  },
-  thirdColumn: {
-    position: 'absolute', 
-    right: '50px',
-    [theme.breakpoints.down('sm')]: {
-      right: '30px'
-    }
   },
   calendarWrapper: {
     display: 'flex',
     flexDirection: 'column',
     flex: '1',
-    flexGrow: '1'
+    flexGrow: '1',
   },
   calendarTabSelector: {
     marginTop: '20px',
@@ -100,53 +75,65 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       marginTop: '0px',
       marginBottom: '0px',
-      backgroundColor: 'lightgrey'
-    }
+      backgroundColor: 'lightgrey',
+    },
   },
   calendarTabs: {
     [theme.breakpoints.down('sm')]: {
       minHeight: '0px',
       float: 'right',
-    }
+    },
   },
   calendarTab: {
     textTransform: 'none',
     minHeight: '12px',
     fontWeight: 'bold',
     [theme.breakpoints.down('sm')]: {
-      color: 'dimgrey'
+      color: 'dimgrey',
     },
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'grey',
-      color: 'white'
-    }
+      color: 'white',
+    },
   },
   calendarTabActive: {
     textTransform: 'none',
     minHeight: '12px',
     fontWeight: 'bold',
     [theme.breakpoints.down('sm')]: {
-      color: 'white'
+      color: 'white',
     },
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'lightgrey',
-      color: 'grey'
-    }
-  }
+      color: 'grey',
+    },
+  },
 });
+
+function createData(type, seminarName, teacherName, Location, Date, Countdown) {
+  return {
+    type, seminarName, teacherName, Location, Date, Countdown,
+  };
+}
+
+const data = [
+  createData('Seminar', 'Semiar Name', 'Teacher Name', '北京', '6月20日', '10 days'),
+  createData('Training', 'Semiar Name', 'Teacher Name', '香港', '6月15日', '5 days'),
+  createData('Consulting', 'Semiar Name', 'Teacher Name', '上海', '6月10日', '0 days'),
+  createData('Fablead', 'Semiar Name', 'Teacher Name', '香港', '6月1日', 'Expired'),
+];
 
 class SchedulingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
-      value: 1
+      value: 1,
     };
   }
 
   handleChange = (event, value) => {
     this.setState({
-      value: value
+      value,
     });
   }
 
@@ -184,53 +171,31 @@ class SchedulingPage extends React.Component {
                   Seminar
                 </p>
               </div>
-              <div className={classes.name}>
-                <p className={classes.leftColumn}>
-                  Name
-                </p>
-                <p className={classes.rightColumn}>
-                  Seminar Name
-                </p>
-              </div>
-              <div className={classes.date}>
-                <p className={classes.leftColumn}>
-                  Date
-                </p>
-                <p className={classes.rightColumn}>
-                  2018-6-20
-                </p>
-                <p className={classes.thirdColumn}>
-                  10 days
-                </p>
-              </div>
-              <div className={classes.location}>
-                <p className={classes.leftColumn}>
-                  Location
-                </p>
-                <p className={classes.rightColumn}>
-                  Beijing
-                </p>
-              </div>
-              <div className={classes.type}>
-                <p className={classes.leftColumn}>
-                  Type
-                </p>
-                <p className={classes.rightColumn}>
-                  Seminar
-                </p>
-              </div>
-              <div className={classes.teacher}>
-                <p className={classes.leftColumn}>
-                  Teacher
-                </p>
-                <div className={classes.rightColumn}>
-                  <p>
-                    Peter Man
-                  </p>
-                  <p>
-                    Mary Lee
-                  </p>
-                </div>
+              <div className={classes.cardWrapper}>
+                {data.map(n => (
+                  <Card className={classes.card} key={n.seminarName}>
+                    <CardContent>
+                      <div className={classes.rowWrapper}>
+                        <div className={classes.row}>
+                          <Typography variant="body1">
+                            {n.seminarName}
+                          </Typography>
+                          <Typography variant="body1">
+                            {n.Date}
+                          </Typography>
+                        </div>
+                        <div className={classes.row}>
+                          <Typography variant="body1">
+                            {n.teacherName}
+                          </Typography>
+                          <Typography variant="body1">
+                            {n.Location}
+                          </Typography>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </div>
