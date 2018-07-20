@@ -58,7 +58,8 @@ class HeaderBar extends React.Component {
     const { classes } = this.props;
 
     const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', 
-    '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap'];
+      '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
+      '/addteacher'];
 
     const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
 
@@ -83,6 +84,7 @@ class HeaderBar extends React.Component {
       '/tenancy': 'Tenancy Agreement',
       '/addseatingplan': '學員座位表生成',
       '/seatmap': '學員座位表生成 #1',
+      '/addteacher': 'New Teacher',
     };
 
     return (

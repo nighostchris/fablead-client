@@ -27,6 +27,7 @@ import Payment from './Seminar/Payment';
 import Invoice from './Seminar/Invoice';
 import Tenancy from './Seminar/Tenancy';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
+import AddTeacher from './Dashboard/AddTeacher';
 
 const styles = {
   root: {
@@ -51,6 +52,7 @@ class MainPage extends React.Component {
         <Route path="/library" component={LibraryPage} />
         <Route path="/reminder" component={ReminderPage} />
         <Route path="/addseminar" component={AddSeminarPage} />
+        <Route path="/addteacher" component={AddTeacher} />
         <Route path="/basicinfo" component={BasicInfoPage} />
         <Route path="/eventppt" component={EventPreparation} />
         <Route path="/classmaterial" component={ClassMaterial} />
