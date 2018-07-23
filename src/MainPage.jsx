@@ -44,13 +44,11 @@ class MainPage extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const headerBarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt'];
-
     const footerBarArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
 
     return (
       <div className={classes.root}>
-        { headerBarArray.includes(this.props.location.pathname) ? undefined : <HeaderBar /> }
+        <HeaderBar />
         <div className={classes.middleContent}>
           <Route path="/dashboard" component={SeminarList} />
           <Route path="/scheduling" component={SchedulingPage} />

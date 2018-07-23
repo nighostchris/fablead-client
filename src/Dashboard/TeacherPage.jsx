@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import { ListItem, ListItemText } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
   root: {

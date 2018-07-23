@@ -178,14 +178,14 @@ class SchedulingPage extends React.Component {
                   fullWidth
                   centered
                 >
-                  <Tab label="Year" className={this.state.value == 0 ? classes.calendarTabActive : classes.calendarTab} />
-                  <Tab label="Month" className={this.state.value == 1 ? classes.calendarTabActive : classes.calendarTab} />
-                  <Tab label="Week" className={this.state.value == 2 ? classes.calendarTabActive : classes.calendarTab} />
+                  <Tab label="Year" className={this.state.value === 0 ? classes.calendarTabActive : classes.calendarTab} />
+                  <Tab label="Month" className={this.state.value === 1 ? classes.calendarTabActive : classes.calendarTab} />
+                  <Tab label="Week" className={this.state.value === 2 ? classes.calendarTabActive : classes.calendarTab} />
                 </Tabs>
               </div>
               {
-                this.state.value == 0 ? (<Calendar view={0} />)
-                  : (this.state.value == 1 ? (<Calendar view={1} />) : (<Calendar view={2} />))
+                this.state.value === 0 ? (<Calendar view={0} />)
+                  : (this.state.value === 1 ? (<Calendar view={1} />) : (<Calendar view={2} />))
               }
             </div>
             <div className={classes.wrapper}>

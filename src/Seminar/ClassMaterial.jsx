@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import PanoramaFishEye from '@material-ui/icons/PanoramaFishEye';
-import { Link } from 'react-router-dom';
 
-import HeaderBar from '../HeaderBar';
 
 const styles = theme => ({
   body: {
@@ -27,6 +22,7 @@ const styles = theme => ({
   },
   root: {
     flexGrow: 1,
+    marginTop: '48px',
   },
   cardWrapper: {
     display: 'flex',
@@ -90,29 +86,18 @@ class EventPreparation extends React.Component {
 
       return (
         <div className={classes.root}>
-          <div className={classes.headerLayout}>
-            <AppBar position="static">
-              <HeaderBar />
-              <Tabs value={value} scrollButtons="auto" fullWidth onChange={this.handleChange} centered>
-                <Tab label="Basic Info" component={Link} to="/basicinfo" />
-                <Tab label="Event Ppt" component={Link} to="/eventppt" />
-                <Tab label="Class Materials" component={Link} to="/classmaterial" />
-                <Tab label="Account Mgt" component={Link} to="/accountmgt" />
-              </Tabs>
-            </AppBar>
-          </div>
           <div className={classes.body}>
             <div className={classes.cardWrapper}>
               <Card className={classes.card}>
                 <CardContent>
                   <div className={classes.event}>
                     <p style={{ flexGrow: '1', marginLeft: '30px' }}>
-課程教材 A
+                      課程教材 A
                     </p>
                     <Button style={{ position: 'relative', width: '20%' }}>
                       <PanoramaFishEye className={classes.panorama} />
                       <p className={classes.buttonCount}>
-3
+                        3
                       </p>
                     </Button>
                   </div>
@@ -122,7 +107,7 @@ class EventPreparation extends React.Component {
                 <CardContent>
                   <div className={classes.event}>
                     <p style={{ flexGrow: '1', marginLeft: '30px' }}>
-課程教材 B
+                      課程教材 B
                     </p>
                     <KeyboardArrowRight className={classes.rightArrow} />
                   </div>

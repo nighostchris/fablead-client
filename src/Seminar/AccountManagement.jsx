@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { Link } from 'react-router-dom';
-
-import HeaderBar from '../HeaderBar';
 
 const styles = theme => ({
   body: {
@@ -27,6 +22,7 @@ const styles = theme => ({
   },
   root: {
     flexGrow: 1,
+    marginTop: '48px',
   },
   cardWrapper: {
     marginTop: '20px',
@@ -101,22 +97,11 @@ class AccountManagement extends React.Component {
 
       return (
         <div className={classes.root}>
-          <div className={classes.headerLayout}>
-            <AppBar position="static">
-              <HeaderBar />
-              <Tabs value={value} scrollButtons="auto" fullWidth onChange={this.handleChange} centered>
-                <Tab label="Basic Info" component={Link} to="/basicinfo" />
-                <Tab label="Event Ppt" component={Link} to="/eventppt" />
-                <Tab label="Class Materials" component={Link} to="/classmaterial" />
-                <Tab label="Account Mgt" component={Link} to="/accountmgt" />
-              </Tabs>
-            </AppBar>
-          </div>
           <div className={classes.body}>
             <div className={classes.upperPart}>
               <div className={classes.infoWrapper}>
                 <p className={classes.infoLeft}>
-Customer Name
+                  Customer Name
                 </p>
                 <TextField
                   margin="normal"
@@ -125,7 +110,7 @@ Customer Name
               </div>
               <div className={classes.infoWrapper}>
                 <p className={classes.infoLeft}>
-Company Name
+                  Company Name
                 </p>
                 <TextField
                   margin="normal"
@@ -134,7 +119,7 @@ Company Name
               </div>
               <div className={classes.infoWrapper}>
                 <p className={classes.infoLeft}>
-Brand
+                  Brand
                 </p>
                 <TextField
                   margin="normal"
@@ -143,7 +128,7 @@ Brand
               </div>
               <div className={classes.infoWrapper}>
                 <p className={classes.infoLeft}>
-Remarks
+                  Remarks
                 </p>
                 <TextField
                   margin="normal"

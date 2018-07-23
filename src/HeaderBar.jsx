@@ -6,6 +6,8 @@ import { Link, withRouter } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
@@ -58,14 +60,37 @@ const styles = theme => ({
 });
 
 class HeaderBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0,
+    };
+  }
+
+  handleChange = (event, value) => {
+    this.setState({
+      value,
+    });
+  }
+
+  handleClick = (event) => {
+    this.setState({
+      value: 0,
+    });
+  }
+
   render() {
     const { classes } = this.props;
 
-    const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', 
+    const { value } = this.state;
+
+    const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt',
       '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
       '/addteacher'];
 
     const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
+
+    const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt'];
 
     const accountMGTArray = ['/carparkpass', '/payment', '/invoice', '/tenancy'];
 
@@ -106,6 +131,7 @@ class HeaderBar extends React.Component {
                     <Button
                       className={classes.backButton}
                       component={Link}
+                      onClick={this.handleClick}
                       to={this.props.location.pathname == '/notes' ? '/notestaking'
                         : (this.props.location.pathname == '/addseminar' ? '/dashboard'
                           : (this.props.location.pathname == '/addteacher' ? '/teacher'
@@ -139,6 +165,18 @@ class HeaderBar extends React.Component {
               }
             </div>
           </Toolbar>
+          {
+            seminarArray.includes(this.props.location.pathname)
+              ? (
+                <Tabs value={value} scrollButtons="auto" fullWidth onChange={this.handleChange} centered style={{ textAlign: 'center' }}>
+                  <Tab label="Basic Info" component={Link} to="/basicinfo" />
+                  <Tab label="Event Ppt" component={Link} to="/eventppt" />
+                  <Tab label="Class Materials" component={Link} to="/classmaterial" />
+                  <Tab label="Account Mgt" component={Link} to="/accountmgt" />
+                </Tabs>
+              )
+              : undefined
+          }
         </AppBar>
       </div>
     );

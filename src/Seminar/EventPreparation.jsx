@@ -1,15 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import { Link } from 'react-router-dom';
-
-import HeaderBar from '../HeaderBar';
 
 const styles = theme => ({
   body: {
@@ -25,6 +19,7 @@ const styles = theme => ({
   },
   root: {
     flexGrow: 1,
+    marginTop: '48px',
   },
   cardWrapper: {
     display: 'flex',
@@ -78,24 +73,13 @@ class EventPreparation extends React.Component {
 
       return (
         <div className={classes.root}>
-          <div className={classes.headerLayout}>
-            <AppBar position="static">
-              <HeaderBar />
-              <Tabs value={value} scrollButtons="auto" fullWidth onChange={this.handleChange} centered>
-                <Tab label="Basic Info" component={Link} to="/basicinfo" />
-                <Tab label="Event Ppt" component={Link} to="/eventppt" />
-                <Tab label="Class Materials" component={Link} to="/classmaterial" />
-                <Tab label="Account Mgt" component={Link} to="/accountmgt" />
-              </Tabs>
-            </AppBar>
-          </div>
           <div className={classes.body}>
             <div className={classes.cardWrapper}>
               <Card className={classes.card}>
                 <CardContent>
                   <div className={classes.event}>
                     <p style={{ flexGrow: '1', marginLeft: '30px' }}>
-Event 1
+                      Event 1
                     </p>
                     <KeyboardArrowRight className={classes.rightArrow} />
                   </div>
@@ -105,7 +89,7 @@ Event 1
                 <CardContent>
                   <div className={classes.event}>
                     <p style={{ flexGrow: '1', marginLeft: '30px' }}>
-Event 2
+                      Event 2
                     </p>
                     <KeyboardArrowRight className={classes.rightArrow} />
                   </div>
@@ -115,7 +99,7 @@ Event 2
                 <CardContent>
                   <div className={classes.event}>
                     <p style={{ flexGrow: '1', marginLeft: '30px' }}>
-Event 3
+                      Event 3
                     </p>
                     <KeyboardArrowRight className={classes.rightArrow} />
                   </div>
