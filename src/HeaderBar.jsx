@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import SettingIcon from '@material-ui/icons/Settings';
 
 const styles = theme => ({
   root: {
@@ -92,6 +93,8 @@ class HeaderBar extends React.Component {
 
     const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt'];
 
+    const settingButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
+
     const accountMGTArray = ['/carparkpass', '/payment', '/invoice', '/tenancy'];
 
     const headerMapping = {
@@ -140,7 +143,20 @@ class HeaderBar extends React.Component {
                       <ArrowBackIcon />
                     </Button>
                   )
-                  : undefined
+                  : (
+                    settingButtonArray.includes(this.props.location.pathname)
+                      ? (
+                        <Button
+                          className={classes.backButton}
+                          component={Link}
+                          onClick={this.handleClick}
+                          to="/setting"
+                        >
+                          <SettingIcon />
+                        </Button>
+                      )
+                      : undefined
+                  )
               }
               <Typography variant="title" color="inherit" align="center" className={classes.flex}>
                 { headerMapping[this.props.location.pathname] }
