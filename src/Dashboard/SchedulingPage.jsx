@@ -44,16 +44,39 @@ const styles = theme => ({
       alignItems: 'center',
     },
   },
+  frontCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'darkgrey',
+    width: '80px',
+    borderRadius: '0px',
+    textAlign: 'center',
+    '& > h3': {
+      color: 'white',
+      fontWeight: 'unset',
+      '&:first-child': {
+        marginBottom: '5px',
+      },
+      '&:last-child': {
+        marginTop: '5px',
+      },
+    },
+  },
   card: {
     '&:nth-of-type(even)': {
       backgroundColor: theme.palette.background.default,
     },
+    flex: '1',
+    flexGrow: '1',
+    borderRadius: '0px',
     textDecoration: 'none',
     boxShadow: '0px 0px 0px',
   },
   rowWrapper: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     [theme.breakpoints.up('md')]: {
       width: '700px',
     },
@@ -61,6 +84,7 @@ const styles = theme => ({
   row: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   calendarWrapper: {
     display: 'flex',
@@ -116,10 +140,10 @@ function createData(type, seminarName, teacherName, Location, Date, Countdown) {
 }
 
 const data = [
-  createData('Seminar', 'Semiar Name', 'Teacher Name', '北京', '6月20日', '10 days'),
-  createData('Training', 'Semiar Name', 'Teacher Name', '香港', '6月15日', '5 days'),
-  createData('Consulting', 'Semiar Name', 'Teacher Name', '上海', '6月10日', '0 days'),
-  createData('Fablead', 'Semiar Name', 'Teacher Name', '香港', '6月1日', 'Expired'),
+  createData('Seminar', 'Semiar Name', 'Chan Li Li', '北京', '6月20日', '10 days'),
+  createData('Training', 'Semiar Name', 'Yuen Ka Yan', '香港', '6月15日', '5 days'),
+  createData('Consulting', 'Semiar Name', 'Wong Man Man', '上海', '6月10日', '0 days'),
+  createData('Fablead', 'Semiar Name', 'Sze Lai Yu', '香港', '6月1日', 'Expired'),
 ];
 
 class SchedulingPage extends React.Component {
@@ -171,29 +195,51 @@ class SchedulingPage extends React.Component {
                 </p>
               </div>
               <div className={classes.cardWrapper}>
-                {data.map(n => (
-                  <Card className={classes.card} key={n.seminarName}>
-                    <CardContent>
-                      <div className={classes.rowWrapper}>
-                        <div className={classes.row}>
-                          <Typography variant="body1">
-                            {n.seminarName}
-                          </Typography>
-                          <Typography variant="body1">
-                            {n.Date}
-                          </Typography>
+                {data.map((n, i) => (
+                  <div key={i} style={{ display: 'flex', flexDirection: 'row' }}>
+                    <Card className={classes.frontCard} key={i * 80}>
+                      <Typography variant="subheading">
+                        Seminar
+                      </Typography>
+                      <Typography variant="subheading">
+                        {n.Countdown}
+                      </Typography>
+                    </Card>
+                    <Card className={classes.card} key={n.seminarName}>
+                      <CardContent style={{ paddingBottom: '5px', paddingTop: '5px' }}>
+                        <div className={classes.rowWrapper}>
+                          <div className={classes.row} style={{ marginBottom: '2px', alignItems: 'center' }}>
+                            <Typography
+                              variant="subheading"
+                              style={{ marginLeft: '30px' }}
+                            >
+                              {n.seminarName}
+                            </Typography>
+                            <Typography
+                              variant="subheading"
+                              style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                            >
+                              {n.Date}
+                            </Typography>
+                          </div>
+                          <div className={classes.row} style={{ marginTop: '2px', alignItems: 'center' }}>
+                            <Typography
+                              variant="subheading"
+                              style={{ marginLeft: '30px' }}
+                            >
+                              {n.teacherName}
+                            </Typography>
+                            <Typography
+                              variant="subheading"
+                              style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                            >
+                              {n.Location}
+                            </Typography>
+                          </div>
                         </div>
-                        <div className={classes.row}>
-                          <Typography variant="body1">
-                            {n.teacherName}
-                          </Typography>
-                          <Typography variant="body1">
-                            {n.Location}
-                          </Typography>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </div>
                 ))}
               </div>
             </div>
