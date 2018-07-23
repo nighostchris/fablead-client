@@ -6,13 +6,13 @@ import { Route, withRouter } from 'react-router-dom';
 
 import HeaderBar from './HeaderBar';
 import FooterBar from './FooterBar';
-import SeminarList from './Dashboard/SeminarList';
-import SchedulingPage from './Dashboard/SchedulingPage';
-import TeacherPage from './Dashboard/TeacherPage';
-import LibraryPage from './Dashboard/LibraryPage';
-import ReminderPage from './Dashboard/ReminderPage';
+import SeminarList from './Dashboard/Seminars/SeminarList';
+import SchedulingPage from './Dashboard/Scheduling/SchedulingPage';
+import TeacherPage from './Dashboard/Teachers/TeacherPage';
+import LibraryPage from './Dashboard/Library/LibraryPage';
+import ReminderPage from './Dashboard/Reminder/ReminderPage';
 
-import AddSeminarPage from './Dashboard/AddSeminarPage';
+import AddSeminarPage from './Dashboard/Seminars/AddSeminarPage';
 
 import BasicInfoPage from './Seminar/BasicInfoPage';
 import EventPreparation from './Seminar/EventPreparation';
@@ -27,7 +27,7 @@ import Payment from './Seminar/Payment';
 import Invoice from './Seminar/Invoice';
 import Tenancy from './Seminar/Tenancy';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
-import AddTeacher from './Dashboard/AddTeacher';
+import AddTeacher from './Dashboard/Teachers/AddTeacher';
 
 const styles = {
   root: {

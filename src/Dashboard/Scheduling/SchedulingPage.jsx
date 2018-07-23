@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Calendar from '../Calendar/Calendar';
+import Calendar from '../../Calendar/Calendar';
 
 const styles = theme => ({
   root: {

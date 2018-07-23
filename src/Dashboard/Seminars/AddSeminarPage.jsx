@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-import DateRangeIcon from '@material-ui/icons/dateRange';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 const styles = theme => ({
   seminarInfo: {
@@ -39,8 +39,8 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       borderRadius: '0px',
       fontWeight: 'bold',
+      position: 'fixed',
       bottom: '0px',
-      position: 'absolute',
       width: '100%',
       height: '60px',
       fontSize: '20px',

@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Input } from '../../node_modules/@material-ui/core';
+import { Input } from '../../../node_modules/@material-ui/core';
 
 const styles = theme => ({
   body: {
@@ -47,7 +47,7 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       borderRadius: '0px',
       bottom: '0px',
-      position: 'absolute',
+      position: 'fixed',
       width: '100%',
       height: '60px',
       fontSize: '20px',
