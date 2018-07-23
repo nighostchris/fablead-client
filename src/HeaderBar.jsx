@@ -9,10 +9,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SettingIcon from '@material-ui/icons/Settings';
+import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
   root: {
@@ -29,9 +29,40 @@ const styles = theme => ({
     height: '64px',
     justifyContent: 'center',
   },
+  headerLayout: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  topLeftButton: {
+    position: 'absolute',
+    left: '20px',
+    padding: '0px',
+    minWidth: '0px',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
   searchButton: {
     position: 'absolute',
+    right: '64px',
+    padding: '0px',
+    minWidth: '0px',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+  addButton: {
+    position: 'absolute',
     right: '20px',
+    padding: '0px',
+    minWidth: '0px',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
   },
   editButton: {
     fontSize: '14px',
@@ -40,22 +71,6 @@ const styles = theme => ({
     right: '0px',
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
-    },
-  },
-  headerLayout: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  headerLayoutNew: {
-    boxShadow: '0px 0px 0px',
-  },
-  backButton: {
-    position: 'absolute',
-    left: '20px',
-    color: 'white',
-    [theme.breakpoints.down('sm')]: {
-      left: '0px',
     },
   },
 });
@@ -83,7 +98,17 @@ class HeaderBar extends React.Component {
   render() {
     const { classes } = this.props;
 
+    const { location } = this.props;
+    const { pathname } = location;
+
     const { value } = this.state;
+
+    const settingButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
+
+    const searchButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library'];
+
+    const addButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/eventppt', '/classmaterial',
+      '/accountmgt'];
 
     const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt',
       '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
@@ -92,8 +117,6 @@ class HeaderBar extends React.Component {
     const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
 
     const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt'];
-
-    const settingButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
 
     const accountMGTArray = ['/carparkpass', '/payment', '/invoice', '/tenancy'];
 
@@ -123,33 +146,31 @@ class HeaderBar extends React.Component {
       <div className={classes.root}>
         <AppBar
           position="static"
-          className={backButtonArray.includes(this.props.location.pathname) ? classes.headerLayoutNew : undefined}
-          style={{ boxShadow: this.props.location.pathname === '/dashboard' ? '0 0 0' : undefined }}
+          style={{ boxShadow: '0px 0px 0px' }}
         >
           <Toolbar className={classes.titleBar}>
             <div className={classes.headerLayout}>
               {
-                backButtonArray.includes(this.props.location.pathname)
+                backButtonArray.includes(pathname)
                   ? (
                     <Button
-                      className={classes.backButton}
+                      className={classes.topLeftButton}
                       component={Link}
                       onClick={this.handleClick}
-                      to={this.props.location.pathname == '/notes' ? '/notestaking'
-                        : (this.props.location.pathname == '/addseminar' ? '/dashboard'
-                          : (this.props.location.pathname == '/addteacher' ? '/teacher'
-                            : (accountMGTArray.includes(this.props.location.pathname) ? '/accountmgt' : '/reminder')))}
+                      to={pathname === '/notes' ? '/notestaking'
+                        : (pathname === '/addseminar' ? '/dashboard'
+                          : (pathname === '/addteacher' ? '/teacher'
+                            : (accountMGTArray.includes(pathname) ? '/accountmgt' : '/reminder')))}
                     >
                       <ArrowBackIcon />
                     </Button>
                   )
                   : (
-                    settingButtonArray.includes(this.props.location.pathname)
+                    settingButtonArray.includes(pathname)
                       ? (
                         <Button
-                          className={classes.backButton}
+                          className={classes.topLeftButton}
                           component={Link}
-                          onClick={this.handleClick}
                           to="/setting"
                         >
                           <SettingIcon />
@@ -159,30 +180,35 @@ class HeaderBar extends React.Component {
                   )
               }
               <Typography variant="title" color="inherit" align="center" className={classes.flex}>
-                { headerMapping[this.props.location.pathname] }
+                { headerMapping[pathname] }
               </Typography>
               {
-                this.props.location.pathname == '/dashboard' || this.props.location.pathname == '/library'
+                searchButtonArray.includes(pathname)
                   ? (
-                    <IconButton
-                      aria-owns="menu-appbar"
-                      aria-haspopup="true"
-                      color="inherit"
-                      className={classes.searchButton}
-                    >
+                    <Button className={classes.searchButton}>
                       <SearchIcon />
-                    </IconButton>
-                  )
-                  : (editButtonArray.includes(this.props.location.pathname) ? (
-                    <Button className={classes.editButton}>
-                      Edit
                     </Button>
-                  ) : undefined)
+                  ) : undefined
+              }
+              {
+                addButtonArray.includes(pathname)
+                  ? (
+                    <Button
+                      className={classes.addButton}
+                      component={Link}
+                      to={pathname === '/dashboard' ? '/addseminar'
+                        : (pathname === '/scheduling' ? '/addseminar'
+                          : (pathname === '/teacher' ? '/addteacher'
+                            : (pathname === '/library' ? '/addlibrary' : undefined)))}
+                    >
+                      <AddIcon />
+                    </Button>
+                  ) : undefined
               }
             </div>
           </Toolbar>
           {
-            seminarArray.includes(this.props.location.pathname)
+            seminarArray.includes(pathname)
               ? (
                 <Tabs value={value} scrollButtons="auto" fullWidth onChange={this.handleChange} centered style={{ textAlign: 'center' }}>
                   <Tab label="Basic Info" component={Link} to="/basicinfo" />
