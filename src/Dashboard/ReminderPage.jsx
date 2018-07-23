@@ -118,9 +118,6 @@ class ReminderPage extends React.Component {
             </Card>
           ))}
         </div>
-        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
-          <AddIcon />
-        </Button>
       </div>
     );
   }

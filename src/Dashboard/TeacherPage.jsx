@@ -48,13 +48,13 @@ const styles = theme => ({
     height: 'calc(100% - 120px)',
     display: 'flex',
     flexDirection: 'column',
-    position: 'absolute',
+    position: 'fixed',
     right: '15px',
     zIndex: '1',
     justifyContent: 'center',
   },
   letter: {
-    height: 'calc((100% - 20px) / 26)',
+    height: 'calc((100% - 40px) / 26)',
   },
 });
 
@@ -69,6 +69,7 @@ class TeacherPage extends React.Component {
     for (let i = 'A'.charCodeAt(0), j = 'Z'.charCodeAt(0); i <= j; i += 1) {
       alphabetList.push(String.fromCharCode(i));
     }
+    alphabetList.push('#');
 
     return (
       <div className={classes.root}>

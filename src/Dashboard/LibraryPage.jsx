@@ -118,12 +118,6 @@ class LibraryPage extends React.Component {
             </ListItem>
           </List>
         </div>
-        <Button className={classes.createButton} variant="contained" color="secondary">
-            Create
-        </Button>
-        <Button color="secondary" className={classes.addButton} variant="fab" aria-label="help">
-          <AddIcon />
-        </Button>
       </div>
     );
   }

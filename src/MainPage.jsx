@@ -34,7 +34,8 @@ const styles = {
     height: 'inherit',
   },
   middleContent: {
-    marginTop: '64px',
+    top: '64px',
+    position: 'relative',
     marginBottom: '56px',
   },
 };

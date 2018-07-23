@@ -14,7 +14,6 @@ const styles = theme => ({
   },
   content: {
     flexShrink: '1',
-    marginBottom: '48px',
   },
   middleContent: {
     height: '100%',
