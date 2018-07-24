@@ -1,15 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import { Input } from '../../../node_modules/@material-ui/core';
+import {
+  Button, Divider, FormControl, Input, MenuItem, List, ListItem, ListItemText, Select,
+} from '@material-ui/core';
 
 const styles = theme => ({
   body: {
@@ -75,6 +69,8 @@ class AddTeacher extends React.Component {
   render() {
     const { classes } = this.props;
 
+    const { district } = this.state;
+
     const leftColumn = ['姓名*', '聯絡電話(公司)*', '聯絡電話(家)', '聯絡電話(行動)', 'Email*', '微信', 
       '省市區', '聯絡地址', '可上菲力已開課程(多選)', '老師資歷', '小時薪資金額'];
 
@@ -97,17 +93,25 @@ class AddTeacher extends React.Component {
                         : (
                           <FormControl className={classes.listItemRight}>
                             <Select
-                              value={this.state.district}
+                              value={district}
                               onChange={this.handleChange}
                               displayEmpty
                               name="district"
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em>
+                                  None
+                                </em>
                               </MenuItem>
-                              <MenuItem value={10}>Ten</MenuItem>
-                              <MenuItem value={20}>Twenty</MenuItem>
-                              <MenuItem value={30}>Thirty</MenuItem>
+                              <MenuItem value={10}>
+                                Ten
+                              </MenuItem>
+                              <MenuItem value={20}>
+                                Twenty
+                              </MenuItem>
+                              <MenuItem value={30}>
+                                Thirty
+                              </MenuItem>
                             </Select>
                           </FormControl>
                         )

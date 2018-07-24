@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import { ListItem, ListItemText } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import {
+  List, ListItem, ListItemText, Typography,
+} from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -23,6 +23,8 @@ const styles = theme => ({
     },
   },
   listText: {
+    flex: '1',
+    flexGrow: '3',
     '& > span': {
       fontSize: '18px',
     },
@@ -34,6 +36,8 @@ const styles = theme => ({
     },
   },
   teacherCard: {
+    display: 'flex',
+    flexDirection: 'row',
     textAlign: 'left',
     padding: '20px 0px',
     [theme.breakpoints.up('sm')]: {
@@ -61,8 +65,8 @@ class TeacherPage extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const data = [['Chan Li Li', 3], ['Chan Li Li', 3], ['Chan Li Li', 3], ['Chan Li Li', 3],
-      ['Chan Li Li', 3], ['Yuen Ka Yan', 0], ['Wong Man Man', 12], ['Sze Lai Yu', 8]];
+    const data = [['Chan Li Li', 3, 5], ['Chan Li Li', 0, 0], ['Chan Li Li', 0, 12], ['Chan Li Li', 8, 0],
+      ['Chan Li Li', 3, 5], ['Chan Li Li', 0, 0], ['Chan Li Li', 0, 12], ['Chan Li Li', 8, 0]];
 
     const alphabetList = [];
     for (let i = 'A'.charCodeAt(0), j = 'Z'.charCodeAt(0); i <= j; i += 1) {
@@ -87,6 +91,9 @@ class TeacherPage extends React.Component {
               data.map((d, i) => (
                 <ListItem key={i} button className={classes.teacherCard}>
                   <ListItemText primary={d[0]} secondary={`${d[1]} Seminars`} className={classes.listText} />
+                  <Typography key={i * 30} variant="subheading" style={{ flex: '1', flexGrow: '2' }}>
+                    {`${d[2]} Completed`}
+                  </Typography>
                 </ListItem>
               ))
             }
