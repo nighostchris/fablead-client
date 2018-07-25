@@ -40,29 +40,27 @@ class LibraryPage extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <div className={classes.libraryWrapper}>
-          <List style={{ paddingTop: '0px' }}>
-            <ListItem button className={classes.libraryCard}>
-              <ListItemText className={classes.libraryText} primary="General 課程教材" />
-              <Typography variant="subheading">
-                3
-              </Typography>
-              <IconButton style={{ width: '30px', height: '30px' }}>
-                <KeyboardArrowRight className={classes.enterButtonHidden} />
-              </IconButton>
-            </ListItem>
-            <ListItem button className={classes.libraryCard}>
-              <ListItemText className={classes.libraryText} primary="演講資料" secondary="Seminar Name" />
-              <Typography variant="subheading">
-                5
-              </Typography>
-              <IconButton style={{ width: '30px', height: '30px' }}>
-                <KeyboardArrowRight className={classes.enterButtonHidden} />
-              </IconButton>
-            </ListItem>
-          </List>
-        </div>
+      <div className={classes.libraryWrapper}>
+        <List style={{ paddingTop: '0px' }}>
+          <ListItem button className={classes.libraryCard}>
+            <ListItemText className={classes.libraryText} primary="General 課程教材" />
+            <Typography variant="subheading">
+              3
+            </Typography>
+            <IconButton style={{ width: '30px', height: '30px' }}>
+              <KeyboardArrowRight className={classes.enterButtonHidden} />
+            </IconButton>
+          </ListItem>
+          <ListItem button className={classes.libraryCard}>
+            <ListItemText className={classes.libraryText} primary="演講資料" secondary="Seminar Name" />
+            <Typography variant="subheading">
+              5
+            </Typography>
+            <IconButton style={{ width: '30px', height: '30px' }}>
+              <KeyboardArrowRight className={classes.enterButtonHidden} />
+            </IconButton>
+          </ListItem>
+        </List>
       </div>
     );
   }

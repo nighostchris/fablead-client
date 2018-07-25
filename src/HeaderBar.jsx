@@ -13,6 +13,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SettingIcon from '@material-ui/icons/Settings';
 import AddIcon from '@material-ui/icons/Add';
+import {
+  KeyboardArrowRight, Sort as SortIcon,
+} from '@material-ui/icons';
 
 const styles = theme => ({
   root: {
@@ -73,6 +76,18 @@ const styles = theme => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
+  filterBar: {
+    height: '30px',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+    backgroundColor: 'gainsboro',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexFlow: 'row',
+      justifyContent: 'flex-end',
+    },
+  },
 });
 
 class HeaderBar extends React.Component {
@@ -80,6 +95,7 @@ class HeaderBar extends React.Component {
     super(props);
     this.state = {
       value: 0,
+      dashboardValue: 0,
     };
   }
 
@@ -89,19 +105,18 @@ class HeaderBar extends React.Component {
     });
   }
 
-  handleClick = (event) => {
+  handleChangeDashboard = (event, value) => {
     this.setState({
-      value: 0,
+      dashboardValue: value,
     });
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, location } = this.props;
 
-    const { location } = this.props;
     const { pathname } = location;
 
-    const { value } = this.state;
+    const { value, dashboardValue } = this.state;
 
     const settingButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
 
@@ -112,7 +127,7 @@ class HeaderBar extends React.Component {
 
     const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt',
       '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
-      '/addteacher'];
+      '/addteacher', '/setting'];
 
     const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
 
@@ -140,6 +155,7 @@ class HeaderBar extends React.Component {
       '/addseatingplan': '學員座位表生成',
       '/seatmap': '學員座位表生成 #1',
       '/addteacher': 'New Teacher',
+      '/setting': 'Setting',
     };
 
     return (
@@ -156,9 +172,8 @@ class HeaderBar extends React.Component {
                     <Button
                       className={classes.topLeftButton}
                       component={Link}
-                      onClick={this.handleClick}
                       to={pathname === '/notes' ? '/notestaking'
-                        : (pathname === '/addseminar' ? '/dashboard'
+                        : (pathname === '/addseminar' || pathname === '/setting' ? '/dashboard'
                           : (pathname === '/addteacher' ? '/teacher'
                             : (accountMGTArray.includes(pathname) ? '/accountmgt' : '/reminder')))}
                     >
@@ -216,6 +231,31 @@ class HeaderBar extends React.Component {
                   <Tab label="Class Materials" component={Link} to="/classmaterial" />
                   <Tab label="Account Mgt" component={Link} to="/accountmgt" />
                 </Tabs>
+              )
+              : undefined
+          }
+          {
+            pathname === '/dashboard'
+              ? (
+                <div>
+                  <Tabs value={dashboardValue} scrollButtons="auto" fullWidth onChange={this.handleChangeDashboard} centered>
+                    <Tab label="ALL" />
+                    <Tab label="Seminar" />
+                    <Tab label="Training" />
+                    <Tab label="Consulting" />
+                    <Tab label="Fablead" />
+                  </Tabs>
+                  <div className={classes.filterBar}>
+                    <Button style={{
+                      fontSize: '12px', minHeight: '0px', minWidth: '0px', paddingTop: '4px', paddingBottom: '4px',
+                    }}
+                    >
+                      <SortIcon style={{ fontSize: '12px', marginRight: '5px', color: 'green' }} />
+                        Latest
+                      <KeyboardArrowRight style={{ fontSize: '12px', marginLeft: '5px', color: 'green' }} />
+                    </Button>
+                  </div>
+                </div>
               )
               : undefined
           }

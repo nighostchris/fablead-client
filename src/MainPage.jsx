@@ -29,6 +29,8 @@ import Tenancy from './Seminar/Tenancy';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
 import AddTeacher from './Dashboard/Teachers/AddTeacher';
 
+import Setting from './Setting';
+
 const styles = {
   root: {
     height: 'inherit',
@@ -42,14 +44,20 @@ const styles = {
 
 class MainPage extends React.Component {
   render() {
-    const { classes } = this.props;
+    const { classes, location } = this.props;
+    const { pathname } = location;
 
     const footerBarArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
 
     return (
       <div className={classes.root}>
         <HeaderBar />
-        <div className={classes.middleContent}>
+        <div
+          className={classes.middleContent} 
+          style={{
+            top: pathname === '/basicinfo' || pathname === '/dashboard' ? '112px' : undefined,
+          }}
+        >
           <Route path="/dashboard" component={SeminarList} />
           <Route path="/scheduling" component={SchedulingPage} />
           <Route path="/teacher" component={TeacherPage} />
@@ -68,8 +76,9 @@ class MainPage extends React.Component {
           <Route path="/invoice" component={Invoice} />
           <Route path="/tenancy" component={Tenancy} />
           <Route path="/addseatingplan" component={AddSeatingPlan} />
+          <Route path="/setting" component={Setting} />
         </div>
-        { footerBarArray.includes(this.props.location.pathname) ? <FooterBar /> : undefined }
+        { footerBarArray.includes(pathname) ? <FooterBar /> : undefined }
       </div>
     );
   }
@@ -79,6 +88,5 @@ MainPage.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
-
 
 export default withStyles(styles)(withRouter(MainPage));

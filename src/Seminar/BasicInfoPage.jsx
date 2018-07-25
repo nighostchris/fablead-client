@@ -23,7 +23,6 @@ const styles = theme => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '48px',
   },
   divider: {
     height: '2px',
