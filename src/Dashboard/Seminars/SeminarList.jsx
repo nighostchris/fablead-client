@@ -45,36 +45,70 @@ const styles = theme => ({
   },
   tableView: {
   },
-  cardView: {
-    [theme.breakpoints.up('xs')]: {
+  cardWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+    top: '30px',
+    [theme.breakpoints.up('md')]: {
       display: 'none',
     },
-    [theme.breakpoints.down('xs')]: {
-      display: 'flex',
-      flexFlow: 'column',
-      position: 'relative',
-      top: '30px',
+  },
+  frontCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'darkgrey',
+    width: '80px',
+    borderRadius: '0px',
+    textAlign: 'center',
+    '& > h3': {
+      color: 'white',
+      fontWeight: 'unset',
+      '&:first-child': {
+        marginBottom: '5px',
+      },
+      '&:last-child': {
+        marginTop: '5px',
+      },
     },
   },
   card: {
-    '&:nth-of-type(odd)': {
+    '&:nth-of-type(even)': {
       backgroundColor: theme.palette.background.default,
     },
+    flex: '1',
+    flexGrow: '1',
+    borderRadius: '0px',
+    textDecoration: 'none',
     boxShadow: '0px 0px 0px',
+  },
+  rowWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: '700px',
+    },
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 
-function createData(type, seminarName, teacherName, Location, Date) {
+function createData(type, seminarName, teacherName, Location, Date, Countdown) {
   return {
-    type, seminarName, teacherName, Location, Date,
+    type, seminarName, teacherName, Location, Date, Countdown,
   };
 }
 
 const data = [
-  createData('Seminar', 'Semiar 0', 'Teacher 0', 'Beijing', '2018-06-20'),
-  createData('Training', 'Semiar 1', 'Teacher 1', 'Hong Kong', '2018-06-15'),
-  createData('Consulting', 'Semiar 2', 'Teacher 2', 'Shanghai', '2018-06-10'),
-  createData('Fablead', 'Semiar 3', 'Teacher 3', 'Hong Kong', '2018-06-01'),
+  createData('Seminar', 'Semiar Name', 'Chan Li Li', '北京', '6月20日', '10 days'),
+  createData('Training', 'Semiar Name', 'Yuen Ka Yan', '香港', '6月15日', '5 days'),
+  createData('Consulting', 'Semiar Name', 'Wong Man Man', '上海', '6月10日', '0 days'),
+  createData('Fablead', 'Semiar Name', 'Sze Lai Yu', '香港', '6月1日', 'Expired'),
 ];
 
 class SeminarList extends React.Component {
@@ -173,34 +207,52 @@ class SeminarList extends React.Component {
               </TableFooter>
             </Table>
           </Paper>
-          <div className={classes.cardView}>
-            {data.map(n => (
-              <Card className={classes.card} key={n.seminarName}>
-                <CardContent>
-                  <Grid container={24}>
-                    <Grid item xs={8}>
-                      <Typography variant="title" gutterBottom>
-                        {n.seminarName}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={4}>
-                      <Typography variant="body2" gutterBottom>
-                        {n.Date}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={8}>
-                      <Typography variant="subheading" gutterBottom>
-                        {n.teacherName}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={4}>
-                      <Typography variant="body1" gutterBottom>
-                        {n.Location}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </CardContent>
-              </Card>
+          <div className={classes.cardWrapper}>
+            {data.map((n, i) => (
+              <div key={i} style={{ display: 'flex', flexDirection: 'row' }}>
+                <Card className={classes.frontCard} key={i * 80}>
+                  <Typography variant="subheading">
+                    Seminar
+                  </Typography>
+                  <Typography variant="subheading">
+                    {n.Countdown}
+                  </Typography>
+                </Card>
+                <Card className={classes.card} key={n.seminarName}>
+                  <CardContent style={{ paddingBottom: '5px', paddingTop: '5px' }}>
+                    <div className={classes.rowWrapper}>
+                      <div className={classes.row} style={{ marginBottom: '2px', alignItems: 'center' }}>
+                        <Typography
+                          variant="subheading"
+                          style={{ marginLeft: '30px' }}
+                        >
+                          {n.seminarName}
+                        </Typography>
+                        <Typography
+                          variant="subheading"
+                          style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                        >
+                          {n.Date}
+                        </Typography>
+                      </div>
+                      <div className={classes.row} style={{ marginTop: '2px', alignItems: 'center' }}>
+                        <Typography
+                          variant="subheading"
+                          style={{ marginLeft: '30px' }}
+                        >
+                          {n.teacherName}
+                        </Typography>
+                        <Typography
+                          variant="subheading"
+                          style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                        >
+                          {n.Location}
+                        </Typography>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
