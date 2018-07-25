@@ -1,33 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import TextField from '@material-ui/core/TextField';
-import NativeSelect from '@material-ui/core/NativeSelect';
-
-import DateRangeIcon from '@material-ui/icons/DateRange';
+import {
+  Button, Divider, FormControl, IconButton, Input, List, ListItem, ListItemText, MenuItem, Select,
+  Typography,
+} from '@material-ui/core';
+import {
+  Add as AddIcon, DateRange as DateRangeIcon,
+} from '@material-ui/icons';
 
 const styles = theme => ({
-  seminarInfo: {
-    paddingTop: '30px',
-    paddingBottom: '30px',
-  },
-  schedulingInfo: {
-    paddingBottom: '30px',
-  },
-  textFieldStyle: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputField: {
-    width: '60%',
+  root: {
     [theme.breakpoints.up('md')]: {
-      borderTop: '1px solid darkgray',
-      borderLeft: '1px solid darkgray',
-      borderRight: '1px solid darkgray',
+      width: '700px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
+  },
+  addButton: {
+    backgroundColor: theme.palette.secondary.main,
+    width: '26px',
+    height: '26px',
+  },
+  addIcon: {
+    fontSize: '26px',
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  addText: {
+    color: 'rgba(0, 0, 0, 0.54)',
+    fontSize: '16px',
+    marginLeft: '10px',
   },
   createButton: {
     [theme.breakpoints.up('md')]: {
@@ -51,109 +54,189 @@ const styles = theme => ({
       backgroundColor: theme.palette.secondary.main,
     },
   },
-  breakline: {
-    width: '90%',
-    color: 'darkgrey',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    },
+  divider: {
+    height: '2px',
+    marginLeft: '36px',
   },
-  schedulingBar: {
-    position: 'relative',
-    left: '10%',
-    marginTop: '30px',
-    fontSize: '24px',
-    fontWeight: 'bold',
-    [theme.breakpoints.down('sm')]: {
-      display: 'flex',
-      height: '50px',
-      marginTop: '0px',
-      backgroundColor: 'darkgrey',
-      left: '0',
-      alignItems: 'center',
-    },
+  listItemRight: {
+    marginRight: '50px',
+    fontSize: '18px',
+    minWidth: 120,
   },
-  schedulingTag: {
-    [theme.breakpoints.down('sm')]: {
-      color: 'white',
-      marginLeft: '30px',
-      fontSize: '22px',
-    },
+  list: {
+    backgroundColor: 'white',
+    paddingTop: '0px',
   },
 });
 
 class AddSeminarPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: '',
+      teacher: [''],
+      location: '',
+      date: [''],
+    };
+
+    this.addTeacher = this.addTeacher.bind(this);
+    this.addDate = this.addDate.bind(this);
+  }
+
+  handleChange = index => event => {
+    const newTeacher = this.state.teacher;
+    newTeacher[index] = event.target.value;
+    this.setState({ teacher: newTeacher });
+  };
+
+  addTeacher() {
+    const newTeacher = this.state.teacher;
+    newTeacher.push('');
+    this.setState({
+      teacher: newTeacher,
+    });
+  }
+
+  addDate() {
+    const newDate = this.state.date;
+    newDate.push('');
+    this.setState({
+      date: newDate,
+    });
+  }
+
   render() {
     const { classes } = this.props;
 
+    const { type, teacher, location, date } = this.state;
+
     return (
-      <div>
-        <div className={classes.seminarInfo}>
-          <div className={classes.textFieldStyle}>
-            <p style={{ marginRight: '50px' }}>
-Name
-            </p>
-            <TextField
-              margin="normal"
-              className={classes.inputField}
+      <div className={classes.root}>
+        <List className={classes.list}>
+          <ListItem>
+            <ListItemText primary="Name" />
+            <Input
+              placeholder="Please enter"
+              disableUnderline={true}
             />
-          </div>
-          <div className={classes.textFieldStyle}>
-            <p style={{ marginRight: '55px' }}>
-Type
-            </p>
-            <NativeSelect style={{ width: '60%' }}>
-              <option value="" />
-              <option value={10}>
-Seminar 1
-              </option>
-              <option value={20}>
-Seminar 2
-              </option>
-              <option value={30}>
-Seminar 3
-              </option>
-            </NativeSelect>
-          </div>
-          <div className={classes.textFieldStyle}>
-            <p style={{ marginRight: '36px' }}>
-Teacher
-            </p>
-            <TextField
-              margin="normal"
-              className={classes.inputField}
-            />
-          </div>
-        </div>
-        <hr className={classes.breakline} />
-        <div className={classes.schedulingBar}>
-          <p className={classes.schedulingTag}>
-Scheduling
-          </p>
-        </div>
-        <div className={classes.schedulingInfo}>
-          <div className={classes.textFieldStyle}>
-            <p style={{ marginLeft: '48px', marginRight: '55px' }}>
-Date
-            </p>
-            <TextField
-              margin="normal"
-              className={classes.inputField}
-            />
-            <IconButton>
-              <DateRangeIcon />
+          </ListItem>
+          <Divider inset component="li" className={classes.divider} />
+          <ListItem>
+            <ListItemText primary="Type" />
+            <FormControl className={classes.listItemRight}>
+              <Select
+                value={type}
+                onChange={this.handleChange}
+                displayEmpty
+                name="district"
+              >
+                <MenuItem value="">
+                  <em>
+                    Seminar
+                  </em>
+                </MenuItem>
+                <MenuItem value={10}>
+                  Training
+                </MenuItem>
+                <MenuItem value={20}>
+                  Consulting
+                </MenuItem>
+                <MenuItem value={30}>
+                  Fablead
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </ListItem>
+          <Divider inset component="li" className={classes.divider} />
+          {
+            teacher.map((data, i) => (
+              <ListItem>
+                <ListItemText primary={`Teacher #${i + 1}`} />
+                <FormControl className={classes.listItemRight}>
+                  <Select
+                    value={teacher[i]}
+                    onChange={this.handleChange(i)}
+                    displayEmpty
+                    name="teacher"
+                  >
+                    <MenuItem value="">
+                      <em>
+                        Please select
+                      </em>
+                    </MenuItem>
+                    <MenuItem value={10}>
+                      Chan Li Li
+                    </MenuItem>
+                    <MenuItem value={20}>
+                      Wong Man Man
+                    </MenuItem>
+                    <MenuItem value={30}>
+                      Chan Li Li
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </ListItem>
+            ))
+          }
+          <ListItem style={{ paddingTop: '5px', paddingBottom: '5px' }}>
+            <IconButton className={classes.addButton} variant="fab" onClick={this.addTeacher}>
+              <AddIcon className={classes.addIcon} />
             </IconButton>
-          </div>
-          <div className={classes.textFieldStyle}>
-            <p style={{ marginRight: '28px' }}>
-Location
-            </p>
-            <TextField
-              margin="normal"
-              className={classes.inputField}
-            />
-          </div>
-        </div>
+            <Typography className={classes.addText}>
+              Add Teacher
+            </Typography>
+          </ListItem>
+        </List>
+        <List className={classes.list} style={{ marginTop: '40px' }}>
+          {
+            date.map((data, i) => (
+              <ListItem>
+                <ListItemText primary={`Date #${i + 1}`} />
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                  <ListItemText primary="2018-6-01, 14:00 - 16:00" style={{ padding: '0px' }} />
+                  <IconButton>
+                    <DateRangeIcon />
+                  </IconButton>
+                </div>
+              </ListItem>
+            ))
+          }
+          <ListItem style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+            <IconButton className={classes.addButton} variant="fab" onClick={this.addDate}>
+              <AddIcon className={classes.addIcon} />
+            </IconButton>
+            <Typography className={classes.addText}>
+              Add Date
+            </Typography>
+          </ListItem>
+          <Divider inset component="li" className={classes.divider} />
+          <ListItem>
+            <ListItemText primary="Location" />
+            <FormControl className={classes.listItemRight}>
+              <Select
+                value={location}
+                onChange={this.handleChange}
+                displayEmpty
+                name="location"
+              >
+                <MenuItem value="">
+                  <em>
+                    Please select
+                  </em>
+                </MenuItem>
+                <MenuItem value={10}>
+                  Beijing
+                </MenuItem>
+                <MenuItem value={20}>
+                  Shanghai
+                </MenuItem>
+                <MenuItem value={30}>
+                  Hong Kong
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </ListItem>
+        </List>
         <Button className={classes.createButton}>
             Create
         </Button>
