@@ -37,7 +37,7 @@ const styles = theme => ({
   },
   teacherCard: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     textAlign: 'left',
     padding: '20px 0px',
     [theme.breakpoints.up('sm')]: {
@@ -65,8 +65,8 @@ class TeacherPage extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const data = [['Chan Li Li', 3, 5], ['Chan Li Li', 0, 0], ['Chan Li Li', 0, 12], ['Chan Li Li', 8, 0],
-      ['Chan Li Li', 3, 5], ['Chan Li Li', 0, 0], ['Chan Li Li', 0, 12], ['Chan Li Li', 8, 0]];
+    const data = [['Chan Li Li', 3, 5], ['Sze Lai Yu', 0, 0], ['Wong Man Man', 0, 12], ['Yuen Ka Yan', 8, 0],
+      ['Chan Li Li', 3, 5], ['Sze Lai Yu', 0, 0], ['Wong Man Man', 0, 12], ['Yuen Ka Yan', 8, 0]];
 
     const alphabetList = [];
     for (let i = 'A'.charCodeAt(0), j = 'Z'.charCodeAt(0); i <= j; i += 1) {
@@ -90,10 +90,25 @@ class TeacherPage extends React.Component {
             {
               data.map((d, i) => (
                 <ListItem key={i} button className={classes.teacherCard}>
-                  <ListItemText primary={d[0]} secondary={`${d[1]} Seminars`} className={classes.listText} />
-                  <Typography key={i * 30} variant="subheading" style={{ flex: '1', flexGrow: '2' }}>
-                    {`${d[2]} Completed`}
+                  <Typography style={{ width: '70%', marginBottom: '5px', fontSize: '18px' }}>
+                    {d[0]}
                   </Typography>
+                  <div
+                    style={{
+                      display: 'flex', flexDirection: 'row', width: '70%', marginTop: '5px',
+                    }}
+                  >
+                    <Typography
+                      style={{
+                        flex: '1', flexGrow: '2', fontSize: '18px', color: 'rgba(0, 0, 0, 0.54)',
+                      }}
+                    >
+                      {`${d[1]} Upcoming`}
+                    </Typography>
+                    <Typography style={{ flex: '1', fontSize: '18px' }}>
+                      {`${d[2]} Completed`}
+                    </Typography>
+                  </div>
                 </ListItem>
               ))
             }
