@@ -127,7 +127,7 @@ class HeaderBar extends React.Component {
 
     const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt',
       '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
-      '/addteacher', '/setting'];
+      '/addteacher', '/setting', '/addlibrary'];
 
     const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
 
@@ -156,6 +156,7 @@ class HeaderBar extends React.Component {
       '/seatmap': '學員座位表生成 #1',
       '/addteacher': 'New Teacher',
       '/setting': 'Setting',
+      '/addlibrary': 'New Library',
     };
 
     return (
@@ -175,7 +176,8 @@ class HeaderBar extends React.Component {
                       to={pathname === '/notes' ? '/notestaking'
                         : (pathname === '/addseminar' || pathname === '/setting' ? '/dashboard'
                           : (pathname === '/addteacher' ? '/teacher'
-                            : (accountMGTArray.includes(pathname) ? '/accountmgt' : '/reminder')))}
+                            : (pathname === '/addlibrary' ? 'library'
+                              : (accountMGTArray.includes(pathname) ? '/accountmgt' : '/reminder'))))}
                     >
                       <ArrowBackIcon />
                     </Button>

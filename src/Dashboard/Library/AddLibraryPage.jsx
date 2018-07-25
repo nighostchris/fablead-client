@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import {
-  Add as AddIcon, DateRange as DateRangeIcon,
+  Add as AddIcon,
 } from '@material-ui/icons';
 
 const styles = theme => ({
@@ -72,62 +72,45 @@ const styles = theme => ({
   },
 });
 
-class AddSeminarPage extends React.Component {
+class AddLibraryPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       type: '',
-      teacher: [''],
-      date: [''],
-      location: '',
+      editor: [''],
     };
 
-    this.addTeacher = this.addTeacher.bind(this);
-    this.addDate = this.addDate.bind(this);
+    this.addEditor = this.addEditor.bind(this);
   }
 
-  handleChange = index => event => {
-    const newTeacher = this.state.teacher;
-    newTeacher[index] = event.target.value;
-    this.setState({ teacher: newTeacher });
-  };
-
-  handleTypeChange = (event) => {
+  handleSeminarChange = (event) => {
     this.setState({
       type: event.target.value,
     });
   };
 
-  handleLocationChange = (event) => {
-    this.setState({
-      location: event.target.value,
-    });
+  handleChange = index => (event) => {
+    const newEditor = this.state.editor;
+    newEditor[index] = event.target.value;
+    this.setState({ editor: newEditor });
   };
 
-  addTeacher() {
-    const newTeacher = this.state.teacher;
-    newTeacher.push('');
+  addEditor() {
+    const newEditor = this.state.editor;
+    newEditor.push('');
     this.setState({
-      teacher: newTeacher,
-    });
-  }
-
-  addDate() {
-    const newDate = this.state.date;
-    newDate.push('');
-    this.setState({
-      date: newDate,
+      editor: newEditor,
     });
   }
 
   render() {
     const { classes } = this.props;
 
-    const { type, teacher, location, date } = this.state;
+    const { type, editor } = this.state;
 
     return (
       <div className={classes.root}>
-        <List className={classes.list}>
+        <List className={classes.list} style={{ paddingBottom: '0px' }}>
           <ListItem>
             <ListItemText primary="Name" />
             <Input
@@ -137,13 +120,13 @@ class AddSeminarPage extends React.Component {
           </ListItem>
           <Divider inset component="li" className={classes.divider} />
           <ListItem>
-            <ListItemText primary="Type" />
+            <ListItemText primary="Seminar Specific (optional)" />
             <FormControl className={classes.listItemRight}>
               <Select
                 value={type}
-                onChange={this.handleTypeChange}
+                onChange={this.handleSeminarChange}
                 displayEmpty
-                name="district"
+                name="seminar"
               >
                 <MenuItem value="">
                   <em>
@@ -162,17 +145,18 @@ class AddSeminarPage extends React.Component {
               </Select>
             </FormControl>
           </ListItem>
-          <Divider inset component="li" className={classes.divider} />
+        </List>
+        <List className={classes.list} style={{ marginTop: '40px' }}>
           {
-            teacher.map((data, i) => (
+            editor.map((data, i) => (
               <ListItem>
-                <ListItemText primary={`Teacher #${i + 1}`} />
+                <ListItemText primary={`Editor #${i + 1}`} />
                 <FormControl className={classes.listItemRight}>
                   <Select
-                    value={teacher[i]}
+                    value={editor[i]}
                     onChange={this.handleChange(i)}
                     displayEmpty
-                    name="teacher"
+                    name="editor"
                   >
                     <MenuItem value="">
                       <em>
@@ -194,62 +178,12 @@ class AddSeminarPage extends React.Component {
             ))
           }
           <ListItem style={{ paddingTop: '5px', paddingBottom: '5px' }}>
-            <IconButton className={classes.addButton} variant="fab" onClick={this.addTeacher}>
+            <IconButton className={classes.addButton} variant="fab" onClick={this.addEditor}>
               <AddIcon className={classes.addIcon} />
             </IconButton>
             <Typography className={classes.addText}>
-              Add Teacher
+              Add User
             </Typography>
-          </ListItem>
-        </List>
-        <List className={classes.list} style={{ marginTop: '40px' }}>
-          {
-            date.map((data, i) => (
-              <ListItem>
-                <ListItemText primary={`Date #${i + 1}`} />
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                  <ListItemText primary="2018-6-01, 14:00 - 16:00" style={{ padding: '0px' }} />
-                  <IconButton>
-                    <DateRangeIcon />
-                  </IconButton>
-                </div>
-              </ListItem>
-            ))
-          }
-          <ListItem style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-            <IconButton className={classes.addButton} variant="fab" onClick={this.addDate}>
-              <AddIcon className={classes.addIcon} />
-            </IconButton>
-            <Typography className={classes.addText}>
-              Add Date
-            </Typography>
-          </ListItem>
-          <Divider inset component="li" className={classes.divider} />
-          <ListItem>
-            <ListItemText primary="Location" />
-            <FormControl className={classes.listItemRight}>
-              <Select
-                value={location}
-                onChange={this.handleLocationChange}
-                displayEmpty
-                name="location"
-              >
-                <MenuItem value="">
-                  <em>
-                    Please select
-                  </em>
-                </MenuItem>
-                <MenuItem value={10}>
-                  Beijing
-                </MenuItem>
-                <MenuItem value={20}>
-                  Shanghai
-                </MenuItem>
-                <MenuItem value={30}>
-                  Hong Kong
-                </MenuItem>
-              </Select>
-            </FormControl>
           </ListItem>
         </List>
         <Button className={classes.createButton}>
@@ -260,8 +194,8 @@ class AddSeminarPage extends React.Component {
   }
 }
 
-AddSeminarPage.propTypes = {
+AddLibraryPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AddSeminarPage);
+export default withStyles(styles)(AddLibraryPage);
