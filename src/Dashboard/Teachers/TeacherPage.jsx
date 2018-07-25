@@ -100,12 +100,12 @@ class TeacherPage extends React.Component {
                   >
                     <Typography
                       style={{
-                        flex: '1', flexGrow: '2', fontSize: '18px', color: 'rgba(0, 0, 0, 0.54)',
+                        flex: '1', flexGrow: '4', fontSize: '18px', color: 'rgba(0, 0, 0, 0.54)',
                       }}
                     >
                       {`${d[1]} Upcoming`}
                     </Typography>
-                    <Typography style={{ flex: '1', fontSize: '18px' }}>
+                    <Typography style={{ flex: '1', flexGrow: '3', fontSize: '18px' }}>
                       {`${d[2]} Completed`}
                     </Typography>
                   </div>
