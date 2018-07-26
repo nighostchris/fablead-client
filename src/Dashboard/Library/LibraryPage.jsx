@@ -5,6 +5,7 @@ import {
   IconButton, List, ListItem, ListItemText, Typography,
 } from '@material-ui/core';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   enterButton: {
@@ -36,30 +37,44 @@ const styles = theme => ({
 });
 
 class LibraryPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick = (name) => {
+    localStorage.setItem('libraryName', name);
+  }
+
   render() {
     const { classes } = this.props;
+
+    const data = [['General 課程教材', '', 3], ['演講資料', 'Seminar Name', 5]];
 
     return (
       <div className={classes.libraryWrapper}>
         <List style={{ paddingTop: '0px' }}>
-          <ListItem button className={classes.libraryCard}>
-            <ListItemText className={classes.libraryText} primary="General 課程教材" />
-            <Typography variant="subheading">
-              3
-            </Typography>
-            <IconButton style={{ width: '30px', height: '30px' }}>
-              <KeyboardArrowRight className={classes.enterButtonHidden} />
-            </IconButton>
-          </ListItem>
-          <ListItem button className={classes.libraryCard}>
-            <ListItemText className={classes.libraryText} primary="演講資料" secondary="Seminar Name" />
-            <Typography variant="subheading">
-              5
-            </Typography>
-            <IconButton style={{ width: '30px', height: '30px' }}>
-              <KeyboardArrowRight className={classes.enterButtonHidden} />
-            </IconButton>
-          </ListItem>
+          {
+            data.map((d, i) => (
+              <ListItem
+                key={i * 20}
+                button
+                className={classes.libraryCard}
+                component={Link}
+                to="/librarydetails"
+                onClick={() => this.handleClick(d[0])}
+              >
+                <ListItemText className={classes.libraryText} primary={d[0]} secondary={d[1]} />
+                <Typography variant="subheading">
+                  {d[2]}
+                </Typography>
+                <IconButton style={{ width: '30px', height: '30px' }}>
+                  <KeyboardArrowRight className={classes.enterButtonHidden} />
+                </IconButton>
+              </ListItem>
+            ))
+          }
         </List>
       </div>
     );

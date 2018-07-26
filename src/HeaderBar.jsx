@@ -123,11 +123,11 @@ class HeaderBar extends React.Component {
     const searchButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library'];
 
     const addButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/eventppt', '/classmaterial',
-      '/accountmgt'];
+      '/accountmgt', '/librarydetails'];
 
     const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt',
       '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
-      '/addteacher', '/setting', '/addlibrary'];
+      '/addteacher', '/setting', '/addlibrary', '/librarydetails'];
 
     const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
 
@@ -176,7 +176,7 @@ class HeaderBar extends React.Component {
                       to={pathname === '/notes' ? '/notestaking'
                         : (pathname === '/addseminar' || pathname === '/setting' ? '/dashboard'
                           : (pathname === '/addteacher' ? '/teacher'
-                            : (pathname === '/addlibrary' ? 'library'
+                            : (pathname === '/addlibrary' || pathname === '/librarydetails' ? 'library'
                               : (accountMGTArray.includes(pathname) ? '/accountmgt' : '/reminder'))))}
                     >
                       <ArrowBackIcon />
@@ -198,6 +198,12 @@ class HeaderBar extends React.Component {
               }
               <Typography variant="title" color="inherit" align="center" className={classes.flex}>
                 { headerMapping[pathname] }
+                {
+                  pathname === ('/librarydetails')
+                    ? (
+                      localStorage.getItem('libraryName')
+                    ) : undefined
+                }
               </Typography>
               {
                 searchButtonArray.includes(pathname)
@@ -216,7 +222,8 @@ class HeaderBar extends React.Component {
                       to={pathname === '/dashboard' ? '/addseminar'
                         : (pathname === '/scheduling' ? '/addseminar'
                           : (pathname === '/teacher' ? '/addteacher'
-                            : (pathname === '/library' ? '/addlibrary' : undefined)))}
+                            : (pathname === '/library' || pathname === '/librarydetails'
+                              ? '/addlibrary' : undefined)))}
                     >
                       <AddIcon />
                     </Button>

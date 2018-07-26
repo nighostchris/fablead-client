@@ -29,6 +29,7 @@ import Tenancy from './Seminar/Tenancy';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
 import AddTeacher from './Dashboard/Teachers/AddTeacher';
 import AddLibrary from './Dashboard/Library/AddLibraryPage';
+import LibraryDetails from './Dashboard/Library/LibraryDetails';
 
 import Setting from './Setting';
 
@@ -65,6 +66,7 @@ class MainPage extends React.Component {
           <Route path="/teacher" component={TeacherPage} />
           <Route path="/library" component={LibraryPage} />
           <Route path="/addlibrary" component={AddLibrary} />
+          <Route path="/librarydetails" component={LibraryDetails} />
           <Route path="/reminder" component={ReminderPage} />
           <Route path="/addseminar" component={AddSeminarPage} />
           <Route path="/addteacher" component={AddTeacher} />
