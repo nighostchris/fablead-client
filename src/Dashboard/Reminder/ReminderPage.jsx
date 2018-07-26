@@ -1,123 +1,122 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import { CardContent } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import { Link } from 'react-router-dom';
+import {
+  Button, Card, CardContent, Typography,
+} from '@material-ui/core';
 
 const styles = theme => ({
   cardWrapper: {
     display: 'flex',
     flexDirection: 'column',
     [theme.breakpoints.up('md')]: {
-      marginTop: '10px',
       alignItems: 'center',
     },
   },
   card: {
+    textDecoration: 'none',
+    boxShadow: '0px 0px 0px',
     '&:nth-of-type(even)': {
       backgroundColor: theme.palette.background.default,
     },
-    textDecoration: 'none',
-    boxShadow: '0px 0px 0px',
-  },
-  firstCol: {
-    marginTop: '0',
-    marginBottom: '0',
-    width: '40%',
-    textAlign: 'center',
-  },
-  secondCol: {
-    width: '40%',
-    textAlign: 'center',
-    color: 'grey',
-    fontSize: '18px',
-  },
-  thirdCol: {
-    width: '20%',
-    textAlign: 'center',
-    color: theme.palette.secondary.main,
-    fontWeight: 'bold',
-  },
-  colWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
     [theme.breakpoints.up('md')]: {
       width: '700px',
     },
   },
-  createButton: {
-    position: 'absolute',
-    marginTop: '20px',
-    marginLeft: '10%',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
+  leftColumn: {
+    marginLeft: '20px',
+  },
+  rightColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginRight: '20px',
+  },
+  cardContent: {
+    paddingTop: '10px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    '&:last-child': {
+      paddingBottom: '10px',
     },
   },
-  addButton: {
-    position: 'absolute',
-    bottom: '72px',
-    right: '32px',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
+  dismissButton: {
+    fontSize: '12px',
+    minHeight: '0px',
+    padding: '0px',
+    marginTop: '3px',
   },
 });
 
-function createData(type, seminarName, teacherName, Location, Date, Countdown) {
+function createData(type, eventName, Date, Countdown) {
   return {
-    type, seminarName, teacherName, Location, Date, Countdown,
+    type, eventName, Date, Countdown,
   };
 }
 
 const data = [
-  createData('Seminar', 'Semiar Name', 'Teacher Name', '北京', '6月20日', '10 days'),
-  createData('Training', 'Semiar Name', 'Teacher Name', '香港', '6月15日', '5 days'),
-  createData('Consulting', 'Semiar Name', 'Teacher Name', '上海', '6月10日', '0 days'),
-  createData('Fablead', 'Semiar Name', 'Teacher Name', '香港', '6月1日', 'Expired'),
+  createData('Seminar A Name', '開課計劃及場地確定', '6月20日', '10 days remaining'),
+  createData('Training B Name', '招生收費建群', '6月15日', '5 days remaining'),
+  createData('Training B Name', '開課計劃及場地確定', '6月10日', '5 days remaining'),
 ];
 
 class ReminderPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const array = [];
+    let { size } = data;
+    while (size > 0) {
+      size -= 1;
+      array.push(true);
+    }
+
+    this.state = {
+      show: array,
+    };
+  }
+
+  handleClick = (index) => {
+    const array = this.state.show;
+    array[index] = false;
+    this.setState({
+      show: array,
+    });
+  }
+
   render() {
     const { classes } = this.props;
+
+    const { show } = this.state;
+
     return (
-      <div>
-        <Button className={classes.createButton} variant="contained" color="secondary">
-            Create
-        </Button>
-        <div className={classes.cardWrapper}>
-          {data.map(n => (
-            <Card className={classes.card} key={n.seminarName} component={Link} to="/basicinfo">
-              <CardContent>
-                <div className={classes.colWrapper}>
-                  <div className={classes.firstCol}>
-                    <p style={{ marginTop: '0', marginBottom: '0' }}>
-                      { n.seminarName }
-                    </p>
-                    <p style={{ marginBottom: '0' }}>
-                      { n.teacherName }
-                    </p>
-                  </div>
-                  <div className={classes.secondCol}>
-                    <p style={{ marginTop: '0', marginBottom: '0' }}>
-                      { n.Date }
-                    </p>
-                    <p style={{ marginBottom: '0' }}>
-                      { n.Location }
-                    </p>
-                  </div>
-                  <div className={classes.thirdCol}>
-                    <p>
-                      { n.Countdown }
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      <div className={classes.cardWrapper}>
+        {data.map((n, i) => (
+          <Card className={classes.card} key={n.seminarName} style={{ display: show[i] === false ? 'none' : undefined }}>
+            <CardContent className={classes.cardContent}>
+              <div className={classes.leftColumn}>
+                <Typography variant="subheading">
+                  {n.type}
+                </Typography>
+                <Typography variant="subheading" style={{ marginTop: '3px' }}>
+                  {n.eventName}
+                </Typography>
+                <Typography variant="body1" style={{ color: 'red', marginTop: '3px' }}>
+                  {n.Countdown}
+                </Typography>
+              </div>
+              <div className={classes.rightColumn}>
+                <Typography variant="headline" style={{ color: 'rgba(0, 0, 0, 0.54)' }}>
+                  {n.Date}
+                </Typography>
+                <Button onClick={() => this.handleClick(i)} className={classes.dismissButton}>
+                  Dismiss
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     );
   }

@@ -67,7 +67,7 @@ const styles = theme => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
-  editButton: {
+  rightTopButton: {
     fontSize: '14px',
     color: 'white',
     position: 'absolute',
@@ -141,7 +141,7 @@ class HeaderBar extends React.Component {
       '/scheduling': 'Scheduling',
       '/teacher': 'Teacher',
       '/library': 'Library',
-      '/reminder': 'Reminder',
+      '/reminder': 'Reminders',
       '/basicinfo': 'Seminar Name',
       '/eventppt': 'Seminar Name',
       '/classmaterial': 'Seminar Name',
@@ -226,6 +226,14 @@ class HeaderBar extends React.Component {
                               ? '/addlibrary' : undefined)))}
                     >
                       <AddIcon />
+                    </Button>
+                  ) : undefined
+              }
+              {
+                pathname === '/reminder'
+                  ? (
+                    <Button className={classes.rightTopButton} style={{ fontSize: '12px' }}>
+                      Dismiss All
                     </Button>
                   ) : undefined
               }
