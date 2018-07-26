@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Table, TableBody, TableCell, TableHead, TableFooter, TablePagination, TableRow,
   Button, Card, CardContent, Grid, InputAdornment, NativeSelect, Paper, TextField,
-  Typography,
+  List, ListItem, Typography,
 } from '@material-ui/core';
 import {
   Search as SearchIcon,
@@ -34,7 +34,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
 
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
   },
@@ -59,7 +59,9 @@ const styles = theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: 'darkgrey',
+    height: '80px',
     width: '80px',
+    boxShadow: '0px 0px 0px',
     borderRadius: '0px',
     textAlign: 'center',
     '& > h3': {
@@ -82,6 +84,7 @@ const styles = theme => ({
     borderRadius: '0px',
     textDecoration: 'none',
     boxShadow: '0px 0px 0px',
+    height: '80px',
   },
   rowWrapper: {
     display: 'flex',
@@ -112,6 +115,16 @@ const data = [
 ];
 
 class SeminarList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick = (d) => {
+    localStorage.setItem('seminarDetail', JSON.stringify(d));
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -175,8 +188,8 @@ class SeminarList extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data.map(n => (
-                  <TableRow className={classes.tableRow} key={n.seminarName}>
+                {data.map((n, i) => (
+                  <TableRow className={classes.tableRow} key={i}>
                     <TableCell numeric>
                       {n.seminarName}
                     </TableCell>
@@ -208,52 +221,60 @@ class SeminarList extends React.Component {
             </Table>
           </Paper>
           <div className={classes.cardWrapper}>
-            {data.map((n, i) => (
-              <div key={i} style={{ display: 'flex', flexDirection: 'row' }}>
-                <Card className={classes.frontCard} key={i * 80}>
-                  <Typography variant="subheading">
-                    Seminar
-                  </Typography>
-                  <Typography variant="subheading">
-                    {n.Countdown}
-                  </Typography>
-                </Card>
-                <Card className={classes.card} key={n.seminarName}>
-                  <CardContent style={{ paddingBottom: '5px', paddingTop: '5px' }}>
-                    <div className={classes.rowWrapper}>
-                      <div className={classes.row} style={{ marginBottom: '2px', alignItems: 'center' }}>
-                        <Typography
-                          variant="subheading"
-                          style={{ marginLeft: '30px' }}
-                        >
-                          {n.seminarName}
-                        </Typography>
-                        <Typography
-                          variant="subheading"
-                          style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
-                        >
-                          {n.Date}
-                        </Typography>
+            <List style={{ padding: '0px' }}>
+              {data.map((n, i) => (
+                <ListItem
+                  key={i}
+                  style={{ display: 'flex', flexDirection: 'row', padding: '0px' }}
+                  component={Link}
+                  to="/basicinfo"
+                  onClick={() => this.handleClick(n)}
+                >
+                  <Card className={classes.frontCard}>
+                    <Typography variant="subheading">
+                      Seminar
+                    </Typography>
+                    <Typography variant="subheading">
+                      {n.Countdown}
+                    </Typography>
+                  </Card>
+                  <Card className={classes.card}>
+                    <CardContent style={{ paddingBottom: '5px', paddingTop: '5px' }}>
+                      <div className={classes.rowWrapper}>
+                        <div className={classes.row} style={{ marginBottom: '2px', alignItems: 'center' }}>
+                          <Typography
+                            variant="subheading"
+                            style={{ marginLeft: '30px' }}
+                          >
+                            {n.seminarName}
+                          </Typography>
+                          <Typography
+                            variant="subheading"
+                            style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                          >
+                            {n.Date}
+                          </Typography>
+                        </div>
+                        <div className={classes.row} style={{ marginTop: '2px', alignItems: 'center' }}>
+                          <Typography
+                            variant="subheading"
+                            style={{ marginLeft: '30px' }}
+                          >
+                            {n.teacherName}
+                          </Typography>
+                          <Typography
+                            variant="subheading"
+                            style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                          >
+                            {n.Location}
+                          </Typography>
+                        </div>
                       </div>
-                      <div className={classes.row} style={{ marginTop: '2px', alignItems: 'center' }}>
-                        <Typography
-                          variant="subheading"
-                          style={{ marginLeft: '30px' }}
-                        >
-                          {n.teacherName}
-                        </Typography>
-                        <Typography
-                          variant="subheading"
-                          style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
-                        >
-                          {n.Location}
-                        </Typography>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+                    </CardContent>
+                  </Card>
+                </ListItem>
+              ))}
+            </List>
           </div>
         </div>
       </div>

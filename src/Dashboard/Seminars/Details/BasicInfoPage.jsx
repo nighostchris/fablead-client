@@ -45,6 +45,8 @@ class BasicInfoPage extends React.Component {
   render() {
     const { classes } = this.props;
 
+    const data = JSON.parse(localStorage.getItem('seminarDetail'));
+
     return (
       <div className={classes.root}>
         <div className={classes.body}>
@@ -82,7 +84,7 @@ class BasicInfoPage extends React.Component {
             <Divider inset component="li" className={classes.divider} />
             <ListItem>
               <ListItemText primary="Location" classes={{ primary: classes.listItemLeft }} />
-              <ListItemText primary="Hong Kong" classes={{ primary: classes.listItemRight }} />
+              <ListItemText primary={data.Location} classes={{ primary: classes.listItemRight }} />
             </ListItem>
           </List>
         </div>

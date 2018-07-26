@@ -133,8 +133,6 @@ class HeaderBar extends React.Component {
 
     const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt'];
 
-    const accountMGTArray = ['/carparkpass', '/payment', '/invoice', '/tenancy'];
-
     const headerMapping = {
       '/dashboard': 'Seminar',
       '/addseminar': 'New Seminar',
@@ -159,6 +157,28 @@ class HeaderBar extends React.Component {
       '/addlibrary': 'New Library',
     };
 
+    const backButtonMapping = {
+      '/notes': '/notestaking',
+      '/addseminar': '/dashboard',
+      '/setting': '/dashboard',
+      '/addteacher': '/teacher',
+      '/addlibrary': '/library',
+      '/librarydetails': '/library',
+      '/basicinfo': '/dashboard',
+      '/eventppt': '/dashboard',
+      '/classmaterial': '/dashboard',
+      '/accountmgt': '/dashboard',
+    };
+
+    const addButtonMapping = {
+      '/dashboard': '/addseminar',
+      '/scheduling': '/addseminar',
+      '/teacher': '/addteacher',
+      '/library': '/librarydetails',
+      '/addlibrary': undefined,
+      '/eventppt': '/addseminar',
+    };
+
     return (
       <div className={classes.root}>
         <AppBar
@@ -173,11 +193,7 @@ class HeaderBar extends React.Component {
                     <Button
                       className={classes.topLeftButton}
                       component={Link}
-                      to={pathname === '/notes' ? '/notestaking'
-                        : (pathname === '/addseminar' || pathname === '/setting' ? '/dashboard'
-                          : (pathname === '/addteacher' ? '/teacher'
-                            : (pathname === '/addlibrary' || pathname === '/librarydetails' ? 'library'
-                              : (accountMGTArray.includes(pathname) ? '/accountmgt' : '/reminder'))))}
+                      to={backButtonMapping[pathname]}
                     >
                       <ArrowBackIcon />
                     </Button>
@@ -219,11 +235,7 @@ class HeaderBar extends React.Component {
                     <Button
                       className={classes.addButton}
                       component={Link}
-                      to={pathname === '/dashboard' ? '/addseminar'
-                        : (pathname === '/scheduling' ? '/addseminar'
-                          : (pathname === '/teacher' ? '/addteacher'
-                            : (pathname === '/library' || pathname === '/librarydetails'
-                              ? '/addlibrary' : undefined)))}
+                      to={addButtonMapping[pathname]}
                     >
                       <AddIcon />
                     </Button>

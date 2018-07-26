@@ -4,18 +4,25 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { Route, withRouter } from 'react-router-dom';
 
+import Setting from './Setting';
 import HeaderBar from './HeaderBar';
 import FooterBar from './FooterBar';
 import SeminarList from './Dashboard/Seminars/SeminarList';
-import SchedulingPage from './Dashboard/Scheduling/SchedulingPage';
-import TeacherPage from './Dashboard/Teachers/TeacherPage';
-import LibraryPage from './Dashboard/Library/LibraryPage';
-import ReminderPage from './Dashboard/Reminder/ReminderPage';
-
 import AddSeminarPage from './Dashboard/Seminars/AddSeminarPage';
 
-import BasicInfoPage from './Seminar/BasicInfoPage';
-import EventPreparation from './Seminar/EventPreparation';
+import SchedulingPage from './Dashboard/Scheduling/SchedulingPage';
+
+import TeacherPage from './Dashboard/Teachers/TeacherPage';
+import AddTeacher from './Dashboard/Teachers/AddTeacher';
+
+import LibraryPage from './Dashboard/Library/LibraryPage';
+import AddLibrary from './Dashboard/Library/AddLibraryPage';
+import LibraryDetails from './Dashboard/Library/LibraryDetails';
+
+import ReminderPage from './Dashboard/Reminder/ReminderPage';
+
+import BasicInfoPage from './Dashboard/Seminars/Details/BasicInfoPage';
+import EventPreparation from './Dashboard/Seminars/Details/EventPreparation';
 import ClassMaterial from './Seminar/ClassMaterial';
 import AccountManagement from './Seminar/AccountManagement';
 
@@ -27,11 +34,6 @@ import Payment from './Seminar/Payment';
 import Invoice from './Seminar/Invoice';
 import Tenancy from './Seminar/Tenancy';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
-import AddTeacher from './Dashboard/Teachers/AddTeacher';
-import AddLibrary from './Dashboard/Library/AddLibraryPage';
-import LibraryDetails from './Dashboard/Library/LibraryDetails';
-
-import Setting from './Setting';
 
 const styles = {
   root: {
@@ -55,7 +57,7 @@ class MainPage extends React.Component {
       <div className={classes.root}>
         <HeaderBar />
         <div
-          className={classes.middleContent} 
+          className={classes.middleContent}
           style={{
             top: pathname === '/basicinfo' || pathname === '/dashboard' ? '112px' : undefined,
             marginBottom: pathname === '/dashboard' ? '86px' : undefined,
