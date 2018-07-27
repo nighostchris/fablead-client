@@ -23,7 +23,7 @@ import ReminderPage from './Dashboard/Reminder/ReminderPage';
 
 import BasicInfoPage from './Dashboard/Seminars/Details/BasicInfoPage';
 import EventPreparation from './Dashboard/Seminars/Details/EventPreparation';
-import ClassMaterial from './Seminar/ClassMaterial';
+import ClassMaterial from './Dashboard/Seminars/Details/ClassMaterial';
 import AccountManagement from './Seminar/AccountManagement';
 
 import NotesTaking from './NotesTaking';
@@ -60,7 +60,8 @@ class MainPage extends React.Component {
           className={classes.middleContent}
           style={{
             top: pathname === '/basicinfo' || pathname === '/dashboard'
-            || pathname === '/eventppt' ? '112px' : undefined,
+            || pathname === '/eventppt' || pathname === '/classmaterial'
+            || pathname === '/accountmgt' ? '112px' : undefined,
             marginBottom: pathname === '/dashboard' ? '86px' : undefined,
           }}
         >

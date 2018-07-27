@@ -136,7 +136,7 @@ class HeaderBar extends React.Component {
       '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
       '/addteacher', '/setting', '/addlibrary', '/librarydetails'];
 
-    const editButtonArray = ['/teacher', '/reminder', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/notestaking', '/notes'];
+    const editButtonArray = ['/teacher', '/reminder', '/accountmgt', '/notestaking', '/notes'];
 
     const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt'];
 
@@ -183,6 +183,7 @@ class HeaderBar extends React.Component {
       '/teacher': '/addteacher',
       '/library': '/addlibrary',
       '/eventppt': '/addseminar',
+      '/classmaterial': '/addseminar',
       '/librarydetails': '/library',
     };
 
@@ -262,11 +263,21 @@ class HeaderBar extends React.Component {
           {
             seminarArray.includes(pathname)
               ? (
-                <Tabs value={value} scrollButtons="auto" fullWidth onChange={this.handleChange} centered style={{ textAlign: 'center' }}>
+                <Tabs
+                  value={value}
+                  scrollable
+                  scrollButtons="off"
+                  fullWidth
+                  onChange={this.handleChange}
+                  style={{ textAlign: 'center' }}
+                >
                   <Tab label="Basic Info" component={Link} to="/basicinfo" />
                   <Tab label="Event Ppt" component={Link} to="/eventppt" />
                   <Tab label="Class Materials" component={Link} to="/classmaterial" />
                   <Tab label="Account Mgt" component={Link} to="/accountmgt" />
+                  <Tab label="Itinerary Mgt" component={Link} to="/itinerarymgt" />
+                  <Tab label="Note Taking" component={Link} to="/notetaking" />
+                  <Tab label="On-site Time Mgt" component={Link} to="/onsitetimemgt" />
                 </Tabs>
               )
               : undefined
