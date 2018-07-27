@@ -9,9 +9,6 @@ import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   enterButton: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-  enterButtonHidden: {
     color: theme.palette.secondary.main,
     fontSize: '30px',
     fontWeight: 'bold',
@@ -70,7 +67,7 @@ class LibraryPage extends React.Component {
                   {d[2]}
                 </Typography>
                 <IconButton style={{ width: '30px', height: '30px' }}>
-                  <KeyboardArrowRight className={classes.enterButtonHidden} />
+                  <KeyboardArrowRight className={classes.enterButton} />
                 </IconButton>
               </ListItem>
             ))

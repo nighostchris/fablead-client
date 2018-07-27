@@ -111,6 +111,13 @@ class HeaderBar extends React.Component {
     });
   }
 
+  reset = () => {
+    this.setState({
+      value: 0,
+      dashboardValue: 0,
+    });
+  }
+
   render() {
     const { classes, location } = this.props;
 
@@ -174,9 +181,9 @@ class HeaderBar extends React.Component {
       '/dashboard': '/addseminar',
       '/scheduling': '/addseminar',
       '/teacher': '/addteacher',
-      '/library': '/librarydetails',
-      '/addlibrary': undefined,
+      '/library': '/addlibrary',
       '/eventppt': '/addseminar',
+      '/librarydetails': '/library',
     };
 
     return (
@@ -194,6 +201,7 @@ class HeaderBar extends React.Component {
                       className={classes.topLeftButton}
                       component={Link}
                       to={backButtonMapping[pathname]}
+                      onClick={() => this.reset()}
                     >
                       <ArrowBackIcon />
                     </Button>

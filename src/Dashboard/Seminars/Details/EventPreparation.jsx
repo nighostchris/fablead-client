@@ -1,115 +1,85 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import {
+  IconButton, List, ListItem, ListItemText, Typography,
+} from '@material-ui/core';
+import {
+  KeyboardArrowRight, PanoramaFishEye as Circle, Check,
+} from '@material-ui/icons';
 
 const styles = theme => ({
-  body: {
-    marginTop: '10px',
-    [theme.breakpoints.up('sm')]: {
+  eventWrapper: {
+    [theme.breakpoints.up('md')]: {
+      width: '700px',
       marginLeft: 'auto',
       marginRight: 'auto',
-      width: '700px',
     },
   },
-  flex: {
-    flex: 1,
+  checkButton: {
+    borderRadius: '50%',
+    backgroundColor: theme.palette.secondary.main,
+    color: 'white',
   },
-  root: {
-    flexGrow: 1,
-    marginTop: '48px',
+  circleButton: {
+    color: theme.palette.secondary.main,
+    fontSize: '30px',
   },
-  cardWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    [theme.breakpoints.up('md')]: {
-      marginTop: '10px',
-      alignItems: 'center',
-    },
-  },
-  card: {
-    '&:nth-of-type(even)': {
-      backgroundColor: theme.palette.background.default,
-    },
-    textDecoration: 'none',
-    boxShadow: '0px 0px 0px',
-    borderRadius: '0px',
-    [theme.breakpoints.up('md')]: {
-      width: '700px',
-    },
-  },
-  event: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  rightArrow: {
-    width: '20%',
+  enterButton: {
     color: theme.palette.secondary.main,
     fontSize: '40px',
   },
+  eventCard: {
+    height: '80px',
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
+  eventText: {
+    marginLeft: '30px',
+    fontWeight: 'bold',
+    fontSize: '16px',
+  },
 });
 
+const data = [['開課場地及場地確定', '10 days remaining', '', false], ['招生收費建群', '10 days remaining', '', false],
+  ['課件準備 物料採購及運輸', 'Done', '5', true], ['現場佈置及物料使用', '15 days remaining', '', false],
+  ['學員座位表', '5 days remaining', '', false]];
+
 class EventPreparation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 1,
-    };
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.eventWrapper}>
+        <List style={{ paddingTop: '0px' }}>
+          {
+            data.map((d, i) => (
+              <ListItem
+                key={i * 20}
+                className={classes.eventCard}
+              >
+                <IconButton>
+                  {
+                    d[3] === false
+                      ? <Circle className={classes.circleButton} />
+                      : <Check className={classes.checkButton} />
+                  }
+                </IconButton>
+                <ListItemText className={classes.eventText} primary={d[0]} secondary={d[1]} />
+                <Typography variant="subheading">
+                  {d[2]}
+                </Typography>
+                <IconButton style={{ width: '40px', height: '40px' }}>
+                  <KeyboardArrowRight className={classes.enterButton} />
+                </IconButton>
+              </ListItem>
+            ))
+          }
+        </List>
+      </div>
+    );
   }
-
-    handleChange = (event, value) => {
-      this.setState({
-        value,
-      });
-    }
-
-    render() {
-      const { classes } = this.props;
-
-      const { value } = this.state;
-
-      return (
-        <div className={classes.root}>
-          <div className={classes.body}>
-            <div className={classes.cardWrapper}>
-              <Card className={classes.card}>
-                <CardContent>
-                  <div className={classes.event}>
-                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>
-                      Event 1
-                    </p>
-                    <KeyboardArrowRight className={classes.rightArrow} />
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className={classes.card}>
-                <CardContent>
-                  <div className={classes.event}>
-                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>
-                      Event 2
-                    </p>
-                    <KeyboardArrowRight className={classes.rightArrow} />
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className={classes.card}>
-                <CardContent>
-                  <div className={classes.event}>
-                    <p style={{ flexGrow: '1', marginLeft: '30px' }}>
-                      Event 3
-                    </p>
-                    <KeyboardArrowRight className={classes.rightArrow} />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      );
-    }
 }
 
 EventPreparation.propTypes = {

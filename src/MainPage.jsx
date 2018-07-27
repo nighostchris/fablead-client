@@ -59,7 +59,8 @@ class MainPage extends React.Component {
         <div
           className={classes.middleContent}
           style={{
-            top: pathname === '/basicinfo' || pathname === '/dashboard' ? '112px' : undefined,
+            top: pathname === '/basicinfo' || pathname === '/dashboard'
+            || pathname === '/eventppt' ? '112px' : undefined,
             marginBottom: pathname === '/dashboard' ? '86px' : undefined,
           }}
         >
