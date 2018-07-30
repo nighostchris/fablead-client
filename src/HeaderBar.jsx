@@ -88,6 +88,9 @@ const styles = theme => ({
       justifyContent: 'flex-end',
     },
   },
+  tabFormat: {
+    minWidth: 'calc(100% / 4)',
+  },
 });
 
 class HeaderBar extends React.Component {
@@ -134,11 +137,11 @@ class HeaderBar extends React.Component {
 
     const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt',
       '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
-      '/addteacher', '/setting', '/addlibrary', '/librarydetails'];
+      '/addteacher', '/setting', '/addlibrary', '/librarydetails', '/itinerarymgt'];
 
     const editButtonArray = ['/teacher', '/reminder', '/accountmgt', '/notestaking', '/notes'];
 
-    const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt'];
+    const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt'];
 
     const headerMapping = {
       '/dashboard': 'Seminar',
@@ -151,6 +154,7 @@ class HeaderBar extends React.Component {
       '/eventppt': 'Seminar Name',
       '/classmaterial': 'Seminar Name',
       '/accountmgt': 'Seminar Name',
+      '/itinerarymgt': 'Seminar Name',
       '/notestaking': 'Notes Taking',
       '/notes': 'Notes Taking',
       '/carparkpass': 'Car Park Pass',
@@ -175,6 +179,7 @@ class HeaderBar extends React.Component {
       '/eventppt': '/dashboard',
       '/classmaterial': '/dashboard',
       '/accountmgt': '/dashboard',
+      '/itinerarymgt': '/dashboard',
     };
 
     const addButtonMapping = {
@@ -271,13 +276,13 @@ class HeaderBar extends React.Component {
                   onChange={this.handleChange}
                   style={{ textAlign: 'center' }}
                 >
-                  <Tab label="Basic Info" component={Link} to="/basicinfo" />
-                  <Tab label="Event Ppt" component={Link} to="/eventppt" />
-                  <Tab label="Class Materials" component={Link} to="/classmaterial" />
-                  <Tab label="Account Mgt" component={Link} to="/accountmgt" />
-                  <Tab label="Itinerary Mgt" component={Link} to="/itinerarymgt" />
-                  <Tab label="Note Taking" component={Link} to="/notetaking" />
-                  <Tab label="On-site Time Mgt" component={Link} to="/onsitetimemgt" />
+                  <Tab label="Basic Info" component={Link} to="/basicinfo" className={classes.tabFormat} />
+                  <Tab label="Event Ppt" component={Link} to="/eventppt" className={classes.tabFormat} />
+                  <Tab label="Class Materials" component={Link} to="/classmaterial" className={classes.tabFormat} />
+                  <Tab label="Account Mgt" component={Link} to="/accountmgt" className={classes.tabFormat} />
+                  <Tab label="Itinerary Mgt" component={Link} to="/itinerarymgt" className={classes.tabFormat} />
+                  <Tab label="Note Taking" component={Link} to="/notetaking" className={classes.tabFormat} />
+                  <Tab label="Time Mgt" component={Link} to="/onsitetimemgt" className={classes.tabFormat} />
                 </Tabs>
               )
               : undefined

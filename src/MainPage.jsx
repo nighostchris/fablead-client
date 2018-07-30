@@ -25,6 +25,7 @@ import BasicInfoPage from './Dashboard/Seminars/Details/BasicInfoPage';
 import EventPreparation from './Dashboard/Seminars/Details/EventPreparation';
 import ClassMaterial from './Dashboard/Seminars/Details/ClassMaterial';
 import AccountManagement from './Seminar/AccountManagement';
+import ItineraryManagement from './Dashboard/Seminars/Details/ItineraryManagement';
 
 import NotesTaking from './NotesTaking';
 import Notes from './Notes';
@@ -61,7 +62,7 @@ class MainPage extends React.Component {
           style={{
             top: pathname === '/basicinfo' || pathname === '/dashboard'
             || pathname === '/eventppt' || pathname === '/classmaterial'
-            || pathname === '/accountmgt' ? '112px' : undefined,
+            || pathname === '/accountmgt' || pathname === '/itinerarymgt' ? '112px' : undefined,
             marginBottom: pathname === '/dashboard' ? '86px' : undefined,
           }}
         >
@@ -86,6 +87,7 @@ class MainPage extends React.Component {
           <Route path="/tenancy" component={Tenancy} />
           <Route path="/addseatingplan" component={AddSeatingPlan} />
           <Route path="/setting" component={Setting} />
+          <Route path="/itinerarymgt" component={ItineraryManagement} />
         </div>
         { footerBarArray.includes(pathname) ? <FooterBar /> : undefined }
       </div>
