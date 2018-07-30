@@ -87,7 +87,7 @@ class AddTeacher extends React.Component {
                         ? (
                           <Input
                             placeholder="Please enter"
-                            disableUnderline={true}
+                            disableUnderline
                           />
                         )
                         : (

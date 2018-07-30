@@ -63,7 +63,8 @@ class MainPage extends React.Component {
             top: pathname === '/basicinfo' || pathname === '/dashboard'
             || pathname === '/eventppt' || pathname === '/classmaterial'
             || pathname === '/accountmgt' || pathname === '/itinerarymgt' ? '112px' : undefined,
-            marginBottom: pathname === '/dashboard' ? '86px' : undefined,
+            marginBottom: pathname === '/dashboard' ? '86px'
+              : pathname === '/itinerarymgt' ? '0px' : undefined,
           }}
         >
           <Route path="/dashboard" component={SeminarList} />
