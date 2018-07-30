@@ -24,7 +24,7 @@ import ReminderPage from './Dashboard/Reminder/ReminderPage';
 import BasicInfoPage from './Dashboard/Seminars/Details/BasicInfoPage';
 import EventPreparation from './Dashboard/Seminars/Details/EventPreparation';
 import ClassMaterial from './Dashboard/Seminars/Details/ClassMaterial';
-import AccountManagement from './Seminar/AccountManagement';
+import AccountManagement from './Dashboard/Seminars/Details/AccountManagement';
 import ItineraryManagement from './Dashboard/Seminars/Details/ItineraryManagement';
 
 import NotesTaking from './NotesTaking';

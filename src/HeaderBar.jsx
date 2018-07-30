@@ -1,21 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Link, withRouter } from 'react-router-dom';
-
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import SearchIcon from '@material-ui/icons/Search';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import SettingIcon from '@material-ui/icons/Settings';
-import AddIcon from '@material-ui/icons/Add';
 import {
+  AppBar, Button, Tabs, Tab, Toolbar, Typography,
+} from '@material-ui/core';
+import {
+  Add as AddIcon, ArrowBack as ArrowBackIcon, Search as SearchIcon, Settings as SettingIcon,
   KeyboardArrowRight, Sort as SortIcon,
 } from '@material-ui/icons';
+import { Link, withRouter } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -89,7 +82,9 @@ const styles = theme => ({
     },
   },
   tabFormat: {
-    minWidth: 'calc(100% / 4)',
+    [theme.breakpoints.down('md')]: {
+      minWidth: 'calc(100% / 4)',
+    },
   },
 });
 
@@ -97,7 +92,6 @@ class HeaderBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0,
       dashboardValue: 0,
     };
   }
@@ -110,7 +104,6 @@ class HeaderBar extends React.Component {
 
   reset = () => {
     this.setState({
-      value: 0,
       dashboardValue: 0,
     });
   }
@@ -120,7 +113,7 @@ class HeaderBar extends React.Component {
 
     const { pathname } = location;
 
-    const { value, dashboardValue } = this.state;
+    const { dashboardValue } = this.state;
 
     const settingButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
 
@@ -184,6 +177,7 @@ class HeaderBar extends React.Component {
       '/eventppt': '/addseminar',
       '/classmaterial': '/addseminar',
       '/librarydetails': '/library',
+      '/accountmgt': '/dashboard',
     };
 
     const seminarMapping = {
