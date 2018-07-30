@@ -102,12 +102,6 @@ class HeaderBar extends React.Component {
     };
   }
 
-  handleChange = (event, value) => {
-    this.setState({
-      value,
-    });
-  }
-
   handleChangeDashboard = (event, value) => {
     this.setState({
       dashboardValue: value,
@@ -192,6 +186,16 @@ class HeaderBar extends React.Component {
       '/librarydetails': '/library',
     };
 
+    const seminarMapping = {
+      '/basicinfo': 0,
+      '/eventppt': 1,
+      '/classmaterial': 2,
+      '/accountmgt': 3,
+      '/itinerarymgt': 4,
+      '/notetaking': 5,
+      '/onsitetimemgt': 6,
+    };
+
     return (
       <div className={classes.root}>
         <AppBar
@@ -269,11 +273,10 @@ class HeaderBar extends React.Component {
             seminarArray.includes(pathname)
               ? (
                 <Tabs
-                  value={value}
+                  value={seminarMapping[pathname]}
                   scrollable
                   scrollButtons="off"
                   fullWidth
-                  onChange={this.handleChange}
                   style={{ textAlign: 'center' }}
                 >
                   <Tab label="Basic Info" component={Link} to="/basicinfo" className={classes.tabFormat} />
