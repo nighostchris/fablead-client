@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button, CardMedia, Input, Typography,
 } from '@material-ui/core';
+import { addMessage } from '../../../Redux/Action/messageAction';
 
 const styles = theme => ({
-  root: {
-  },
   nameWrapperLeft: {
     float: 'left',
     marginLeft: '20px',
@@ -85,14 +85,19 @@ const styles = theme => ({
   },
 });
 
+const mapStateToProps = state => ({
+  messages: state.messageReducer.messages,
+});
+
+const mapDispatchToProps = dispatch => ({
+  addM: text => dispatch(addMessage(text)),
+});
+
 class ItineraryManagement extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       input: '',
-      data: [[0, "火車訂票"], [1, "請問酒店怎麼樣?"], [1, "請問酒店怎麼樣?"], [1, "請問酒店怎麼樣?"], [1, "請問酒店怎麼樣?"],
-        [1, "請問酒店怎麼樣?"], [1, "Testinggggggggggggggggggggggggggggggggggggggggggggggggggg"],
-        [0, "火車訂票"], [1, "請問酒店怎麼樣?"], [1, "請問酒店怎麼樣?"], [1, "請問酒店怎麼樣?"]],
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -113,12 +118,10 @@ class ItineraryManagement extends React.Component {
     });
   }
 
-  handleClick() {
-    const { input, data } = this.state;
+  handleClick(input) {
+    const { addM } = this.props;
     if (input !== '') {
-      const dummy = [1];
-      dummy.push(input);
-      data.push(dummy);
+      addM(input);
       this.setState({
         input: '',
       });
@@ -135,9 +138,9 @@ class ItineraryManagement extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, messages } = this.props;
 
-    const { data, input } = this.state;
+    const { input } = this.state;
 
     return (
       <div className={classes.root}>
@@ -151,10 +154,10 @@ class ItineraryManagement extends React.Component {
             Today at 9:30 AM
           </Typography>
           {
-            data.map((d, i) => (
-              d[0] === 0
+            messages.map((d, i) => (
+              d.owner === 0
                 ? (
-                  <div className={classes.nameWrapperLeft}>
+                  <div key={i} className={classes.nameWrapperLeft}>
                     <Typography className={classes.nametag}>
                       課程管理人員
                     </Typography>
@@ -167,19 +170,19 @@ class ItineraryManagement extends React.Component {
                         variant="subheading"
                         className={classes.messageContentLeft}
                       >
-                        {d[1]}
+                        {d.text}
                       </Typography>
                     </div>
                   </div>
                 )
                 : (
-                  <div className={classes.nameWrapperRight}>
+                  <div key={i} className={classes.nameWrapperRight}>
                     <div className={classes.message}>
                       <Typography
                         variant="subheading"
                         className={classes.messageContentRight}
                       >
-                        {d[1]}
+                        {d.text}
                       </Typography>
                       <CardMedia
                         className={classes.avatar}
@@ -199,7 +202,7 @@ class ItineraryManagement extends React.Component {
             className={classes.bottomInputBar}
             onChange={this.handleInput}
           />
-          <Button className={classes.sendButton} onClick={this.handleClick}>
+          <Button className={classes.sendButton} onClick={() => this.handleClick(input)}>
             Send
           </Button>
         </div>
@@ -210,6 +213,11 @@ class ItineraryManagement extends React.Component {
 
 ItineraryManagement.propTypes = {
   classes: PropTypes.object.isRequired,
+  messages: PropTypes.array.isRequired,
+  addM: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ItineraryManagement);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(ItineraryManagement));

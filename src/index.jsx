@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './Redux/Store/store';
 
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
@@ -28,13 +30,15 @@ const theme = createMuiTheme({
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={LoginPage} />
-          <Route exact path="/seatmap" component={SeatMap} />
-          <MainPage />
-        </Switch>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={LoginPage} />
+            <Route exact path="/seatmap" component={SeatMap} />
+            <MainPage />
+          </Switch>
+        </Router>
+      </Provider>
     </MuiThemeProvider>
   );
 }
