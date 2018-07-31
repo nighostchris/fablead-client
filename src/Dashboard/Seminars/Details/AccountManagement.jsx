@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import {
-  ExpandMore as ExpandMoreIcon, Check,
+  ExpandMore as ExpandMoreIcon, Check, Close,
 } from '@material-ui/icons';
 
 const styles = theme => ({
@@ -47,6 +47,11 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.main,
     color: 'white',
   },
+  closeButton: {
+    borderRadius: '50%',
+    backgroundColor: 'red',
+    color: 'white',
+  },
   carpark: {
     width: '40%',
     textAlign: 'right',
@@ -73,7 +78,7 @@ class AccountManagement extends React.Component {
     const { expanded } = this.state;
 
     const data = [['Chan Tai Man (EHE)', true, 500, true, true],
-      ['Sze Sze (EHE)', true, 500, true, true],
+      ['Sze Sze (EHE)', false, 500, false, true],
       ['Wong Ka Man (EHE)', true, 500, true, false]];
 
     return (
@@ -105,10 +110,15 @@ class AccountManagement extends React.Component {
                         {`$${d[2]}已繳交`}
                       </Typography>
                       <IconButton>
-                        <Check className={classes.checkButton} />
+                        {
+                          d[3] === true ? <Check className={classes.checkButton} />
+                            : <Close className={classes.closeButton} />
+                        }
                       </IconButton>
                       <Typography>
-                        已簽到
+                        {
+                          d[3] === true ? '已簽到' : '未簽到'
+                        }
                       </Typography>
                       <Typography className={classes.carpark}>
                         { d[4] === true ? '需要停車證' : undefined }
