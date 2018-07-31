@@ -27,13 +27,7 @@ import ClassMaterial from './Dashboard/Seminars/Details/ClassMaterial';
 import AccountManagement from './Dashboard/Seminars/Details/AccountManagement';
 import ItineraryManagement from './Dashboard/Seminars/Details/ItineraryManagement';
 
-import NotesTaking from './NotesTaking';
-import Notes from './Notes';
-
-import CarparkPass from './Seminar/CarparkPass';
-import Payment from './Seminar/Payment';
-import Invoice from './Seminar/Invoice';
-import Tenancy from './Seminar/Tenancy';
+import NotesTaking from './Dashboard/Seminars/Details/NotesTaking';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
 
 const styles = {
@@ -53,6 +47,8 @@ class MainPage extends React.Component {
     const { pathname } = location;
 
     const footerBarArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
+    const seminarArray = ['/basicinfo', '/dashboard', '/eventppt', '/classmaterial', '/accountmgt',
+      '/itinerarymgt', '/notestaking'];
 
     return (
       <div className={classes.root}>
@@ -60,9 +56,7 @@ class MainPage extends React.Component {
         <div
           className={classes.middleContent}
           style={{
-            top: pathname === '/basicinfo' || pathname === '/dashboard'
-            || pathname === '/eventppt' || pathname === '/classmaterial'
-            || pathname === '/accountmgt' || pathname === '/itinerarymgt' ? '112px' : undefined,
+            top: seminarArray.includes(pathname) ? '112px' : undefined,
             marginBottom: pathname === '/dashboard' ? '86px'
               : pathname === '/itinerarymgt' ? '0px' : undefined,
           }}
@@ -81,11 +75,6 @@ class MainPage extends React.Component {
           <Route path="/classmaterial" component={ClassMaterial} />
           <Route path="/accountmgt" component={AccountManagement} />
           <Route path="/notestaking" component={NotesTaking} />
-          <Route path="/notes" component={Notes} />
-          <Route path="/carparkpass" component={CarparkPass} />
-          <Route path="/payment" component={Payment} />
-          <Route path="/invoice" component={Invoice} />
-          <Route path="/tenancy" component={Tenancy} />
           <Route path="/addseatingplan" component={AddSeatingPlan} />
           <Route path="/setting" component={Setting} />
           <Route path="/itinerarymgt" component={ItineraryManagement} />

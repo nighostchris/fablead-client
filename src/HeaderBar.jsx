@@ -120,15 +120,15 @@ class HeaderBar extends React.Component {
     const searchButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library'];
 
     const addButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/eventppt', '/classmaterial',
-      '/accountmgt', '/librarydetails'];
+      '/accountmgt', '/librarydetails', '/notestaking'];
 
-    const backButtonArray = ['/addseminar', '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt',
-      '/notestaking', '/notes', '/carparkpass', '/payment', '/invoice', '/tenancy', '/addseatingplan', '/seatmap',
-      '/addteacher', '/setting', '/addlibrary', '/librarydetails', '/itinerarymgt'];
+    const backButtonArray = ['/setting', '/addseminar', '/addteacher', '/addlibrary', '/librarydetails',
+      '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt', '/notestaking',
+      '/addseatingplan', '/seatmap'];
 
     const editButtonArray = ['/teacher', '/reminder', '/accountmgt', '/notestaking', '/notes'];
 
-    const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt'];
+    const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt', '/notestaking'];
 
     const headerMapping = {
       '/dashboard': 'Seminar',
@@ -142,12 +142,8 @@ class HeaderBar extends React.Component {
       '/classmaterial': 'Seminar Name',
       '/accountmgt': 'Seminar Name',
       '/itinerarymgt': 'Seminar Name',
-      '/notestaking': 'Notes Taking',
+      '/notestaking': 'Seminar Name',
       '/notes': 'Notes Taking',
-      '/carparkpass': 'Car Park Pass',
-      '/payment': 'Payment Attachment',
-      '/invoice': 'Invoice Attachment',
-      '/tenancy': 'Tenancy Agreement',
       '/addseatingplan': '學員座位表生成',
       '/seatmap': '學員座位表生成 #1',
       '/addteacher': 'New Teacher',
@@ -167,6 +163,7 @@ class HeaderBar extends React.Component {
       '/classmaterial': '/dashboard',
       '/accountmgt': '/dashboard',
       '/itinerarymgt': '/dashboard',
+      '/notestaking': '/dashboard',
     };
 
     const addButtonMapping = {
@@ -178,6 +175,7 @@ class HeaderBar extends React.Component {
       '/classmaterial': '/addseminar',
       '/librarydetails': '/library',
       '/accountmgt': '/dashboard',
+      '/notestaking': '/dashboard',
     };
 
     const seminarMapping = {
@@ -186,7 +184,7 @@ class HeaderBar extends React.Component {
       '/classmaterial': 2,
       '/accountmgt': 3,
       '/itinerarymgt': 4,
-      '/notetaking': 5,
+      '/notestaking': 5,
       '/onsitetimemgt': 6,
     };
 
@@ -278,7 +276,7 @@ class HeaderBar extends React.Component {
                   <Tab label="Class Materials" component={Link} to="/classmaterial" className={classes.tabFormat} />
                   <Tab label="Account Mgt" component={Link} to="/accountmgt" className={classes.tabFormat} />
                   <Tab label="Itinerary Mgt" component={Link} to="/itinerarymgt" className={classes.tabFormat} />
-                  <Tab label="Note Taking" component={Link} to="/notetaking" className={classes.tabFormat} />
+                  <Tab label="Note Taking" component={Link} to="/notestaking" className={classes.tabFormat} />
                   <Tab label="Time Mgt" component={Link} to="/onsitetimemgt" className={classes.tabFormat} />
                 </Tabs>
               )
