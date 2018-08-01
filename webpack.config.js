@@ -2,14 +2,14 @@ const path = require('path');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   mode: 'development',
   module: {
@@ -51,8 +51,8 @@ module.exports = {
     // new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Fablead',
-      template: './src/index.ejs'
-    })
+      template: './src/index.ejs',
+    }),
     // new webpack.DefinePlugin({
     //   'process.env': {
     //     // NODE_ENV: JSON.stringify('production')
@@ -61,5 +61,5 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-  }
+  },
 };

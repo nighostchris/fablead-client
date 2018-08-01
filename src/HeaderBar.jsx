@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   AppBar, Button, Tabs, Tab, Toolbar, Typography,
@@ -88,6 +89,10 @@ const styles = theme => ({
   },
 });
 
+const mapStateToProps = state => ({
+  library: state.libraryReducer.library,
+});
+
 class HeaderBar extends React.Component {
   constructor(props) {
     super(props);
@@ -109,7 +114,7 @@ class HeaderBar extends React.Component {
   }
 
   render() {
-    const { classes, location } = this.props;
+    const { classes, location, library } = this.props;
 
     const { pathname } = location;
 
@@ -223,12 +228,11 @@ class HeaderBar extends React.Component {
                   )
               }
               <Typography variant="title" color="inherit" align="center" className={classes.flex}>
-                { headerMapping[pathname] }
                 {
-                  pathname === ('/librarydetails')
+                  pathname === '/librarydetails'
                     ? (
-                      localStorage.getItem('libraryName')
-                    ) : undefined
+                      library.opened
+                    ) : headerMapping[pathname]
                 }
               </Typography>
               {
@@ -316,6 +320,9 @@ class HeaderBar extends React.Component {
 HeaderBar.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
+  library: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withRouter(HeaderBar));
+export default connect(
+  mapStateToProps,
+)(withStyles(styles)(withRouter(HeaderBar)));
