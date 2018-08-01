@@ -1,6 +1,6 @@
 import {
   ADD_MESSAGE, GET_MESSAGE,
-} from '../Constant/messageConstant';
+} from '../Constant/ActionType';
 
 const initialState = {
   messages: [

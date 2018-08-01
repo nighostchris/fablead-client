@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button, Divider, FormControl, Input, MenuItem, List, ListItem, ListItemText, Select,
 } from '@material-ui/core';
+import { addTeacher } from '../../Redux/Action/teacherAction';
 
 const styles = theme => ({
   body: {
@@ -54,10 +56,15 @@ const styles = theme => ({
   },
 });
 
+const mapDispatchToProps = dispatch => ({
+  addT: name => dispatch(addTeacher(name)),
+});
+
 class AddTeacher extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
       district: '',
     };
   }
@@ -66,10 +73,16 @@ class AddTeacher extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleCreate = (name) => {
+    const { addT, history } = this.props;
+    addT(name);
+    history.push('/teacher');
+  };
+
   render() {
     const { classes } = this.props;
 
-    const { district } = this.state;
+    const { name, district } = this.state;
 
     const leftColumn = ['姓名*', '聯絡電話(公司)*', '聯絡電話(家)', '聯絡電話(行動)', 'Email*', '微信', 
       '省市區', '聯絡地址', '可上菲力已開課程(多選)', '老師資歷', '小時薪資金額'];
@@ -86,8 +99,11 @@ class AddTeacher extends React.Component {
                       i !== 6 && i !== 8
                         ? (
                           <Input
+                            value={i === 0 ? name : undefined}
                             placeholder="Please enter"
                             disableUnderline
+                            onChange={this.handleChange}
+                            name="name"
                           />
                         )
                         : (
@@ -125,7 +141,10 @@ class AddTeacher extends React.Component {
             ))
           }
         </List>
-        <Button className={classes.createButton}>
+        <Button
+          className={classes.createButton}
+          onClick={() => this.handleCreate(name)}
+        >
             Create
         </Button>
       </div>
@@ -135,6 +154,8 @@ class AddTeacher extends React.Component {
 
 AddTeacher.propTypes = {
   classes: PropTypes.object.isRequired,
+  addT: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AddTeacher);
+export default connect(null, mapDispatchToProps)(withStyles(styles)(AddTeacher));

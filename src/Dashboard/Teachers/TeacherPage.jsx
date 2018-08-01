@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   List, ListItem, Typography,
@@ -61,12 +62,13 @@ const styles = theme => ({
   },
 });
 
+const mapStateToProps = state => ({
+  teachers: state.teacherReducer.teachers,
+});
+
 class TeacherPage extends React.Component {
   render() {
-    const { classes } = this.props;
-
-    const data = [['Chan Li Li', 3, 5], ['Sze Lai Yu', 0, 0], ['Wong Man Man', 0, 12], ['Yuen Ka Yan', 8, 0],
-      ['Chan Li Li', 3, 5], ['Sze Lai Yu', 0, 0], ['Wong Man Man', 0, 12], ['Yuen Ka Yan', 8, 0]];
+    const { classes, teachers } = this.props;
 
     const alphabetList = [];
     for (let i = 'A'.charCodeAt(0), j = 'Z'.charCodeAt(0); i <= j; i += 1) {
@@ -88,10 +90,10 @@ class TeacherPage extends React.Component {
         <div className={classes.teacherWrapper}>
           <List className={classes.list}>
             {
-              data.map((d, i) => (
+              teachers.map((d, i) => (
                 <ListItem key={i} button className={classes.teacherCard}>
                   <Typography style={{ width: '70%', marginBottom: '5px', fontSize: '18px' }}>
-                    {d[0]}
+                    {d.name}
                   </Typography>
                   <div
                     style={{
@@ -103,10 +105,10 @@ class TeacherPage extends React.Component {
                         flex: '1', flexGrow: '4', fontSize: '18px', color: 'rgba(0, 0, 0, 0.54)',
                       }}
                     >
-                      {`${d[1]} Upcoming`}
+                      {`${d.upcoming} Upcoming`}
                     </Typography>
                     <Typography style={{ flex: '1', flexGrow: '3', fontSize: '18px' }}>
-                      {`${d[2]} Completed`}
+                      {`${d.completed} Completed`}
                     </Typography>
                   </div>
                 </ListItem>
@@ -123,4 +125,4 @@ TeacherPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TeacherPage);
+export default connect(mapStateToProps)(withStyles(styles)(TeacherPage));

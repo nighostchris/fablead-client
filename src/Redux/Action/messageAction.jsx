@@ -1,6 +1,6 @@
 import {
   ADD_MESSAGE, GET_MESSAGE,
-} from '../Constant/messageConstant';
+} from '../Constant/ActionType';
 
 export const addMessage = text => ({
   type: ADD_MESSAGE,
