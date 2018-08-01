@@ -2,24 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import {
+  IconButton, Typography,
+} from '@material-ui/core';
+import {
+  PlayArrow,
+} from '@material-ui/icons';
 
 const styles = theme => ({
   wrapper: {
     flexGrow: '1',
   },
   calendar: {
-    borderSpacing: '0',
-    borderCollapse: 'collapse',
     width: '100%',
+    paddingBottom: '10px',
+    backgroundColor: 'white',
   },
   weekday: {
     textAlign: 'center',
-    height: '30px',
     fontSize: '15px',
-    fontWeight: 'bold',
     color: 'grey',
   },
   emptySlot: {
@@ -39,8 +40,12 @@ const styles = theme => ({
     width: '80px',
   },
   calendarHeader: {
-    borderSpacing: '0',
-    paddingLeft: '5px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '30px',
+    backgroundColor: 'white',
   },
   calendarBody: {
     textAlign: 'center',
@@ -48,24 +53,31 @@ const styles = theme => ({
   },
   dayDecorateDigits: {
     backgroundColor: theme.palette.secondary.main,
-    padding: '5px 10px 5px 10px',
+    padding: '4px 2px 4px 2px',
     borderRadius: '50%',
     cursor: 'pointer',
+    width: '25px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   dayDecorateTens: {
     backgroundColor: theme.palette.secondary.main,
     padding: '5px 7px 5px 7px',
     borderRadius: '50%',
     cursor: 'pointer',
+    width: '18px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   monthLabel: {
-    position: 'relative',
-    fontSize: '24px',
-    fontWeight: 'bold',
+    fontSize: '16px',
+    fontWeight: '400',
+    paddingTop: '2px',
+    marginLeft: '5px',
   },
   yearLabel: {
-    fontSize: '22px',
-    fontWeight: 'bold',
+    fontSize: '18px',
+    fontWeight: '400',
   },
   yearEditor: {
     maxWidth: '3.6em',
@@ -131,11 +143,28 @@ class MonthCalendar extends React.Component {
 
     const { dateContext } = this.state;
 
-    const seminarDays = [5, 10, 20, 12, 19, 26];
+    const seminarDays = [1, 10, 11, 15, 20];
+
+    const monthMapping = {
+      January: '一月',
+      February: '二月',
+      March: '三月',
+      April: '四月',
+      May: '五月',
+      June: '六月',
+      July: '七月',
+      August: '八月',
+      September: '九月',
+      October: '十月',
+      November: '十一月',
+      December: '十二月',
+    };
 
     const weekdays = this.weekdaysShort.map(day => (
-      <td key={day} className={classes.weekday}>
-        { day }
+      <td key={day}>
+        <Typography className={classes.weekday}>
+          { day }
+        </Typography>
       </td>
     ));
 
@@ -154,16 +183,16 @@ class MonthCalendar extends React.Component {
         <td key={i} className={className}>
           {
             className === classes.currentDay ? (
-              <span
+              <Typography
                 className={(i < 10 ? classes.dayDecorateDigits : classes.dayDecorateTens)}
                 onClick={(e) => { this.onDaySelected(e, i); }}
               >
                 {i}
-              </span>
+              </Typography>
             ) : (
-              <span>
+              <Typography>
                 {i}
-              </span>
+              </Typography>
             )
           }
         </td>,
@@ -186,45 +215,34 @@ class MonthCalendar extends React.Component {
         rows.push(newRow);
       }
     });
+    rows.shift();
 
     const elements = rows.map((d, i) => (
-      <tr key={i * 100}>
+      <tr key={i * 100} style={{ height: '36px' }}>
         {d}
       </tr>
     ));
 
     return (
       <div className={classes.wrapper}>
+        <div className={classes.calendarHeader}>
+          <IconButton onClick={() => { this.prevMonth(dateContext); }}>
+            <PlayArrow style={{ transform: 'rotate(180deg)' }} />
+          </IconButton>
+          <Typography className={classes.yearLabel}>
+            { MonthCalendar.getYear(dateContext) }
+          </Typography>
+          {' '}
+          <Typography className={classes.monthLabel}>
+            { monthMapping[MonthCalendar.getMonth(dateContext)] }
+          </Typography>
+          <IconButton onClick={() => { this.nextMonth(dateContext); }}>
+            <PlayArrow />
+          </IconButton>
+        </div>
         <table className={classes.calendar}>
-          <thead>
-            <tr className={classes.calendarHeader}>
-              {
-                <td colSpan="2" className={classes.monthNav}>
-                  <IconButton onClick={() => { this.prevMonth(dateContext); }}>
-                    <KeyboardArrowLeft />
-                  </IconButton>
-                </td>
-              }
-              <td colSpan={3} style={{ textAlign: 'center' }}>
-                <span className={classes.monthLabel}>
-                  { MonthCalendar.getMonth(dateContext) }
-                </span>
-                {' '}
-                <span className={classes.yearLabel}>
-                  { MonthCalendar.getYear(dateContext) }
-                </span>
-              </td>
-              {
-                <td colSpan="2" className={classes.monthNav}>
-                  <IconButton onClick={() => { this.nextMonth(dateContext); }}>
-                    <KeyboardArrowRight />
-                  </IconButton>
-                </td>
-              }
-            </tr>
-          </thead>
           <tbody className={classes.calendarBody}>
-            <tr>
+            <tr valign="middle" style={{ height: '36px' }}>
               { weekdays }
             </tr>
             { elements }
