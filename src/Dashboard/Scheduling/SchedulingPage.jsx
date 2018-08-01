@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import {
+  Card, CardContent, Typography,
+} from '@material-ui/core';
 import Calendar from '../../Calendar/Calendar';
 
 const styles = theme => ({
@@ -26,12 +24,9 @@ const styles = theme => ({
   },
   seminarTag: {
     display: 'flex',
-    backgroundColor: theme.palette.secondary.main,
-    color: 'white',
-    height: '30px',
+    backgroundColor: '#E6E6FA',
+    height: '40px',
     alignItems: 'center',
-    fontWeight: 'bold',
-    fontSize: '17px',
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
@@ -49,7 +44,8 @@ const styles = theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: 'darkgrey',
-    width: '80px',
+    height: '80px',
+    width: '100px',
     borderRadius: '0px',
     textAlign: 'center',
     '& > h3': {
@@ -77,6 +73,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    height: '80px',
     [theme.breakpoints.up('md')]: {
       width: '700px',
     },
@@ -84,52 +81,14 @@ const styles = theme => ({
   row: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
-  calendarWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: '1',
-    flexGrow: '1',
-  },
-  calendarTabSelector: {
-    marginTop: '20px',
-    marginBottom: '10px',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '0px',
-      marginBottom: '0px',
-      backgroundColor: 'lightgrey',
-    },
-  },
-  calendarTabs: {
-    [theme.breakpoints.down('sm')]: {
-      minHeight: '0px',
-      float: 'right',
-    },
-  },
-  calendarTab: {
-    textTransform: 'none',
-    minHeight: '12px',
-    fontWeight: 'bold',
-    [theme.breakpoints.down('sm')]: {
-      color: 'dimgrey',
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: 'grey',
-      color: 'white',
-    },
-  },
-  calendarTabActive: {
-    textTransform: 'none',
-    minHeight: '12px',
-    fontWeight: 'bold',
-    [theme.breakpoints.down('sm')]: {
-      color: 'white',
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: 'lightgrey',
-      color: 'grey',
-    },
+  rightColumnTypography: {
+    marginRight: '30px',
+    color: 'darkgrey',
+    fontSize: '18px',
+    fontWeight: '100',
   },
 });
 
@@ -147,19 +106,6 @@ const data = [
 ];
 
 class SchedulingPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 1,
-    };
-  }
-
-  handleChange = (event, value) => {
-    this.setState({
-      value,
-    });
-  }
-
   render() {
     const { classes } = this.props;
 
@@ -167,32 +113,12 @@ class SchedulingPage extends React.Component {
       <div className={classes.root}>
         <div className={classes.content}>
           <div className={classes.middleContent}>
-            <div className={classes.calendarWrapper}>
-              <div className={classes.calendarTabSelector}>
-                <Tabs
-                  className={classes.calendarTabs}
-                  indicatorColor=""
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  scrollButtons="auto"
-                  fullWidth
-                  centered
-                >
-                  <Tab label="Year" className={this.state.value === 0 ? classes.calendarTabActive : classes.calendarTab} />
-                  <Tab label="Month" className={this.state.value === 1 ? classes.calendarTabActive : classes.calendarTab} />
-                  <Tab label="Week" className={this.state.value === 2 ? classes.calendarTabActive : classes.calendarTab} />
-                </Tabs>
-              </div>
-              {
-                this.state.value === 0 ? (<Calendar view={0} />)
-                  : (this.state.value === 1 ? (<Calendar view={1} />) : (<Calendar view={2} />))
-              }
-            </div>
+            <Calendar view={1} />
             <div className={classes.wrapper}>
               <div className={classes.seminarTag}>
-                <p style={{ marginLeft: '30px' }}>
+                <Typography style={{ fontSize: '18px', width: '100px', textAlign: 'center' }}>
                   Seminar
-                </p>
+                </Typography>
               </div>
               <div className={classes.cardWrapper}>
                 {data.map((n, i) => (
@@ -206,9 +132,9 @@ class SchedulingPage extends React.Component {
                       </Typography>
                     </Card>
                     <Card className={classes.card} key={n.seminarName}>
-                      <CardContent style={{ paddingBottom: '5px', paddingTop: '5px' }}>
+                      <CardContent style={{ paddingBottom: '0px', paddingTop: '0px' }}>
                         <div className={classes.rowWrapper}>
-                          <div className={classes.row} style={{ marginBottom: '2px', alignItems: 'center' }}>
+                          <div className={classes.row} style={{ marginBottom: '2px' }}>
                             <Typography
                               variant="subheading"
                               style={{ marginLeft: '30px' }}
@@ -217,12 +143,12 @@ class SchedulingPage extends React.Component {
                             </Typography>
                             <Typography
                               variant="subheading"
-                              style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                              className={classes.rightColumnTypography}
                             >
                               {n.Date}
                             </Typography>
                           </div>
-                          <div className={classes.row} style={{ marginTop: '2px', alignItems: 'center' }}>
+                          <div className={classes.row} style={{ marginTop: '2px' }}>
                             <Typography
                               variant="subheading"
                               style={{ marginLeft: '30px' }}
@@ -231,7 +157,7 @@ class SchedulingPage extends React.Component {
                             </Typography>
                             <Typography
                               variant="subheading"
-                              style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                              className={classes.rightColumnTypography}
                             >
                               {n.Location}
                             </Typography>

@@ -9,14 +9,14 @@ class Calendar extends React.Component {
   render() {
     const { view } = this.props;
 
-    if (view == 0) {
+    if (view === 0) {
       return (
         <YearCalendar />
       );
     }
-    if (view == 1) {
+    if (view === 1) {
       return (
-        <MonthCalendar clickable dateContext={moment()} />
+        <MonthCalendar dContext={moment()} />
       );
     }
 
