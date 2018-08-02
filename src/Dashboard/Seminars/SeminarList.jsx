@@ -60,18 +60,19 @@ const styles = theme => ({
     justifyContent: 'center',
     backgroundColor: 'darkgrey',
     height: '80px',
-    width: '80px',
-    boxShadow: '0px 0px 0px',
+    width: '100px',
     borderRadius: '0px',
     textAlign: 'center',
     '& > h3': {
       color: 'white',
-      fontWeight: 'unset',
+      fontWeight: '300',
       '&:first-child': {
         marginBottom: '5px',
+        fontSize: '18px',
       },
       '&:last-child': {
         marginTop: '5px',
+        fontSize: '14px',
       },
     },
   },
@@ -84,12 +85,12 @@ const styles = theme => ({
     borderRadius: '0px',
     textDecoration: 'none',
     boxShadow: '0px 0px 0px',
-    height: '80px',
   },
   rowWrapper: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    height: '80px',
     [theme.breakpoints.up('md')]: {
       width: '700px',
     },
@@ -98,6 +99,12 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  rightColumnTypography: {
+    marginRight: '30px',
+    color: 'darkgrey',
+    fontSize: '18px',
+    fontWeight: '100',
   },
 });
 
@@ -108,10 +115,10 @@ function createData(type, seminarName, teacherName, Location, Date, Countdown) {
 }
 
 const data = [
-  createData('Seminar', 'Semiar Name', 'Chan Li Li', '北京', '6月20日', '10 days'),
-  createData('Training', 'Semiar Name', 'Yuen Ka Yan', '香港', '6月15日', '5 days'),
-  createData('Consulting', 'Semiar Name', 'Wong Man Man', '上海', '6月10日', '0 days'),
-  createData('Fablead', 'Semiar Name', 'Sze Lai Yu', '香港', '6月1日', 'Expired'),
+  createData('Seminar', 'Semiar Name', 'Chan Li Li', '北京', '6月20日', '剩下: 10天'),
+  createData('Training', 'Semiar Name', 'Yuen Ka Yan', '香港', '6月15日', '剩下: 5天'),
+  createData('Consulting', 'Semiar Name', 'Wong Man Man', '上海', '6月10日', '已完成'),
+  createData('Fablead', 'Semiar Name', 'Sze Lai Yu', '香港', '6月1日', '已完成'),
 ];
 
 class SeminarList extends React.Component {
@@ -231,15 +238,21 @@ class SeminarList extends React.Component {
                   onClick={() => this.handleClick(n)}
                 >
                   <Card className={classes.frontCard}>
-                    <Typography variant="subheading">
+                    <Typography
+                      variant="subheading"
+                      className={classes.frontCardTypography}
+                    >
                       Seminar
                     </Typography>
-                    <Typography variant="subheading">
+                    <Typography
+                      variant="subheading"
+                      className={classes.frontCardTypography}
+                    >
                       {n.Countdown}
                     </Typography>
                   </Card>
                   <Card className={classes.card}>
-                    <CardContent style={{ paddingBottom: '5px', paddingTop: '5px' }}>
+                    <CardContent style={{ paddingBottom: '0px', paddingTop: '0px' }}>
                       <div className={classes.rowWrapper}>
                         <div className={classes.row} style={{ marginBottom: '2px', alignItems: 'center' }}>
                           <Typography
@@ -250,7 +263,7 @@ class SeminarList extends React.Component {
                           </Typography>
                           <Typography
                             variant="subheading"
-                            style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                            className={classes.rightColumnTypography}
                           >
                             {n.Date}
                           </Typography>
@@ -264,7 +277,7 @@ class SeminarList extends React.Component {
                           </Typography>
                           <Typography
                             variant="subheading"
-                            style={{ marginRight: '30px', color: 'darkgrey', fontSize: '20px' }}
+                            className={classes.rightColumnTypography}
                           >
                             {n.Location}
                           </Typography>

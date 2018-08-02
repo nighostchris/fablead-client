@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Card, CardContent, Typography,
 } from '@material-ui/core';
-import Calendar from '../../Calendar/Calendar';
+import Calendar from './Calendar/Calendar';
 
 const styles = theme => ({
   root: {
@@ -50,12 +50,14 @@ const styles = theme => ({
     textAlign: 'center',
     '& > h3': {
       color: 'white',
-      fontWeight: 'unset',
+      fontWeight: '300',
       '&:first-child': {
         marginBottom: '5px',
+        fontSize: '18px',
       },
       '&:last-child': {
         marginTop: '5px',
+        fontSize: '14px',
       },
     },
   },
