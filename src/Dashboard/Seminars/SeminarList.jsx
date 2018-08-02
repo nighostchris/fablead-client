@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Table, TableBody, TableCell, TableHead, TableFooter, TablePagination, TableRow,
@@ -108,18 +109,9 @@ const styles = theme => ({
   },
 });
 
-function createData(type, seminarName, teacherName, Location, Date, Countdown) {
-  return {
-    type, seminarName, teacherName, Location, Date, Countdown,
-  };
-}
-
-const data = [
-  createData('Seminar', 'Semiar Name', 'Chan Li Li', '北京', '6月20日', '剩下: 10天'),
-  createData('Training', 'Semiar Name', 'Yuen Ka Yan', '香港', '6月15日', '剩下: 5天'),
-  createData('Consulting', 'Semiar Name', 'Wong Man Man', '上海', '6月10日', '已完成'),
-  createData('Fablead', 'Semiar Name', 'Sze Lai Yu', '香港', '6月1日', '已完成'),
-];
+const mapStateToProps = state => ({
+  seminars: state.seminarReducer.seminars,
+});
 
 class SeminarList extends React.Component {
   constructor(props) {
@@ -133,7 +125,7 @@ class SeminarList extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, seminars } = this.props;
 
     return (
       <div>
@@ -195,19 +187,19 @@ class SeminarList extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data.map((n, i) => (
+                {seminars.map((n, i) => (
                   <TableRow className={classes.tableRow} key={i}>
                     <TableCell numeric>
-                      {n.seminarName}
+                      {n.name}
                     </TableCell>
                     <TableCell numeric>
-                      {n.teacherName}
+                      {n.teacher}
                     </TableCell>
                     <TableCell numeric>
-                      {n.Location}
+                      {n.location}
                     </TableCell>
                     <TableCell numeric>
-                      {n.Date}
+                      {n.date}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -229,7 +221,7 @@ class SeminarList extends React.Component {
           </Paper>
           <div className={classes.cardWrapper}>
             <List style={{ padding: '0px' }}>
-              {data.map((n, i) => (
+              {seminars.map((n, i) => (
                 <ListItem
                   key={i}
                   style={{ display: 'flex', flexDirection: 'row', padding: '0px' }}
@@ -242,13 +234,13 @@ class SeminarList extends React.Component {
                       variant="subheading"
                       className={classes.frontCardTypography}
                     >
-                      Seminar
+                      {n.seminarType}
                     </Typography>
                     <Typography
                       variant="subheading"
                       className={classes.frontCardTypography}
                     >
-                      {n.Countdown}
+                      { n.countdown > 0 ? `剩下: ${n.countdown}天` : '已完成' }
                     </Typography>
                   </Card>
                   <Card className={classes.card}>
@@ -259,13 +251,13 @@ class SeminarList extends React.Component {
                             variant="subheading"
                             style={{ marginLeft: '30px' }}
                           >
-                            {n.seminarName}
+                            {n.name}
                           </Typography>
                           <Typography
                             variant="subheading"
                             className={classes.rightColumnTypography}
                           >
-                            {n.Date}
+                            {n.date}
                           </Typography>
                         </div>
                         <div className={classes.row} style={{ marginTop: '2px', alignItems: 'center' }}>
@@ -273,13 +265,13 @@ class SeminarList extends React.Component {
                             variant="subheading"
                             style={{ marginLeft: '30px' }}
                           >
-                            {n.teacherName}
+                            {n.teacher}
                           </Typography>
                           <Typography
                             variant="subheading"
                             className={classes.rightColumnTypography}
                           >
-                            {n.Location}
+                            {n.location}
                           </Typography>
                         </div>
                       </div>
@@ -297,6 +289,7 @@ class SeminarList extends React.Component {
 
 SeminarList.propTypes = {
   classes: PropTypes.object.isRequired,
+  seminars: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(SeminarList);
+export default connect(mapStateToProps)(withStyles(styles)(SeminarList));
