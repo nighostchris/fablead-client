@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button, Divider, FormControl, IconButton, Input, List, ListItem, ListItemText, MenuItem, Select,
@@ -8,6 +9,7 @@ import {
 import {
   Add as AddIcon, DateRange as DateRangeIcon,
 } from '@material-ui/icons';
+import { addSeminar } from '../../Redux/Action/seminarAction';
 
 const styles = theme => ({
   root: {
@@ -72,11 +74,18 @@ const styles = theme => ({
   },
 });
 
+const mapDispatchToProps = dispatch => ({
+  addS: (seminarType, name, teacher, location, date, countdown) => {
+    dispatch(addSeminar(seminarType, name, teacher, location, date, countdown));
+  },
+});
+
 class AddSeminarPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: '',
+      name: '',
+      seminarType: '',
       teacher: [''],
       date: [''],
       location: '',
@@ -86,44 +95,44 @@ class AddSeminarPage extends React.Component {
     this.addDate = this.addDate.bind(this);
   }
 
-  handleChange = index => event => {
-    const newTeacher = this.state.teacher;
+  handleTeacherChange = index => (event) => {
+    const { teacher } = this.state;
+    const newTeacher = teacher;
     newTeacher[index] = event.target.value;
     this.setState({ teacher: newTeacher });
   };
 
-  handleTypeChange = (event) => {
-    this.setState({
-      type: event.target.value,
-    });
-  };
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
 
-  handleLocationChange = (event) => {
-    this.setState({
-      location: event.target.value,
-    });
-  };
+  handleCreate() {
+    const {
+      name, seminarType, teacher, location,
+    } = this.state;
+    const { addS, history } = this.props;
+    addS(seminarType, name, teacher[0], location, '8月10日', 20);
+    history.push('/dashboard');
+  }
 
   addTeacher() {
-    const newTeacher = this.state.teacher;
-    newTeacher.push('');
-    this.setState({
-      teacher: newTeacher,
-    });
+    const { teacher } = this.state;
+    teacher.push('');
+    this.forceUpdate();
   }
 
   addDate() {
-    const newDate = this.state.date;
-    newDate.push('');
-    this.setState({
-      date: newDate,
-    });
+    const { date } = this.state;
+    date.push('');
+    this.forceUpdate();
   }
 
   render() {
     const { classes } = this.props;
 
-    const { type, teacher, location, date } = this.state;
+    const {
+      name, seminarType, teacher, location, date,
+    } = this.state;
 
     return (
       <div className={classes.root}>
@@ -132,7 +141,10 @@ class AddSeminarPage extends React.Component {
             <ListItemText primary="Name" />
             <Input
               placeholder="Please enter"
-              disableUnderline={true}
+              disableUnderline
+              value={name}
+              onChange={this.handleChange}
+              name="name"
             />
           </ListItem>
           <Divider inset component="li" className={classes.divider} />
@@ -140,23 +152,26 @@ class AddSeminarPage extends React.Component {
             <ListItemText primary="Type" />
             <FormControl className={classes.listItemRight}>
               <Select
-                value={type}
-                onChange={this.handleTypeChange}
+                value={seminarType}
+                onChange={this.handleChange}
                 displayEmpty
-                name="district"
+                name="seminarType"
               >
                 <MenuItem value="">
                   <em>
-                    Seminar
+                    Please select
                   </em>
                 </MenuItem>
-                <MenuItem value={10}>
+                <MenuItem value="Seminar">
+                  Seminar
+                </MenuItem>
+                <MenuItem value="Training">
                   Training
                 </MenuItem>
-                <MenuItem value={20}>
+                <MenuItem value="Consulting">
                   Consulting
                 </MenuItem>
-                <MenuItem value={30}>
+                <MenuItem value="Fablead">
                   Fablead
                 </MenuItem>
               </Select>
@@ -165,12 +180,12 @@ class AddSeminarPage extends React.Component {
           <Divider inset component="li" className={classes.divider} />
           {
             teacher.map((data, i) => (
-              <ListItem>
+              <ListItem key={i}>
                 <ListItemText primary={`Teacher #${i + 1}`} />
                 <FormControl className={classes.listItemRight}>
                   <Select
                     value={teacher[i]}
-                    onChange={this.handleChange(i)}
+                    onChange={this.handleTeacherChange(i)}
                     displayEmpty
                     name="teacher"
                   >
@@ -179,14 +194,17 @@ class AddSeminarPage extends React.Component {
                         Please select
                       </em>
                     </MenuItem>
-                    <MenuItem value={10}>
+                    <MenuItem value="Chan Li Li">
                       Chan Li Li
                     </MenuItem>
-                    <MenuItem value={20}>
+                    <MenuItem value="Yuen Ka Yan">
+                      Yuen Ka Yan
+                    </MenuItem>
+                    <MenuItem value="Wong Man Man">
                       Wong Man Man
                     </MenuItem>
-                    <MenuItem value={30}>
-                      Chan Li Li
+                    <MenuItem value="Sze Lai Yu">
+                      Sze Lai Yu
                     </MenuItem>
                   </Select>
                 </FormControl>
@@ -230,7 +248,7 @@ class AddSeminarPage extends React.Component {
             <FormControl className={classes.listItemRight}>
               <Select
                 value={location}
-                onChange={this.handleLocationChange}
+                onChange={this.handleChange}
                 displayEmpty
                 name="location"
               >
@@ -239,20 +257,23 @@ class AddSeminarPage extends React.Component {
                     Please select
                   </em>
                 </MenuItem>
-                <MenuItem value={10}>
-                  Beijing
+                <MenuItem value="北京">
+                  北京
                 </MenuItem>
-                <MenuItem value={20}>
-                  Shanghai
+                <MenuItem value="上海">
+                  上海
                 </MenuItem>
-                <MenuItem value={30}>
-                  Hong Kong
+                <MenuItem value="香港">
+                  香港
                 </MenuItem>
               </Select>
             </FormControl>
           </ListItem>
         </List>
-        <Button className={classes.createButton}>
+        <Button
+          className={classes.createButton}
+          onClick={() => this.handleCreate()}
+        >
             Create
         </Button>
       </div>
@@ -262,6 +283,8 @@ class AddSeminarPage extends React.Component {
 
 AddSeminarPage.propTypes = {
   classes: PropTypes.object.isRequired,
+  addS: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AddSeminarPage);
+export default connect(null, mapDispatchToProps)(withStyles(styles)(AddSeminarPage));

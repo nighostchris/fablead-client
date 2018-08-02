@@ -44,7 +44,7 @@ const seminarReducer = (state = initialState, action) => {
     case GET_SEMINAR:
       return state;
     case ADD_SEMINAR:
-      return state.seminars.push({
+      state.seminars.push({
         seminarType: action.seminarType,
         name: action.name,
         teacher: action.teacher,
@@ -52,6 +52,7 @@ const seminarReducer = (state = initialState, action) => {
         date: action.date,
         countdown: action.countdown,
       });
+      return state;
     default:
       return state;
   }
