@@ -29,6 +29,7 @@ import ItineraryManagement from './Dashboard/Seminars/Details/ItineraryManagemen
 
 import NotesTaking from './Dashboard/Seminars/Details/NotesTaking';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
+import OnSiteTimeManagement from './Dashboard/Seminars/Details/OnSiteTimeManagement';
 
 const styles = {
   root: {
@@ -48,7 +49,7 @@ class MainPage extends React.Component {
 
     const footerBarArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
     const seminarArray = ['/basicinfo', '/dashboard', '/eventppt', '/classmaterial', '/accountmgt',
-      '/itinerarymgt', '/notestaking'];
+      '/itinerarymgt', '/notestaking', '/onsitetimemgt'];
 
     return (
       <div className={classes.root}>
@@ -78,6 +79,7 @@ class MainPage extends React.Component {
           <Route path="/addseatingplan" component={AddSeatingPlan} />
           <Route path="/setting" component={Setting} />
           <Route path="/itinerarymgt" component={ItineraryManagement} />
+          <Route path="/onsitetimemgt" component={OnSiteTimeManagement} />
         </div>
         { footerBarArray.includes(pathname) ? <FooterBar /> : undefined }
       </div>

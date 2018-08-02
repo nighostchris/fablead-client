@@ -145,11 +145,12 @@ class HeaderBar extends React.Component {
 
     const backButtonArray = ['/setting', '/addseminar', '/addteacher', '/addlibrary', '/librarydetails',
       '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt', '/notestaking',
-      '/addseatingplan', '/seatmap'];
+      '/addseatingplan', '/seatmap', '/onsitetimemgt'];
 
     const editButtonArray = ['/teacher', '/reminder', '/accountmgt', '/notestaking', '/notes'];
 
-    const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt', '/notestaking'];
+    const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial',
+      '/accountmgt', '/itinerarymgt', '/notestaking', '/onsitetimemgt'];
 
     const headerMapping = {
       '/dashboard': 'Seminar',
@@ -164,6 +165,7 @@ class HeaderBar extends React.Component {
       '/accountmgt': 'Seminar Name',
       '/itinerarymgt': 'Seminar Name',
       '/notestaking': 'Seminar Name',
+      '/onsitetimemgt': 'Seminar Name',
       '/notes': 'Notes Taking',
       '/addseatingplan': '學員座位表生成',
       '/seatmap': '學員座位表生成 #1',
@@ -186,6 +188,7 @@ class HeaderBar extends React.Component {
       '/accountmgt': '/dashboard',
       '/itinerarymgt': '/dashboard',
       '/notestaking': '/dashboard',
+      '/onsitetimemgt': 'dashboard',
     };
 
     const addButtonMapping = {

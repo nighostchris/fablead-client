@@ -22,11 +22,13 @@ const libraryReducer = (state = initialState, action) => {
     case GET_LIBRARY:
       return state;
     case SET_OPENED_LIBRARY:
-      return Object.assign({}, state, {
-        library: Object.assign({}, state.library, {
+      return {
+        ...state,
+        library: {
+          ...state.library,
           opened: action.name,
-        }),
-      });
+        },
+      };
     default:
       return state;
   }

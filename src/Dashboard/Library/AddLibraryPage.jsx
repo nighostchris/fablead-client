@@ -115,7 +115,7 @@ class AddLibraryPage extends React.Component {
             <ListItemText primary="Name" />
             <Input
               placeholder="Please enter"
-              disableUnderline={true}
+              disableUnderline
             />
           </ListItem>
           <Divider inset component="li" className={classes.divider} />
