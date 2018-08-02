@@ -1,8 +1,9 @@
 import {
-  GET_SEMINAR, ADD_SEMINAR,
+  GET_SEMINAR, ADD_SEMINAR, CHANGE_TAB,
 } from '../Constant/ActionType';
 
 const initialState = {
+  currentTab: 0,
   seminars: [
     {
       seminarType: 'Seminar',
@@ -29,7 +30,7 @@ const initialState = {
       countdown: 0,
     },
     {
-      seminarType: 'Seminar',
+      seminarType: 'Fablead',
       name: 'Seminar Name',
       teacher: 'Sze Lai Yu',
       location: '香港',
@@ -53,6 +54,11 @@ const seminarReducer = (state = initialState, action) => {
         countdown: action.countdown,
       });
       return state;
+    case CHANGE_TAB:
+      return {
+        ...state,
+        currentTab: action.tabValue,
+      };
     default:
       return state;
   }

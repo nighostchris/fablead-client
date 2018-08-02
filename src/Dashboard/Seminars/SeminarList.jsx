@@ -111,6 +111,7 @@ const styles = theme => ({
 
 const mapStateToProps = state => ({
   seminars: state.seminarReducer.seminars,
+  currentTab: state.seminarReducer.currentTab,
 });
 
 class SeminarList extends React.Component {
@@ -125,7 +126,14 @@ class SeminarList extends React.Component {
   }
 
   render() {
-    const { classes, seminars } = this.props;
+    const { classes, seminars, currentTab } = this.props;
+
+    const tabMapping = {
+      1: 'Seminar',
+      2: 'Training',
+      3: 'Consulting',
+      4: 'Fablead',
+    };
 
     return (
       <div>
@@ -224,7 +232,12 @@ class SeminarList extends React.Component {
               {seminars.map((n, i) => (
                 <ListItem
                   key={i}
-                  style={{ display: 'flex', flexDirection: 'row', padding: '0px' }}
+                  style={{
+                    display: currentTab === 0 ? 'flex'
+                      : (n.seminarType === tabMapping[currentTab] ? 'flex' : 'none'),
+                    flexDirection: 'row',
+                    padding: '0px',
+                  }}
                   component={Link}
                   to="/basicinfo"
                   onClick={() => this.handleClick(n)}
@@ -290,6 +303,7 @@ class SeminarList extends React.Component {
 SeminarList.propTypes = {
   classes: PropTypes.object.isRequired,
   seminars: PropTypes.array.isRequired,
+  currentTab: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(SeminarList));

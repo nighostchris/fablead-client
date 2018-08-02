@@ -12,6 +12,7 @@ import {
 import { Link, withRouter } from 'react-router-dom';
 
 import { dismissAllReminder } from './Redux/Action/reminderAction';
+import { changeTab } from './Redux/Action/seminarAction';
 
 const styles = theme => ({
   root: {
@@ -94,10 +95,12 @@ const styles = theme => ({
 const mapStateToProps = state => ({
   library: state.libraryReducer.library,
   reminders: state.reminderReducer.reminders,
+  currentTab: state.seminarReducer.currentTab,
 });
 
 const mapDispatchToProps = dispatch => ({
   dismissAR: () => dispatch(dismissAllReminder),
+  changeT: tabValue => dispatch(changeTab(tabValue)),
 });
 
 class HeaderBar extends React.Component {
@@ -109,9 +112,8 @@ class HeaderBar extends React.Component {
   }
 
   handleChangeDashboard = (event, value) => {
-    this.setState({
-      dashboardValue: value,
-    });
+    const { changeT } = this.props;
+    changeT(value);
   }
 
   reset = () => {
@@ -126,7 +128,9 @@ class HeaderBar extends React.Component {
   }
 
   render() {
-    const { classes, location, library } = this.props;
+    const {
+      classes, location, library, currentTab,
+    } = this.props;
 
     const { pathname } = location;
 
@@ -304,7 +308,7 @@ class HeaderBar extends React.Component {
             pathname === '/dashboard'
               ? (
                 <div>
-                  <Tabs value={dashboardValue} scrollButtons="auto" fullWidth onChange={this.handleChangeDashboard} centered>
+                  <Tabs value={currentTab} scrollButtons="auto" fullWidth onChange={this.handleChangeDashboard} centered>
                     <Tab label="ALL" />
                     <Tab label="Seminar" />
                     <Tab label="Training" />
@@ -335,6 +339,8 @@ HeaderBar.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   library: PropTypes.object.isRequired,
+  currentTab: PropTypes.object.isRequired,
+  changeT: PropTypes.func.isRequired,
   dismissAR: PropTypes.func.isRequired,
 };
 
