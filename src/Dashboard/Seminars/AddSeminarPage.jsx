@@ -74,6 +74,10 @@ const styles = theme => ({
   },
 });
 
+const mapStateToProps = state => ({
+  teachers: state.teacherReducer.teachers,
+});
+
 const mapDispatchToProps = dispatch => ({
   addS: (seminarType, name, teacher, location, date, countdown) => {
     dispatch(addSeminar(seminarType, name, teacher, location, date, countdown));
@@ -128,7 +132,7 @@ class AddSeminarPage extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, teachers } = this.props;
 
     const {
       name, seminarType, teacher, location, date,
@@ -194,18 +198,13 @@ class AddSeminarPage extends React.Component {
                         Please select
                       </em>
                     </MenuItem>
-                    <MenuItem value="Chan Li Li">
-                      Chan Li Li
-                    </MenuItem>
-                    <MenuItem value="Yuen Ka Yan">
-                      Yuen Ka Yan
-                    </MenuItem>
-                    <MenuItem value="Wong Man Man">
-                      Wong Man Man
-                    </MenuItem>
-                    <MenuItem value="Sze Lai Yu">
-                      Sze Lai Yu
-                    </MenuItem>
+                    {
+                      teachers.map((d, i) => (
+                        <MenuItem value={d.name}>
+                          {d.name}
+                        </MenuItem>
+                      ))
+                    }
                   </Select>
                 </FormControl>
               </ListItem>
@@ -285,6 +284,10 @@ AddSeminarPage.propTypes = {
   classes: PropTypes.object.isRequired,
   addS: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  teachers: PropTypes.array.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(AddSeminarPage));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(AddSeminarPage));
