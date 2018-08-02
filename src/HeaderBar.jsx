@@ -11,6 +11,8 @@ import {
 } from '@material-ui/icons';
 import { Link, withRouter } from 'react-router-dom';
 
+import { dismissAllReminder } from './Redux/Action/reminderAction';
+
 const styles = theme => ({
   root: {
     position: 'absolute',
@@ -91,6 +93,11 @@ const styles = theme => ({
 
 const mapStateToProps = state => ({
   library: state.libraryReducer.library,
+  reminders: state.reminderReducer.reminders,
+});
+
+const mapDispatchToProps = dispatch => ({
+  dismissAR: () => dispatch(dismissAllReminder),
 });
 
 class HeaderBar extends React.Component {
@@ -111,6 +118,11 @@ class HeaderBar extends React.Component {
     this.setState({
       dashboardValue: 0,
     });
+  }
+
+  handleDismissAll() {
+    const { dismissAR } = this.props;
+    dismissAR();
   }
 
   render() {
@@ -154,6 +166,7 @@ class HeaderBar extends React.Component {
       '/addteacher': 'New Teacher',
       '/setting': 'Setting',
       '/addlibrary': 'New Library',
+      '/librarydetails': library.opened,
     };
 
     const backButtonMapping = {
@@ -229,10 +242,7 @@ class HeaderBar extends React.Component {
               }
               <Typography variant="title" color="inherit" align="center" className={classes.flex}>
                 {
-                  pathname === '/librarydetails'
-                    ? (
-                      library.opened
-                    ) : headerMapping[pathname]
+                  headerMapping[pathname]
                 }
               </Typography>
               {
@@ -258,7 +268,11 @@ class HeaderBar extends React.Component {
               {
                 pathname === '/reminder'
                   ? (
-                    <Button className={classes.rightTopButton} style={{ fontSize: '12px' }}>
+                    <Button
+                      className={classes.rightTopButton}
+                      style={{ fontSize: '12px' }}
+                      onClick={() => this.handleDismissAll()}
+                    >
                       Dismiss All
                     </Button>
                   ) : undefined
@@ -321,8 +335,10 @@ HeaderBar.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   library: PropTypes.object.isRequired,
+  dismissAR: PropTypes.func.isRequired,
 };
 
-export default connect(
+export default withStyles(styles)(withRouter(connect(
   mapStateToProps,
-)(withStyles(styles)(withRouter(HeaderBar)));
+  mapDispatchToProps,
+)(HeaderBar)));

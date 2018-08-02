@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button, Card, CardContent, Typography,
 } from '@material-ui/core';
+
+import { dismissReminder } from '../../Redux/Action/reminderAction';
 
 const styles = theme => ({
   cardWrapper: {
@@ -49,74 +52,52 @@ const styles = theme => ({
   },
 });
 
-function createData(type, eventName, Date, Countdown) {
-  return {
-    type, eventName, Date, Countdown,
-  };
-}
+const mapStateToProps = state => ({
+  reminders: state.reminderReducer.reminders,
+});
 
-const data = [
-  createData('Seminar A Name', '開課計劃及場地確定', '6月20日', '10 days remaining'),
-  createData('Training B Name', '招生收費建群', '6月15日', '5 days remaining'),
-  createData('Training B Name', '開課計劃及場地確定', '6月10日', '5 days remaining'),
-];
+const mapDispatchToProps = dispatch => ({
+  dismissR: index => dispatch(dismissReminder(index)),
+});
 
 class ReminderPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const array = [];
-    let { size } = data;
-    while (size > 0) {
-      size -= 1;
-      array.push(true);
-    }
-
-    this.state = {
-      show: array,
-    };
-  }
-
   handleClick = (index) => {
-    const array = this.state.show;
-    array[index] = false;
-    this.setState({
-      show: array,
-    });
+    const { dismissR } = this.props;
+    dismissR(index);
   }
 
   render() {
-    const { classes } = this.props;
-
-    const { show } = this.state;
+    const { classes, reminders } = this.props;
 
     return (
       <div className={classes.cardWrapper}>
-        {data.map((n, i) => (
-          <Card className={classes.card} key={n.seminarName} style={{ display: show[i] === false ? 'none' : undefined }}>
-            <CardContent className={classes.cardContent}>
-              <div className={classes.leftColumn}>
-                <Typography variant="subheading">
-                  {n.type}
-                </Typography>
-                <Typography variant="subheading" style={{ marginTop: '3px' }}>
-                  {n.eventName}
-                </Typography>
-                <Typography variant="body1" style={{ color: 'red', marginTop: '3px' }}>
-                  {n.Countdown}
-                </Typography>
-              </div>
-              <div className={classes.rightColumn}>
-                <Typography variant="headline" style={{ color: 'rgba(0, 0, 0, 0.54)' }}>
-                  {n.Date}
-                </Typography>
-                <Button onClick={() => this.handleClick(i)} className={classes.dismissButton}>
-                  Dismiss
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+        {
+          reminders.map((n, i) => (
+            <Card className={classes.card} key={i}>
+              <CardContent key={i} className={classes.cardContent}>
+                <div className={classes.leftColumn}>
+                  <Typography variant="subheading">
+                    {n.name}
+                  </Typography>
+                  <Typography variant="subheading" style={{ marginTop: '3px' }}>
+                    {n.event}
+                  </Typography>
+                  <Typography variant="body1" style={{ color: 'red', marginTop: '3px' }}>
+                    {n.countdown}
+                  </Typography>
+                </div>
+                <div className={classes.rightColumn}>
+                  <Typography variant="headline" style={{ color: 'rgba(0, 0, 0, 0.54)' }}>
+                    {n.date}
+                  </Typography>
+                  <Button onClick={() => this.handleClick(i)} className={classes.dismissButton}>
+                    Dismiss
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        }
       </div>
     );
   }
@@ -124,6 +105,11 @@ class ReminderPage extends React.Component {
 
 ReminderPage.propTypes = {
   classes: PropTypes.object.isRequired,
+  reminders: PropTypes.array.isRequired,
+  dismissR: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ReminderPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(ReminderPage));

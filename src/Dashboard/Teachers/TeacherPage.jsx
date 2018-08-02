@@ -123,7 +123,7 @@ class TeacherPage extends React.Component {
 
 TeacherPage.propTypes = {
   classes: PropTypes.object.isRequired,
-  teachers: PropTypes.object.isRequired,
+  teachers: PropTypes.array.isRequired,
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(TeacherPage));
