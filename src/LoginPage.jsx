@@ -103,6 +103,7 @@ class LoginPage extends React.Component {
   }
 
   componentWillReceiveProps = (props) => {
+    console.log(props);
     if (props.auth === true) {
       props.history.push('/dashboard');
     }
