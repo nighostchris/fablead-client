@@ -11,3 +11,7 @@ export const DISMISS_ALL_REMINDER = 'DISMISS_ALL_REMINDER';
 export const GET_SEMINAR = 'GET_SEMINAR';
 export const ADD_SEMINAR = 'ADD_SEMINAR';
 export const CHANGE_TAB = 'CHANGE_TAB';
+export const GET_TOKEN = 'GET_TOKEN';
+export const VERIFY_TOKEN = 'VERIFY_TOKEN';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';

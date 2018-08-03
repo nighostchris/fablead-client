@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import compose from 'recompose/compose';
-import { Redirect } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import withWidth from '@material-ui/core/withWidth';
+
+import { login, verifyToken } from './Redux/Action/authAction';
 
 const styles = theme => ({
   root: {
@@ -72,17 +72,41 @@ const styles = theme => ({
   },
 });
 
+const mapStateToProps = state => ({
+  auth: state.authReducer.auth,
+});
+
+const mapDispatchToProps = dispatch => ({
+  loginP: (username, password) => dispatch(login(username, password)),
+  verifyT: token => dispatch(verifyToken(token)),
+});
+
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userIdValue: '',
-      passwordValue: '',
-      redirect: false,
+      username: '',
+      password: '',
     };
 
     this.handleLoginButtonClick = this.handleLoginButtonClick.bind(this);
   }
+
+  componentWillMount() {
+    const { auth, history, verifyT } = this.props;
+
+    verifyT(localStorage.getItem('access_token'));
+
+    if (auth === true) {
+      history.push('/dashboard');
+    }
+  }
+
+  componentWillReceiveProps = (props) => {
+    if (props.auth === true) {
+      props.history.push('/dashboard');
+    }
+  };
 
   handleTextFieldChange = name => (event) => {
     this.setState({
@@ -91,26 +115,28 @@ class LoginPage extends React.Component {
   };
 
   handleLoginButtonClick() {
-    if (this.state.userIdValue !== '' && this.state.passwordValue !== '') this.setState({ redirect: true });
+    const { username, password } = this.state;
+    const { loginP } = this.props;
+    loginP(username, password);
+    this.setState({
+      username: '',
+      password: '',
+    });
   }
 
   render() {
     const { classes } = this.props;
 
-    if (this.state.redirect) {
-      return (
-        <Redirect to="/dashboard" />
-      );
-    }
+    const { username, password } = this.state;
 
     return (
       <div className={classes.root}>
         <Button variant="fab" color="secondary" aria-label="help" className={classes.helpButton}>
-?
+          ?
         </Button>
         <div className={classes.titleContainer}>
           <Typography variant="display4" gutterBottom className={classes.title}>
-Fablead
+            Fablead
           </Typography>
         </div>
 
@@ -121,22 +147,29 @@ Fablead
               id="userid"
               placeholder="User ID"
               margin="normal"
+              value={username}
               className={classes.inputField}
-              onChange={this.handleTextFieldChange('userIdValue')}
+              onChange={this.handleTextFieldChange('username')}
             />
             <TextField
               id="password"
               placeholder="Password"
               type="password"
               margin="normal"
+              value={password}
               className={classes.inputField}
-              onChange={this.handleTextFieldChange('passwordValue')}
+              onChange={this.handleTextFieldChange('password')}
             />
           </Grid>
           <Grid item xs={3} md={4} />
 
           <Grid item xs={12}>
-            <Button color="secondary" className={classes.loginButton} variant="contained" onClick={this.handleLoginButtonClick}>
+            <Button
+              color="secondary"
+              className={classes.loginButton}
+              variant="contained"
+              onClick={this.handleLoginButtonClick}
+            >
               Login
             </Button>
           </Grid>
@@ -148,10 +181,13 @@ Fablead
 
 LoginPage.propTypes = {
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
+  auth: PropTypes.bool.isRequired,
+  loginP: PropTypes.func.isRequired,
+  verifyT: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default compose(
-  withStyles(styles),
-  withWidth(),
-)(LoginPage);
+export default withStyles(styles)(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginPage));

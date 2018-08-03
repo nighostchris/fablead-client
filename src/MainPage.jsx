@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 
 import { Route, withRouter } from 'react-router-dom';
@@ -31,6 +32,9 @@ import NotesTaking from './Dashboard/Seminars/Details/NotesTaking';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
 import OnSiteTimeManagement from './Dashboard/Seminars/Details/OnSiteTimeManagement';
 
+import store from './Redux/Store/store';
+import { verifyToken } from './Redux/Action/authAction';
+
 const styles = {
   root: {
     height: 'inherit',
@@ -42,9 +46,29 @@ const styles = {
   },
 };
 
+const mapStateToProps = state => ({
+  auth: state.authReducer.auth,
+});
+
+const mapDispatchToProps = dispatch => ({
+  verifyT: token => dispatch(verifyToken(token)),
+});
+
 class MainPage extends React.Component {
+  componentWillMount() {
+    const { verifyT, history } = this.props;
+    verifyT(localStorage.getItem('access_token'));
+
+    if (store.getState().authReducer.auth === false) {
+      history.push('/');
+    }
+  }
+
   render() {
-    const { classes, location } = this.props;
+    const {
+      classes, location,
+    } = this.props;
+
     const { pathname } = location;
 
     const footerBarArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
@@ -90,6 +114,12 @@ class MainPage extends React.Component {
 MainPage.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
+  auth: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+  verifyT: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(withRouter(MainPage));
+export default withStyles(styles)(withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MainPage)));

@@ -4,6 +4,7 @@ import teacherReducer from './teacherReducer';
 import libraryReducer from './libraryReducer';
 import reminderReducer from './reminderReducer';
 import seminarReducer from './seminarReducer';
+import authReducer from './authReducer';
 
 export default combineReducers({
   messageReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   libraryReducer,
   reminderReducer,
   seminarReducer,
+  authReducer,
 });

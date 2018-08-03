@@ -342,7 +342,7 @@ HeaderBar.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   library: PropTypes.object.isRequired,
-  currentTab: PropTypes.object.isRequired,
+  currentTab: PropTypes.number.isRequired,
   changeT: PropTypes.func.isRequired,
   dismissAR: PropTypes.func.isRequired,
 };
