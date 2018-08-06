@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Card, CardMedia, Divider, IconButton, List, ListItem, ListItemText, Typography, 
 } from '@material-ui/core';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+
+import { logout } from './Redux/Action/authAction';
 
 const styles = theme => ({
   root: {
@@ -44,7 +47,23 @@ const styles = theme => ({
   },
 });
 
+const mapDispatchToProps = dispatch => ({
+  logoutP: () => dispatch(logout),
+});
+
 class Setting extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout() {
+    const { logoutP, history } = this.props;
+    logoutP();
+    history.push('/');
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -68,7 +87,11 @@ class Setting extends React.Component {
             </IconButton>
           </ListItem>
           <Divider inset component="li" className={classes.divider} />
-          <ListItem button className={classes.libraryCard}>
+          <ListItem
+            button
+            className={classes.libraryCard}
+            onClick={this.handleLogout}
+          >
             <ListItemText className={classes.libraryText} primary="Logout" />
           </ListItem>
         </List>
@@ -79,6 +102,8 @@ class Setting extends React.Component {
 
 Setting.propTypes = {
   classes: PropTypes.object.isRequired,
+  logoutP: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Setting);
+export default connect(null, mapDispatchToProps)(withStyles(styles)(Setting));

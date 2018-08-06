@@ -55,7 +55,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class MainPage extends React.Component {
-  componentWillMount() {
+  componentWillUpdate() {
     const { verifyT, history } = this.props;
     verifyT(localStorage.getItem('access_token'));
 

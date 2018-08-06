@@ -14,7 +14,7 @@ const authReducer = (state = initialState, action) => {
       if (localStorage.getItem('access_token') !== null) {
         return { auth: true };
       }
-      return state;
+      return { auth: false };
     case LOGIN_SUCCESS:
       return { auth: true };
     case LOGIN_FAILURE:
