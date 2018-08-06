@@ -77,7 +77,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginP: (username, password) => dispatch(login(username, password)),
+  loginP: (id, pw) => dispatch(login(id, pw)),
   verifyT: token => dispatch(verifyToken(token)),
 });
 
@@ -103,7 +103,6 @@ class LoginPage extends React.Component {
   }
 
   componentWillReceiveProps = (props) => {
-    console.log(props);
     if (props.auth === true) {
       props.history.push('/dashboard');
     }

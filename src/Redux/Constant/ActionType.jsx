@@ -13,5 +13,6 @@ export const ADD_SEMINAR = 'ADD_SEMINAR';
 export const CHANGE_TAB = 'CHANGE_TAB';
 export const GET_TOKEN = 'GET_TOKEN';
 export const VERIFY_TOKEN = 'VERIFY_TOKEN';
-export const LOGIN = 'LOGIN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
