@@ -8,7 +8,6 @@ import store from './Redux/Store/store';
 
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
-import SeatMap from './Seminar/SeatMap';
 
 const theme = createMuiTheme({
   palette: {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Card, CardMedia, Divider, IconButton, List, ListItem, ListItemText, Typography, 
+  Card, CardMedia, Divider, IconButton, List, ListItem, ListItemText, Typography,
 } from '@material-ui/core';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 

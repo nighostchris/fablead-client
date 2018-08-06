@@ -13,34 +13,18 @@ import { login, verifyToken } from './Redux/Action/authAction';
 const styles = theme => ({
   root: {
     height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
     margin: '0 auto',
     textAlign: 'center',
-  },
-  titleContainer: {
     display: 'flex',
-    flexFlow: 'column',
-    [theme.breakpoints.up('md')]: {
-      flex: 0.75,
-      alignItems: 'center',
-    },
-    [theme.breakpoints.down('sm')]: {
-      flex: 0.5,
-      alignContent: 'flex-end',
-      justifyContent: 'flex-end',
-    },
-    justifyContent: 'center',
+    flexDirection: 'column',
   },
   grid: {
     [theme.breakpoints.up('md')]: {
       flex: 0.25,
     },
     [theme.breakpoints.down('sm')]: {
-      flex: 0.5,
+      flex: 0.25,
     },
-    minHeight: '256px',
-    paddingBottom: '128px',
   },
   inputFieldsContainer: {
     display: 'flex',
@@ -53,22 +37,42 @@ const styles = theme => ({
     color: 'grey',
   },
   title: {
-    color: theme.palette.primary.dark,
+    color: theme.palette.primary.main,
+    fontWeight: '600',
+    fontSize: '82px',
+    letterSpacing: '0px',
+  },
+  titleContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      flex: 0.75,
+      alignItems: 'center',
+    },
+    [theme.breakpoints.down('sm')]: {
+      flex: 0.4,
+      alignContent: 'flex-end',
+      justifyContent: 'flex-end',
+    },
+    justifyContent: 'center',
   },
   helpButton: {
+    backgroundColor: theme.palette.primary.main,
     fontSize: '28px',
     position: 'absolute',
-    right: '30px',
-    marginRight: '30px',
-    marginTop: '30px',
+    right: '0px',
+    marginRight: '20px',
+    marginTop: '10px',
+    width: '42px',
+    height: '42px',
   },
   loginButton: {
     marginTop: '40px',
     fontSize: '16px',
     borderRadius: '30px',
-    paddingTop: '10px',
-    paddingBottom: '10px',
-    width: '17em',
+    paddingTop: '20px',
+    paddingBottom: '20px',
+    width: '350px',
   },
 });
 
@@ -131,24 +135,33 @@ class LoginPage extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Button variant="fab" color="secondary" aria-label="help" className={classes.helpButton}>
+        <Button
+          variant="fab"
+          color="secondary"
+          aria-label="help"
+          className={classes.helpButton}
+        >
           ?
         </Button>
         <div className={classes.titleContainer}>
-          <Typography variant="display4" gutterBottom className={classes.title}>
+          <Typography
+            variant="display4"
+            gutterBottom
+            className={classes.title}
+          >
             Fablead
           </Typography>
         </div>
-
         <Grid container className={classes.grid}>
-          <Grid item xs={3} md={4} />
-          <Grid item xs={6} md={4} className={classes.inputFieldsContainer}>
+          <Grid item xs={2} md={4} />
+          <Grid item xs={8} md={4} className={classes.inputFieldsContainer}>
             <TextField
               id="userid"
               placeholder="User ID"
               margin="normal"
               value={username}
               className={classes.inputField}
+              style={{ marginBottom: '16px' }}
               onChange={this.handleTextFieldChange('username')}
             />
             <TextField
@@ -161,8 +174,7 @@ class LoginPage extends React.Component {
               onChange={this.handleTextFieldChange('password')}
             />
           </Grid>
-          <Grid item xs={3} md={4} />
-
+          <Grid item xs={2} md={4} />
           <Grid item xs={12}>
             <Button
               color="secondary"
