@@ -7,6 +7,7 @@ import {
 import {
   KeyboardArrowRight, PanoramaFishEye as Circle, Check,
 } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   eventWrapper: {
@@ -70,7 +71,11 @@ class EventPreparation extends React.Component {
                 <Typography variant="subheading">
                   {d[2]}
                 </Typography>
-                <IconButton style={{ width: '40px', height: '40px' }}>
+                <IconButton
+                  style={{ width: '40px', height: '40px' }}
+                  component={Link}
+                  to={i === data.length - 1 ? '/seatingplan' : '/eventppt'}
+                >
                   <KeyboardArrowRight className={classes.enterButton} />
                 </IconButton>
               </ListItem>

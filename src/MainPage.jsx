@@ -32,6 +32,7 @@ import NotesTaking from './Dashboard/Seminars/Details/NotesTaking';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
 import OnSiteTimeManagement from './Dashboard/Seminars/Details/OnSiteTimeManagement';
 import ScanQRCode from './Dashboard/Seminars/Details/ScanQRCode';
+import SeatingPlan from './Dashboard/Seminars/Details/SeatingPlan';
 
 import store from './Redux/Store/store';
 import { verifyToken } from './Redux/Action/authAction';
@@ -84,7 +85,7 @@ class MainPage extends React.Component {
           style={{
             top: seminarArray.includes(pathname) ? '112px' : undefined,
             marginBottom: pathname === '/dashboard' ? '86px'
-              : pathname === '/itinerarymgt' ? '0px' : undefined,
+              : pathname === '/itinerarymgt' || pathname === '/seatingplan' ? '0px' : undefined,
           }}
         >
           <Route path="/dashboard" component={SeminarList} />
@@ -106,6 +107,7 @@ class MainPage extends React.Component {
           <Route path="/itinerarymgt" component={ItineraryManagement} />
           <Route path="/onsitetimemgt" component={OnSiteTimeManagement} />
           <Route path="/scanqrcode" component={ScanQRCode} />
+          <Route path="/seatingplan" component={SeatingPlan} />
         </div>
         { footerBarArray.includes(pathname) ? <FooterBar /> : undefined }
       </div>
