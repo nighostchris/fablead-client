@@ -31,6 +31,7 @@ import ItineraryManagement from './Dashboard/Seminars/Details/ItineraryManagemen
 import NotesTaking from './Dashboard/Seminars/Details/NotesTaking';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
 import OnSiteTimeManagement from './Dashboard/Seminars/Details/OnSiteTimeManagement';
+import ScanQRCode from './Dashboard/Seminars/Details/ScanQRCode';
 
 import store from './Redux/Store/store';
 import { verifyToken } from './Redux/Action/authAction';
@@ -104,6 +105,7 @@ class MainPage extends React.Component {
           <Route path="/setting" component={Setting} />
           <Route path="/itinerarymgt" component={ItineraryManagement} />
           <Route path="/onsitetimemgt" component={OnSiteTimeManagement} />
+          <Route path="/scanqrcode" component={ScanQRCode} />
         </div>
         { footerBarArray.includes(pathname) ? <FooterBar /> : undefined }
       </div>

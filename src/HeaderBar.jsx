@@ -104,22 +104,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class HeaderBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dashboardValue: 0,
-    };
-  }
-
   handleChangeDashboard = (event, value) => {
     const { changeT } = this.props;
     changeT(value);
-  }
-
-  reset = () => {
-    this.setState({
-      dashboardValue: 0,
-    });
   }
 
   handleDismissAll() {
@@ -134,8 +121,6 @@ class HeaderBar extends React.Component {
 
     const { pathname } = location;
 
-    const { dashboardValue } = this.state;
-
     const settingButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
 
     const searchButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library'];
@@ -145,7 +130,7 @@ class HeaderBar extends React.Component {
 
     const backButtonArray = ['/setting', '/addseminar', '/addteacher', '/addlibrary', '/librarydetails',
       '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt', '/notestaking',
-      '/addseatingplan', '/seatmap', '/onsitetimemgt'];
+      '/addseatingplan', '/seatmap', '/onsitetimemgt', '/scanqrcode'];
 
     const editButtonArray = ['/teacher', '/reminder', '/accountmgt', '/notestaking', '/notes'];
 
@@ -173,6 +158,7 @@ class HeaderBar extends React.Component {
       '/setting': 'Setting',
       '/addlibrary': 'New Library',
       '/librarydetails': library.opened,
+      '/scanqrcode': 'Scan Account QR Code',
     };
 
     const backButtonMapping = {
@@ -188,7 +174,8 @@ class HeaderBar extends React.Component {
       '/accountmgt': '/dashboard',
       '/itinerarymgt': '/dashboard',
       '/notestaking': '/dashboard',
-      '/onsitetimemgt': 'dashboard',
+      '/onsitetimemgt': '/dashboard',
+      '/scanqrcode': '/accountmgt',
     };
 
     const addButtonMapping = {
@@ -228,7 +215,6 @@ class HeaderBar extends React.Component {
                       className={classes.topLeftButton}
                       component={Link}
                       to={backButtonMapping[pathname]}
-                      onClick={() => this.reset()}
                     >
                       <ArrowBackIcon />
                     </Button>
