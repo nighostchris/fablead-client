@@ -63,7 +63,7 @@ class BasicInfoPage extends React.Component {
             <Divider inset component="li" className={classes.divider} />
             <ListItem>
               <ListItemText primary="Teacher #1" classes={{ primary: classes.listItemLeft }} />
-              <ListItemText primary="Peter Chan" classes={{ primary: classes.listItemRight }} />
+              <ListItemText primary={data.teacher} classes={{ primary: classes.listItemRight }} />
             </ListItem>
             <Divider inset component="li" className={classes.divider} />
             <ListItem>
@@ -84,7 +84,7 @@ class BasicInfoPage extends React.Component {
             <Divider inset component="li" className={classes.divider} />
             <ListItem>
               <ListItemText primary="Location" classes={{ primary: classes.listItemLeft }} />
-              <ListItemText primary={data.Location} classes={{ primary: classes.listItemRight }} />
+              <ListItemText primary={data.location} classes={{ primary: classes.listItemRight }} />
             </ListItem>
           </List>
         </div>

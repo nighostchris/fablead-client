@@ -23,7 +23,7 @@ import LibraryDetails from './Dashboard/Library/LibraryDetails';
 import ReminderPage from './Dashboard/Reminder/ReminderPage';
 
 import BasicInfoPage from './Dashboard/Seminars/Details/BasicInfoPage';
-import EventPreparation from './Dashboard/Seminars/Details/EventPreparation';
+import EventPreparation from './Dashboard/Seminars/Details/Events/EventPreparation';
 import ClassMaterial from './Dashboard/Seminars/Details/ClassMaterial';
 import AccountManagement from './Dashboard/Seminars/Details/AccountManagement';
 import ItineraryManagement from './Dashboard/Seminars/Details/ItineraryManagement';
@@ -32,7 +32,7 @@ import NotesTaking from './Dashboard/Seminars/Details/NotesTaking';
 import AddSeatingPlan from './Seminar/AddSeatingPlan';
 import OnSiteTimeManagement from './Dashboard/Seminars/Details/OnSiteTimeManagement';
 import ScanQRCode from './Dashboard/Seminars/Details/ScanQRCode';
-import SeatingPlan from './Dashboard/Seminars/Details/SeatingPlan';
+import SeatingPlan from './Dashboard/Seminars/Details/Events/SeatingPlan';
 
 import store from './Redux/Store/store';
 import { verifyToken } from './Redux/Action/authAction';

@@ -196,7 +196,13 @@ class SeminarList extends React.Component {
               </TableHead>
               <TableBody>
                 {seminars.map((n, i) => (
-                  <TableRow className={classes.tableRow} key={i}>
+                  <TableRow
+                    className={classes.tableRow}
+                    key={i}
+                    component={Link}
+                    to="/basicinfo"
+                    onClick={() => this.handleClick(n)}
+                  >
                     <TableCell numeric>
                       {n.name}
                     </TableCell>

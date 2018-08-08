@@ -6,6 +6,8 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import DragableStudent from './DragableStudent';
+
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -85,9 +87,20 @@ const styles = theme => ({
     justifyContent: 'space-between',
   },
   dragStudent: {
-    padding: '5px 10px',
+    padding: '13px 17px',
     backgroundColor: 'yellow',
     border: '1px solid black',
+  },
+  dragList: {
+    padding: '0px',
+  },
+  dragItem: {
+    padding: '0px',
+    marginLeft: '40px',
+    marginBottom: '10px',
+  },
+  expansionPanelDetails: {
+    padding: '0px',
   },
 });
 
@@ -162,11 +175,19 @@ class SeatMap extends React.Component {
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={classes.heading}>EHE(3)</Typography>
               </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <List>
-                  <ListItem>
+              <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+                <List className={classes.dragList}>
+                  <ListItem className={classes.dragItem}>
+                    <DragableStudent name="EHE #1" />
+                  </ListItem>
+                  <ListItem className={classes.dragItem}>
                     <Typography className={classes.dragStudent}>
-                      EHE #1
+                      EHE #2
+                    </Typography>
+                  </ListItem>
+                  <ListItem className={classes.dragItem}>
+                    <Typography className={classes.dragStudent}>
+                      EHE #3
                     </Typography>
                   </ListItem>
                 </List>
