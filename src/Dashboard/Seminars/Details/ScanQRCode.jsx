@@ -10,22 +10,22 @@ const styles = theme => ({
   qrreader: {
     '& > section': {
       '& > div': {
-        height: '730px !important',
-        borderTop: '160px solid rgba(0, 0, 0, 0.3) !important',
-        borderBottom: '225px solid rgba(0, 0, 0, 0.3) !important',
+        height: '100vh !important',
+        borderTop: '15vh solid rgba(0, 0, 0, 0.3) !important',
+        borderBottom: '30vh solid rgba(0, 0, 0, 0.3) !important',
       },
       '& > video': {
-        height: '730px !important',
+        height: '100vh !important',
       },
     },
   },
   resultText: {
-    position: 'relative',
+    position: 'fixed',
     left: 'calc((100% - 275px)/2)',
     zIndex: '1',
     fontSize: '30px',
     color: 'white',
-    marginTop: '90px',
+    bottom: '70px',
   },
 });
 

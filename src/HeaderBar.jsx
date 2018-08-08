@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import {
   Add as AddIcon, ArrowBack as ArrowBackIcon, Search as SearchIcon, Settings as SettingIcon,
-  KeyboardArrowRight, Sort as SortIcon,
+  KeyboardArrowRight, Sort as SortIcon, CenterFocusStrong as QRCodeIcon,
 } from '@material-ui/icons';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -44,9 +44,18 @@ const styles = theme => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
-  searchButton: {
+  qrcodeButton: {
     position: 'absolute',
     right: '64px',
+    padding: '0px',
+    minWidth: '0px',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+  searchButton: {
+    position: 'absolute',
     padding: '0px',
     minWidth: '0px',
     color: 'white',
@@ -123,10 +132,10 @@ class HeaderBar extends React.Component {
 
     const settingButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/reminder'];
 
-    const searchButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library'];
+    const searchButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/accountmgt'];
 
     const addButtonArray = ['/dashboard', '/scheduling', '/teacher', '/library', '/eventppt', '/classmaterial',
-      '/accountmgt', '/librarydetails', '/notestaking'];
+      '/librarydetails', '/notestaking'];
 
     const backButtonArray = ['/setting', '/addseminar', '/addteacher', '/addlibrary', '/librarydetails',
       '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt', '/notestaking',
@@ -243,7 +252,12 @@ class HeaderBar extends React.Component {
               {
                 searchButtonArray.includes(pathname)
                   ? (
-                    <Button className={classes.searchButton}>
+                    <Button
+                      className={classes.searchButton}
+                      style={{
+                        right: pathname === '/accountmgt' ? '20px' : '64px',
+                      }}
+                    >
                       <SearchIcon />
                     </Button>
                   ) : undefined
@@ -257,6 +271,18 @@ class HeaderBar extends React.Component {
                       to={addButtonMapping[pathname]}
                     >
                       <AddIcon />
+                    </Button>
+                  ) : undefined
+              }
+              {
+                pathname === '/accountmgt'
+                  ? (
+                    <Button
+                      className={classes.qrcodeButton}
+                      component={Link}
+                      to="/scanqrcode"
+                    >
+                      <QRCodeIcon />
                     </Button>
                   ) : undefined
               }
