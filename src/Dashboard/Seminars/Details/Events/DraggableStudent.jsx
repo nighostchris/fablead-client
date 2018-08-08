@@ -1,18 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { DragSource } from 'react-dnd';
 import {
   Typography,
 } from '@material-ui/core';
-
-const styles = theme => ({
-  dragStudent: {
-    padding: '13px 17px',
-    backgroundColor: 'yellow',
-    border: '1px solid black',
-  },
-});
 
 const studentSource = {
   beginDrag(props) {
@@ -28,15 +19,23 @@ function collect(connect, monitor) {
 }
 
 class DraggableStudent extends React.Component {
+  componentWillMount() {
+    console.log('mounting');
+  }
+
   render() {
     const {
-      connectDragSource, isDragging, classes, name,
+      connectDragSource, isDragging, name,
     } = this.props;
 
     return connectDragSource(
       <Typography
-        className={classes.dragStudent}
-        style={{ opacity: isDragging ? 0.5 : 1 }}
+        style={{
+          opacity: isDragging ? 0.5 : 1,
+          padding: '13px 17px',
+          backgroundColor: 'yellow',
+          border: '1px solid black',
+        }}
       >
         {name}
       </Typography>,
@@ -45,10 +44,9 @@ class DraggableStudent extends React.Component {
 }
 
 DraggableStudent.propTypes = {
-  classes: PropTypes.object.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
 };
 
-export default DragSource('student', studentSource, collect)(withStyles(styles)(DraggableStudent));
+export default DragSource('student', studentSource, collect)(DraggableStudent);

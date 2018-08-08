@@ -6,58 +6,14 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import DragableStudent from './DragableStudent';
+import DraggableStudent from './DraggableStudent';
+import SeatBoard from './SeatBoard';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
     height: 'calc(100vh - 64px)',
-  },
-  title: {
-    marginTop: '15px',
-    marginBottom: '15px',
-    fontWeight: 'bold',
-    fontSize: '20px',
-  },
-  seatmapWrapper: {
-    flex: '1',
-    flexGrow: '23',
-    borderLeft: '2px solid rgba(0, 0, 0, 0.1)',
-    height: '100%',
-    textAlign: 'center',
-    backgroundColor: 'white',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  seatmap: {
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  seatCombine: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginBottom: '5px',
-  },
-  seat: {
-    fontSize: '18px',
-    fontWeight: 'bold',
-    border: '1px solid black',
-    borderRight: '0px',
-    padding: '10px 35px',
-  },
-  seatEnd: {
-    fontSize: '18px',
-    fontWeight: 'bold',
-    border: '1px solid black',
-    padding: '10px 35px',
-  },
-  expansionWrapper: {
   },
   expansionPanel: {
     boxShadow: 'unset',
@@ -68,8 +24,6 @@ const styles = theme => ({
   heading: {
     fontSize: '18px',
     marginLeft: '15px',
-  },
-  bottomBar: {
   },
   bottomButton: {
     width: '50%',
@@ -122,47 +76,6 @@ class SeatMap extends React.Component {
     const { classes } = this.props;
     const { expanded } = this.state;
 
-    const rowNumber = 9;
-    const distribution = [2, 2, 2, 2];
-    const row = [];
-    const pairs = [];
-    const alphabetList = [];
-    for (let i = 'A'.charCodeAt(0), j = 'Z'.charCodeAt(0); i <= j; i += 1) {
-      alphabetList.push(String.fromCharCode(i));
-    }
-
-    let counter = 0;
-    for (let i = 0; i < distribution.length; i += 1) {
-      const dummy = [];
-      for (let j = 0; j < distribution[i]; j += 1) {
-        dummy.push(
-          <Typography variant="body1" className={j === distribution[0] - 1 ? classes.seatEnd : classes.seat}>
-            {alphabetList[counter]}
-          </Typography>
-        );
-        counter += 1;
-      }
-      pairs.push(
-        <div className={classes.seatCombine} style={{ marginRight: '10px' }}>
-          {dummy}
-        </div>
-      );
-    }
-
-    for (let i = rowNumber; i > 0; i -= 1) {
-      row.push(
-        <div key={i} className={classes.row}>
-          <Typography variant="body1" style={{ marginRight: '30px', marginBottom: '5px' }}>
-            {i}
-          </Typography>
-          {pairs}
-          <Typography variant="body1" style={{ marginLeft: '20px', marginBottom: '5px' }}>
-            {i}
-          </Typography>
-        </div>
-      );
-    }
-
     return (
       <div className={classes.root}>
         <div className={classes.leftColumn}>
@@ -178,17 +91,13 @@ class SeatMap extends React.Component {
               <ExpansionPanelDetails className={classes.expansionPanelDetails}>
                 <List className={classes.dragList}>
                   <ListItem className={classes.dragItem}>
-                    <DragableStudent name="EHE #1" />
+                    <DraggableStudent name="EHE #1" />
                   </ListItem>
                   <ListItem className={classes.dragItem}>
-                    <Typography className={classes.dragStudent}>
-                      EHE #2
-                    </Typography>
+                    <DraggableStudent name="EHE #2" />
                   </ListItem>
                   <ListItem className={classes.dragItem}>
-                    <Typography className={classes.dragStudent}>
-                      EHE #3
-                    </Typography>
+                    <DraggableStudent name="EHE #3" />
                   </ListItem>
                 </List>
               </ExpansionPanelDetails>
@@ -233,12 +142,10 @@ class SeatMap extends React.Component {
             </Button>
           </div>
         </div>
-        <div className={classes.seatmapWrapper}>
-          <Typography variant="body1" className={classes.title}>1+2號廳 三投2人 座位圖 (143人)</Typography>
-          <div className={classes.seatmap}>
-            {row}
-          </div>
-        </div>
+        <SeatBoard
+          rowNumber={9}
+          distribution={[2, 2, 2, 2]}
+        />
       </div>
     );
   }
