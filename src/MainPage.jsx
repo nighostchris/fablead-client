@@ -33,6 +33,7 @@ import AddSeatingPlan from './Seminar/AddSeatingPlan';
 import OnSiteTimeManagement from './Dashboard/Seminars/Details/OnSiteTimeManagement';
 import ScanQRCode from './Dashboard/Seminars/Details/ScanQRCode';
 import SeatingPlan from './Dashboard/Seminars/Details/Events/SeatingPlan';
+import AccountDetails from './Dashboard/Seminars/Details/AccountDetails';
 
 import store from './Redux/Store/store';
 import { verifyToken } from './Redux/Action/authAction';
@@ -108,6 +109,7 @@ class MainPage extends React.Component {
           <Route path="/onsitetimemgt" component={OnSiteTimeManagement} />
           <Route path="/scanqrcode" component={ScanQRCode} />
           <Route path="/seatingplan" component={SeatingPlan} />
+          <Route path="/accountdetails" component={AccountDetails} />
         </div>
         { footerBarArray.includes(pathname) ? <FooterBar /> : undefined }
       </div>

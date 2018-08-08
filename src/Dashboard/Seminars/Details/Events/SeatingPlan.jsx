@@ -1,29 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Button, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, List, ListItem, Typography,
+  Button,
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import DraggableStudent from './DraggableStudent';
 import SeatBoard from './SeatBoard';
+import StudentContainer from './StudentContainer';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
     height: 'calc(100vh - 64px)',
-  },
-  expansionPanel: {
-    boxShadow: 'unset',
-    '&:nth-of-type(even)': {
-      backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    },
-  },
-  heading: {
-    fontSize: '18px',
-    marginLeft: '15px',
   },
   bottomButton: {
     width: '50%',
@@ -40,96 +31,16 @@ const styles = theme => ({
     flexGrow: '11',
     justifyContent: 'space-between',
   },
-  dragStudent: {
-    padding: '13px 17px',
-    backgroundColor: 'yellow',
-    border: '1px solid black',
-  },
-  dragList: {
-    padding: '0px',
-  },
-  dragItem: {
-    padding: '0px',
-    marginLeft: '40px',
-    marginBottom: '10px',
-  },
-  expansionPanelDetails: {
-    padding: '0px',
-  },
 });
 
 class SeatMap extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      expanded: null,
-    };
-  }
-
-  handleChange = panel => (event, expanded) => {
-    this.setState({
-      expanded: expanded ? panel : false,
-    });
-  };
-
   render() {
     const { classes } = this.props;
-    const { expanded } = this.state;
 
     return (
       <div className={classes.root}>
         <div className={classes.leftColumn}>
-          <div className={classes.expansionWrapper}>
-            <ExpansionPanel
-              expanded={expanded === 'panel1'}
-              onChange={this.handleChange('panel1')}
-              className={classes.expansionPanel}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>EHE(3)</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-                <List className={classes.dragList}>
-                  <ListItem className={classes.dragItem}>
-                    <DraggableStudent name="EHE #1" />
-                  </ListItem>
-                  <ListItem className={classes.dragItem}>
-                    <DraggableStudent name="EHE #2" />
-                  </ListItem>
-                  <ListItem className={classes.dragItem}>
-                    <DraggableStudent name="EHE #3" />
-                  </ListItem>
-                </List>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel
-              expanded={expanded === 'panel2'}
-              onChange={this.handleChange('panel2')}
-              className={classes.expansionPanel}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>MsShe(5)</Typography>
-              </ExpansionPanelSummary>
-            </ExpansionPanel>
-            <ExpansionPanel
-              expanded={expanded === 'panel3'}
-              onChange={this.handleChange('panel3')}
-              className={classes.expansionPanel}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>V-MEN(2)</Typography>
-              </ExpansionPanelSummary>
-            </ExpansionPanel>
-            <ExpansionPanel
-              expanded={expanded === 'panel4'}
-              onChange={this.handleChange('panel4')}
-              className={classes.expansionPanel}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>ZUEE(3)</Typography>
-              </ExpansionPanelSummary>
-            </ExpansionPanel>
-          </div>
+          <StudentContainer />
           <div className={classes.bottomBar}>
             <Button className={classes.bottomButton}>
               重置排列
@@ -143,7 +54,8 @@ class SeatMap extends React.Component {
           </div>
         </div>
         <SeatBoard
-          rowNumber={9}
+          rowNumber={3}
+          columnNumber={8}
           distribution={[2, 2, 2, 2]}
         />
       </div>
@@ -155,4 +67,4 @@ SeatMap.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SeatMap);
+export default DragDropContext(HTML5Backend)(withStyles(styles)(SeatMap));

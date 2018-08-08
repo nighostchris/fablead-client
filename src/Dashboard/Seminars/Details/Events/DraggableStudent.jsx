@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
 import { DragSource } from 'react-dnd';
 import {
   Typography,
@@ -7,7 +8,11 @@ import {
 
 const studentSource = {
   beginDrag(props) {
-    return {};
+    const { name } = props;
+    return {
+      color: 'yellow',
+      studentName: name,
+    };
   },
 };
 
@@ -19,16 +24,12 @@ function collect(connect, monitor) {
 }
 
 class DraggableStudent extends React.Component {
-  componentWillMount() {
-    console.log('mounting');
-  }
-
   render() {
     const {
       connectDragSource, isDragging, name,
     } = this.props;
 
-    return connectDragSource(
+    return (
       <Typography
         style={{
           opacity: isDragging ? 0.5 : 1,
@@ -36,9 +37,10 @@ class DraggableStudent extends React.Component {
           backgroundColor: 'yellow',
           border: '1px solid black',
         }}
+        ref={instance => connectDragSource(findDOMNode(instance))}
       >
         {name}
-      </Typography>,
+      </Typography>
     );
   }
 }

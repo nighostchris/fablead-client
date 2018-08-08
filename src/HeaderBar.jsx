@@ -139,7 +139,7 @@ class HeaderBar extends React.Component {
 
     const backButtonArray = ['/setting', '/addseminar', '/addteacher', '/addlibrary', '/librarydetails',
       '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt', '/notestaking',
-      '/addseatingplan', '/seatmap', '/onsitetimemgt', '/scanqrcode', '/seatingplan'];
+      '/addseatingplan', '/seatmap', '/onsitetimemgt', '/scanqrcode', '/seatingplan', '/accountdetails'];
 
     const editButtonArray = ['/teacher', '/reminder', '/accountmgt', '/notestaking', '/notes'];
 
@@ -169,6 +169,7 @@ class HeaderBar extends React.Component {
       '/librarydetails': library.opened,
       '/scanqrcode': 'Scan Account QR Code',
       '/seatingplan': '學員座位表',
+      '/accountdetails': 'Student Name',
     };
 
     const backButtonMapping = {
@@ -187,6 +188,7 @@ class HeaderBar extends React.Component {
       '/onsitetimemgt': '/dashboard',
       '/scanqrcode': '/accountmgt',
       '/seatingplan': '/eventppt',
+      '/accountdetails': '/accountmgt',
     };
 
     const addButtonMapping = {
