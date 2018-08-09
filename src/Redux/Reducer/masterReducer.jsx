@@ -6,6 +6,7 @@ import reminderReducer from './reminderReducer';
 import seminarReducer from './seminarReducer';
 import authReducer from './authReducer';
 import seatMapReducer from './seatMapReducer';
+import studentContainerReducer from './studentContainerReducer';
 
 export default combineReducers({
   messageReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   seminarReducer,
   authReducer,
   seatMapReducer,
+  studentContainerReducer,
 });

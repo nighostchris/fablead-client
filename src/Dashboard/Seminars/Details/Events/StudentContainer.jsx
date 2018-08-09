@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
   ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, List, ListItem, Typography,
@@ -29,6 +30,10 @@ const styles = ({
   },
 });
 
+const mapStateToProps = state => ({
+  companies: state.studentContainerReducer.companies,
+});
+
 class StudentContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -44,32 +49,43 @@ class StudentContainer extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, companies } = this.props;
 
     const { expanded } = this.state;
 
     return (
       <div>
-        <ExpansionPanel
-          expanded={expanded === 'panel1'}
-          onChange={this.handleChange('panel1')}
-          className={classes.expansionPanel}
-        >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.panelTitle}>
-              EHE(3)
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classes.zeroPadding}>
-            <List className={classes.zeroPadding}>
-              <ListItem className={classes.listItem}>
-                <DraggableStudent
-                  name="EHE #1"
-                />
-              </ListItem>
-            </List>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+        {
+          companies.map((company, index) => (
+            <ExpansionPanel
+              expanded={expanded === company.name}
+              onChange={this.handleChange(company.name)}
+              className={classes.expansionPanel}
+            >
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography className={classes.panelTitle}>
+                  {
+                    `${company.name}(${company.count})`
+                  }
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails className={classes.zeroPadding}>
+                <List className={classes.zeroPadding}>
+                  {
+                    company.seatno.map((student, i) => (
+                      <ListItem className={classes.listItem}>
+                        <DraggableStudent
+                          name={`${company.name} #${i + 1}`}
+                          bColor={company.color}
+                        />
+                      </ListItem>
+                    ))
+                  }
+                </List>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          ))
+        }
       </div>
     );
   }
@@ -77,6 +93,9 @@ class StudentContainer extends React.Component {
 
 StudentContainer.propTypes = {
   classes: PropTypes.object.isRequired,
+  companies: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(StudentContainer);
+export default withStyles(styles)(connect(
+  mapStateToProps,
+)(StudentContainer));

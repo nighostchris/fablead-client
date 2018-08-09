@@ -30,7 +30,7 @@ function collect(connect, monitor) {
 class DraggableStudent extends React.Component {
   render() {
     const {
-      connectDragSource, isDragging, name,
+      connectDragSource, isDragging, name, bColor,
     } = this.props;
 
     return (
@@ -38,7 +38,7 @@ class DraggableStudent extends React.Component {
         style={{
           opacity: isDragging ? 0.5 : 1,
           padding: '13px 17px',
-          backgroundColor: 'yellow',
+          backgroundColor: bColor,
           border: '1px solid black',
         }}
         ref={instance => connectDragSource(findDOMNode(instance))}
@@ -53,6 +53,7 @@ DraggableStudent.propTypes = {
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
+  bColor: PropTypes.string.isRequired,
 };
 
 export default DragSource('student', studentSource, collect)(DraggableStudent);
