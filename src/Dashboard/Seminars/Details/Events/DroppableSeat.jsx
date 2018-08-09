@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect as conn } from 'react-redux';
 import { findDOMNode } from 'react-dom';
+import { connect as conn } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import {
   Typography,
@@ -12,16 +12,9 @@ import { updateName, updateColor } from '../../../../Redux/Action/seatMapAction'
 const seatTarget = {
   drop(props, monitor, component) {
     const { color, studentName } = monitor.getItem();
-    console.log(props);
     const { updateN, updateC, id } = component.props;
-    console.log(component);
     updateN(id, studentName);
     updateC(id, color);
-    component.setState({
-      size: '14px',
-      weight: 'unset',
-      pad: '13px 16.875px',
-    });
   },
 };
 
@@ -42,49 +35,40 @@ function collect(connect, monitor) {
 }
 
 class DroppableSeat extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      size: '18px',
-      weight: 'bold',
-      pad: '10px 35px',
-    };
-  }
-
   render() {
     const {
       connectDropTarget, isOver, isEnd, seats, id,
     } = this.props;
 
-    console.log(this.props);
-
-    const {
-      size, weight, pad,
-    } = this.state;
-
     return (
-      <Typography
-        variant="body1"
-        style={{
-          fontSize: size,
-          fontWeight: weight,
-          border: '1px solid black',
-          padding: pad,
-          backgroundColor: seats[id].color,
-          borderRight: isEnd ? '1px solid black' : '0px',
-        }}
-        ref={instance => connectDropTarget(findDOMNode(instance))}
+      <div
+        key={id}
+        style={{ width: '80px' }}
       >
-        {seats[id].studentName}
-      </Typography>
+        <Typography
+          variant="body1"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: seats[id].studentName.length === 1 ? '18px' : '14px',
+            fontWeight: seats[id].studentName.length === 1 ? 'bold' : 'unset',
+            border: '1px solid black',
+            height: '46px',
+            backgroundColor: seats[id].color,
+            borderRight: isEnd ? '1px solid black' : '0px',
+          }}
+          ref={instance => connectDropTarget(findDOMNode(instance))}
+        >
+          {seats[id].studentName}
+        </Typography>
+      </div>
     );
   }
 }
 
 DroppableSeat.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
-  updateN: PropTypes.func.isRequired,
-  updateC: PropTypes.func.isRequired,
   isOver: PropTypes.bool.isRequired,
   isEnd: PropTypes.bool.isRequired,
   id: PropTypes.number.isRequired,

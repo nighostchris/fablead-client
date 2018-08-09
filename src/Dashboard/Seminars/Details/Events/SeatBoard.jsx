@@ -69,7 +69,10 @@ class SeatBoard extends React.Component {
           id += 1;
         }
         pairs.push(
-          <div className={classes.pairs}>
+          <div
+            key={i * j}
+            className={classes.pairs}
+          >
             {dummy}
           </div>,
         );

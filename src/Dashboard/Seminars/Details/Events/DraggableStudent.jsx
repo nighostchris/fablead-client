@@ -14,6 +14,10 @@ const studentSource = {
       studentName: name,
     };
   },
+
+  endDrag(props, monitor, component) {
+    console.log(monitor.didDrop());
+  },
 };
 
 function collect(connect, monitor) {
