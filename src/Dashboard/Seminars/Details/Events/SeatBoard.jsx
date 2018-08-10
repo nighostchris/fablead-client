@@ -62,7 +62,7 @@ class SeatBoard extends React.Component {
             <DroppableSeat
               isEnd={k === distribution[0] - 1}
               name={alphabetList[counter]}
-              id={id}
+              id={`${i}${alphabetList[counter]}`}
             />,
           );
           counter += 1;

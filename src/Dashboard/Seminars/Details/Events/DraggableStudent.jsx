@@ -8,9 +8,9 @@ import {
 
 const studentSource = {
   beginDrag(props) {
-    const { name } = props;
+    const { name, bColor } = props;
     return {
-      color: 'yellow',
+      color: bColor,
       studentName: name,
     };
   },

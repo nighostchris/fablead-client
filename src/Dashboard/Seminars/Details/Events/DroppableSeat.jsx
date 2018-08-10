@@ -8,13 +8,22 @@ import {
 } from '@material-ui/core';
 
 import { updateName, updateColor } from '../../../../Redux/Action/seatMapAction';
+import { updateSeatNo } from '../../../../Redux/Action/studentContainerAction';
 
 const seatTarget = {
   drop(props, monitor, component) {
     const { color, studentName } = monitor.getItem();
-    const { updateN, updateC, id } = component.props;
+    
+    const {
+      updateN, updateC, updateSN, id,
+    } = component.props;
     updateN(id, studentName);
     updateC(id, color);
+    updateSN(
+      studentName.substr(0, studentName.indexOf(' ')),
+      parseInt(studentName.substr(studentName.length - 1), 10) - 1,
+      id,
+    );
   },
 };
 
@@ -25,6 +34,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateN: (id, name) => dispatch(updateName(id, name)),
   updateC: (id, color) => dispatch(updateColor(id, color)),
+  updateSN: (companyName, id, seatno) => dispatch(updateSeatNo(companyName, id, seatno)),
 });
 
 function collect(connect, monitor) {
@@ -71,8 +81,8 @@ DroppableSeat.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   isOver: PropTypes.bool.isRequired,
   isEnd: PropTypes.bool.isRequired,
-  id: PropTypes.number.isRequired,
-  seats: PropTypes.array.isRequired,
+  id: PropTypes.string.isRequired,
+  seats: PropTypes.object.isRequired,
 };
 
 export default conn(mapStateToProps, mapDispatchToProps)(

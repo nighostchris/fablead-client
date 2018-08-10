@@ -11,6 +11,7 @@ import DraggableStudent from './DraggableStudent';
 
 const styles = ({
   expansionPanel: {
+    width: '100%',
     boxShadow: 'unset',
     '&:nthOfType(even)': {
       backgroundColor: 'rgba(0, 0, 0, 0.05)',
@@ -22,11 +23,16 @@ const styles = ({
   },
   zeroPadding: {
     padding: '0px',
+    width: '100%',
   },
   listItem: {
     padding: '0px',
     marginLeft: '40px',
     marginBottom: '10px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
   },
 });
 
@@ -51,12 +57,14 @@ class StudentContainer extends React.Component {
   render() {
     const { classes, companies } = this.props;
 
+    console.log(companies);
+
     const { expanded } = this.state;
 
     return (
       <div>
         {
-          companies.map((company, index) => (
+          companies.map(company => (
             <ExpansionPanel
               expanded={expanded === company.name}
               onChange={this.handleChange(company.name)}
@@ -72,12 +80,15 @@ class StudentContainer extends React.Component {
               <ExpansionPanelDetails className={classes.zeroPadding}>
                 <List className={classes.zeroPadding}>
                   {
-                    company.seatno.map((student, i) => (
+                    company.seatno.map((student, index) => (
                       <ListItem className={classes.listItem}>
                         <DraggableStudent
-                          name={`${company.name} #${i + 1}`}
+                          name={`${company.name} #${index + 1}`}
                           bColor={company.color}
                         />
+                        <Typography variant="subheading">
+                          {student}
+                        </Typography>
                       </ListItem>
                     ))
                   }

@@ -4,10 +4,18 @@ import {
 
 const initialState = {
   companies: [
-    { name: 'EHE', count: 3, color: 'yellow', seatno: [-1, -1, -1] },
-    { name: 'MsShe', count: 5, color: 'brown', seatno: [-1, -1, -1, -1, -1] },
-    { name: 'V-MEN', count: 2, color: 'blue', seatno: [-1, -1] },
-    { name: 'ZUEE', count: 3, color: 'red', seatno: [-1, -1, -1] },
+    {
+      name: 'EHE', count: 3, color: 'yellow', seatno: ['', '', ''],
+    },
+    {
+      name: 'MsShe', count: 5, color: 'brown', seatno: ['', '', '', '', ''],
+    },
+    {
+      name: 'V-MEN', count: 2, color: 'blue', seatno: ['', ''],
+    },
+    {
+      name: 'ZUEE', count: 3, color: 'red', seatno: ['', '', ''],
+    },
   ],
 };
 
@@ -21,7 +29,7 @@ const studentContainerReducer = (state = initialState, action) => {
         companies: state.companies.map(company => (company.name === action.name
           ? {
             ...company,
-            seatno: company.map((seat, index) => (index === action.no
+            seatno: company.seatno.map((seat, index) => (index === action.id
               ? action.seatno : seat)),
           }
           : company)),
