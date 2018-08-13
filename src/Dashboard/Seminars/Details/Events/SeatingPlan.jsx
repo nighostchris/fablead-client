@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,6 +10,8 @@ import {
 
 import SeatBoard from './SeatBoard';
 import StudentContainer from './StudentContainer';
+import { resetSeats } from '../../../../Redux/Action/seatMapAction';
+import { resetStudentContainer } from '../../../../Redux/Action/studentContainerAction';
 
 const styles = theme => ({
   root: {
@@ -33,7 +36,24 @@ const styles = theme => ({
   },
 });
 
+const mapDispatchToProps = dispatch => ({
+  resetS: () => dispatch(resetSeats),
+  resetSC: () => dispatch(resetStudentContainer),
+});
+
 class SeatMap extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { resetS, resetSC } = this.props;
+    resetS();
+    resetSC();
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -42,7 +62,10 @@ class SeatMap extends React.Component {
         <div className={classes.leftColumn}>
           <StudentContainer />
           <div className={classes.bottomBar}>
-            <Button className={classes.bottomButton}>
+            <Button
+              className={classes.bottomButton}
+              onClick={this.handleClick}
+            >
               重置排列
             </Button>
             <Button
@@ -65,6 +88,10 @@ class SeatMap extends React.Component {
 
 SeatMap.propTypes = {
   classes: PropTypes.object.isRequired,
+  resetS: PropTypes.func.isRequired,
+  resetSC: PropTypes.func.isRequired,
 };
 
-export default DragDropContext(HTML5Backend)(withStyles(styles)(SeatMap));
+export default connect(null, mapDispatchToProps)(
+  DragDropContext(HTML5Backend)(withStyles(styles)(SeatMap))
+);

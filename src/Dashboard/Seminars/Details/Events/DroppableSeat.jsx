@@ -8,21 +8,34 @@ import {
 } from '@material-ui/core';
 
 import { updateName, updateColor } from '../../../../Redux/Action/seatMapAction';
-import { updateSeatNo } from '../../../../Redux/Action/studentContainerAction';
+import { updateSeatNo, updateDraggable } from '../../../../Redux/Action/studentContainerAction';
 
 const seatTarget = {
   drop(props, monitor, component) {
     const { color, studentName } = monitor.getItem();
-    
+
     const {
-      updateN, updateC, updateSN, id,
+      updateN, updateC, updateSN, updateDrag, seats, id,
     } = component.props;
+
+    const oldStudentName = seats[id].studentName;
+
     updateN(id, studentName);
     updateC(id, color);
     updateSN(
       studentName.substr(0, studentName.indexOf(' ')),
       parseInt(studentName.substr(studentName.length - 1), 10) - 1,
       id,
+    );
+    updateSN(
+      oldStudentName.substr(0, oldStudentName.indexOf(' ')),
+      parseInt(oldStudentName.substr(oldStudentName.length - 1), 10) - 1,
+      '',
+    );
+    updateDrag(
+      oldStudentName.substr(0, oldStudentName.indexOf(' ')),
+      parseInt(oldStudentName.substr(oldStudentName.length - 1), 10) - 1,
+      true,
     );
   },
 };
@@ -35,6 +48,7 @@ const mapDispatchToProps = dispatch => ({
   updateN: (id, name) => dispatch(updateName(id, name)),
   updateC: (id, color) => dispatch(updateColor(id, color)),
   updateSN: (companyName, id, seatno) => dispatch(updateSeatNo(companyName, id, seatno)),
+  updateDrag: (companyName, id, drag) => dispatch(updateDraggable(companyName, id, drag)),
 });
 
 function collect(connect, monitor) {
@@ -47,7 +61,7 @@ function collect(connect, monitor) {
 class DroppableSeat extends React.Component {
   render() {
     const {
-      connectDropTarget, isOver, isEnd, seats, id,
+      connectDropTarget, isEnd, seats, id,
     } = this.props;
 
     return (
@@ -79,7 +93,6 @@ class DroppableSeat extends React.Component {
 
 DroppableSeat.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
-  isOver: PropTypes.bool.isRequired,
   isEnd: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   seats: PropTypes.object.isRequired,

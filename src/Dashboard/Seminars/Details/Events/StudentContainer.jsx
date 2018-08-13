@@ -57,8 +57,6 @@ class StudentContainer extends React.Component {
   render() {
     const { classes, companies } = this.props;
 
-    console.log(companies);
-
     const { expanded } = this.state;
 
     return (
@@ -85,6 +83,7 @@ class StudentContainer extends React.Component {
                         <DraggableStudent
                           name={`${company.name} #${index + 1}`}
                           bColor={company.color}
+                          draggable={company.draggable[index]}
                         />
                         <Typography variant="subheading">
                           {student}

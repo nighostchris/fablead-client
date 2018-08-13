@@ -1,5 +1,5 @@
 import {
-  UPDATE_NAME, UPDATE_COLOR,
+  UPDATE_NAME, UPDATE_COLOR, RESET_SEATS,
 } from '../Constant/ActionType';
 
 const initialState = {
@@ -31,6 +31,8 @@ const initialState = {
   },
 };
 
+const resetState = initialState;
+
 const seatMapReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_NAME:
@@ -55,6 +57,8 @@ const seatMapReducer = (state = initialState, action) => {
           },
         },
       };
+    case RESET_SEATS:
+      return resetState;
     default:
       return state;
   }

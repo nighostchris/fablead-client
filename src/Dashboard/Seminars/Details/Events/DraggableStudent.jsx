@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import { DragSource } from 'react-dnd';
 import {
   Typography,
 } from '@material-ui/core';
+
+import { updateDraggable } from '../../../../Redux/Action/studentContainerAction';
 
 const studentSource = {
   beginDrag(props) {
@@ -15,8 +18,18 @@ const studentSource = {
     };
   },
 
-  endDrag(props, monitor, component) {
-    console.log(monitor.didDrop());
+  canDrag(props) {
+    const { draggable } = props;
+    return draggable;
+  },
+
+  endDrag(props, monitor) {
+    const { name, updateDrag } = props;
+    updateDrag(
+      name.substr(0, name.indexOf(' ')),
+      parseInt(name.substr(name.length - 1), 10) - 1,
+      !monitor.didDrop(),
+    );
   },
 };
 
@@ -26,6 +39,10 @@ function collect(connect, monitor) {
     isDragging: monitor.isDragging(),
   };
 }
+
+const mapDispatchToProps = dispatch => ({
+  updateDrag: (name, id, drag) => dispatch(updateDraggable(name, id, drag)),
+});
 
 class DraggableStudent extends React.Component {
   render() {
@@ -56,4 +73,6 @@ DraggableStudent.propTypes = {
   bColor: PropTypes.string.isRequired,
 };
 
-export default DragSource('student', studentSource, collect)(DraggableStudent);
+export default connect(null, mapDispatchToProps)(
+  DragSource('student', studentSource, collect)(DraggableStudent)
+);
