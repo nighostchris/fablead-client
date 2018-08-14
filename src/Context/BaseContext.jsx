@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export const BaseContext = React.createContext('callback');
 
-export class BaseProvider extends Component {
+export class BaseProvider extends React.Component {
   state = {
     callback: null,
   }
