@@ -8,7 +8,7 @@ const CommonUtils = {
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
-    return new File([u8arr], filename, { type: 'image/jpg' });
+    return new File([u8arr], filename, { type: '*/*' });
   },
 };
 

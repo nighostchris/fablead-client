@@ -6,6 +6,7 @@ import {
   Button, CardMedia, Input, Typography,
 } from '@material-ui/core';
 import { addMessage } from '../../../Redux/Action/messageAction';
+import { withCallback } from '../../../Context/BaseContext';
 
 const styles = theme => ({
   nameWrapperLeft: {
@@ -218,7 +219,9 @@ ItineraryManagement.propTypes = {
   addM: PropTypes.func.isRequired,
 };
 
-export default connect(
+const Comp = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(withStyles(styles)(ItineraryManagement));
+
+export default withCallback(Comp);
