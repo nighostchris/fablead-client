@@ -139,7 +139,8 @@ class HeaderBar extends React.Component {
 
     const backButtonArray = ['/setting', '/addseminar', '/addteacher', '/addlibrary', '/librarydetails',
       '/basicinfo', '/eventppt', '/classmaterial', '/accountmgt', '/itinerarymgt', '/notestaking',
-      '/addseatingplan', '/seatmap', '/onsitetimemgt', '/scanqrcode', '/seatingplan', '/accountdetails'];
+      '/addseatingplan', '/seatmap', '/onsitetimemgt', '/scanqrcode', '/seatingplan', '/accountdetails',
+      '/accountdetails', '/newaccount'];
 
     const editButtonArray = ['/teacher', '/reminder', '/accountmgt', '/notestaking', '/notes'];
 
@@ -170,6 +171,7 @@ class HeaderBar extends React.Component {
       '/scanqrcode': 'Scan Account QR Code',
       '/seatingplan': '學員座位表',
       '/accountdetails': 'Student Name',
+      '/newaccount': '新增帐户',
     };
 
     const backButtonMapping = {
@@ -189,6 +191,7 @@ class HeaderBar extends React.Component {
       '/scanqrcode': '/accountmgt',
       '/seatingplan': '/eventppt',
       '/accountdetails': '/accountmgt',
+      '/newaccount': '/accountdetails',
     };
 
     const addButtonMapping = {
@@ -297,6 +300,19 @@ class HeaderBar extends React.Component {
                       onClick={() => this.handleDismissAll()}
                     >
                       Dismiss All
+                    </Button>
+                  ) : undefined
+              }
+              {
+                pathname === '/accountdetails'
+                  ? (
+                    <Button
+                      className={classes.rightTopButton}
+                      style={{ fontSize: '16px' }}
+                      component={Link}
+                      to="/newaccount"
+                    >
+                      编辑
                     </Button>
                   ) : undefined
               }
