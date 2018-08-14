@@ -86,7 +86,8 @@ class MainPage extends React.Component {
           style={{
             top: seminarArray.includes(pathname) ? '112px' : undefined,
             marginBottom: pathname === '/dashboard' ? '86px'
-              : pathname === '/itinerarymgt' || pathname === '/seatingplan' ? '0px' : undefined,
+              : pathname === '/itinerarymgt' || pathname === '/seatingplan'
+              || pathname === '/accountdetails' ? '0px' : undefined,
           }}
         >
           <Route path="/dashboard" component={SeminarList} />

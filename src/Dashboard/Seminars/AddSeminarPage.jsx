@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import {
-  Add as AddIcon, DateRange as DateRangeIcon,
+  Add as AddIcon, DateRange as DateRangeIcon, KeyboardArrowRight,
 } from '@material-ui/icons';
 import { addSeminar } from '../../Redux/Action/seminarAction';
 
@@ -250,6 +250,8 @@ class AddSeminarPage extends React.Component {
                 onChange={this.handleChange}
                 displayEmpty
                 name="location"
+                IconComponent={KeyboardArrowRight}
+                input={<Input disableUnderline />}
               >
                 <MenuItem value="">
                   <em>
