@@ -112,7 +112,7 @@ class MainPage extends React.Component {
           <Route path="/seatingplan" component={SeatingPlan} />
           <Route path="/accountdetails" component={AccountDetails} />
         </div>
-        { footerBarArray.includes(pathname) ? <FooterBar /> : undefined }
+        { footerBarArray.includes(pathname) && <FooterBar /> }
       </div>
     );
   }

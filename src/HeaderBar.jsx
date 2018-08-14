@@ -6,6 +6,7 @@ import {
   AppBar, Button, Tabs, Tab, Toolbar, Typography,
 } from '@material-ui/core';
 import {
+  Publish as PublishIcon,
   Add as AddIcon, ArrowBack as ArrowBackIcon, Search as SearchIcon, Settings as SettingIcon,
   KeyboardArrowRight, Sort as SortIcon, CenterFocusStrong as QRCodeIcon,
 } from '@material-ui/icons';
@@ -123,6 +124,11 @@ class HeaderBar extends React.Component {
     dismissAR();
   }
 
+  customHeaderButtonCallback(event) {
+    const { onClick } = this.props;
+    onClick(event);
+  }
+
   render() {
     const {
       classes, location, library, currentTab,
@@ -145,6 +151,8 @@ class HeaderBar extends React.Component {
 
     const seminarArray = ['/basicinfo', '/eventppt', '/classmaterial',
       '/accountmgt', '/itinerarymgt', '/notestaking', '/onsitetimemgt'];
+
+    const attachButtonArray = ['/itinerarymgt'];
 
     const headerMapping = {
       '/dashboard': 'Seminar',
@@ -201,6 +209,7 @@ class HeaderBar extends React.Component {
       '/librarydetails': '/library',
       '/accountmgt': '/dashboard',
       '/notestaking': '/dashboard',
+      '/itinerarymgt': '/itinerarymgt',
     };
 
     const seminarMapping = {
@@ -263,6 +272,14 @@ class HeaderBar extends React.Component {
                       <SearchIcon />
                     </Button>
                   ) : undefined
+              }
+              {
+                attachButtonArray.includes(pathname)
+                && (
+                  <Button onClick={evt => this.customHeaderButtonCallback(evt, 'itinerarymgt')} className={classes.addButton}>
+                    <PublishIcon />
+                  </Button>
+                )
               }
               {
                 addButtonArray.includes(pathname)
@@ -354,6 +371,10 @@ class HeaderBar extends React.Component {
   }
 }
 
+HeaderBar.defaultProps = {
+  onClick: () => {},
+};
+
 HeaderBar.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
@@ -361,6 +382,7 @@ HeaderBar.propTypes = {
   currentTab: PropTypes.number.isRequired,
   changeT: PropTypes.func.isRequired,
   dismissAR: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default withStyles(styles)(withRouter(connect(

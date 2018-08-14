@@ -10,6 +10,7 @@ import { addMessage } from '../../../Redux/Action/messageAction';
 const styles = theme => ({
   nameWrapperLeft: {
     float: 'left',
+    width: '100%',
     marginLeft: '20px',
     marginBottom: '15px',
   },
