@@ -25,7 +25,7 @@ import ReminderPage from './Dashboard/Reminder/ReminderPage';
 import BasicInfoPage from './Dashboard/Seminars/Details/BasicInfoPage';
 import EventPreparation from './Dashboard/Seminars/Details/Events/EventPreparation';
 import ClassMaterial from './Dashboard/Seminars/Details/ClassMaterial';
-import AccountManagement from './Dashboard/Seminars/Details/AccountManagement';
+import AccountManagement from './Dashboard/Seminars/Details/Accounts/AccountManagement';
 import ItineraryManagement from './Dashboard/Seminars/Details/ItineraryManagement';
 
 import NotesTaking from './Dashboard/Seminars/Details/NotesTaking';
@@ -33,7 +33,8 @@ import AddSeatingPlan from './Seminar/AddSeatingPlan';
 import OnSiteTimeManagement from './Dashboard/Seminars/Details/OnSiteTimeManagement';
 import ScanQRCode from './Dashboard/Seminars/Details/ScanQRCode';
 import SeatingPlan from './Dashboard/Seminars/Details/Events/SeatingPlan';
-import AccountDetails from './Dashboard/Seminars/Details/AccountDetails';
+import AccountDetails from './Dashboard/Seminars/Details/Accounts/AccountDetails';
+import NewAccount from './Dashboard/Seminars/Details/Accounts/NewAccount';
 
 import store from './Redux/Store/store';
 import { verifyToken } from './Redux/Action/authAction';
@@ -111,6 +112,7 @@ class MainPage extends React.Component {
           <Route path="/scanqrcode" component={ScanQRCode} />
           <Route path="/seatingplan" component={SeatingPlan} />
           <Route path="/accountdetails" component={AccountDetails} />
+          <Route path="/newaccount" component={NewAccount} />
         </div>
         { footerBarArray.includes(pathname) && <FooterBar /> }
       </div>

@@ -120,10 +120,10 @@ To be finished
 * React QR Reader (https://github.com/JodusNodus/react-qr-reader)
 
 ## Task List
-- [] phone book feature in teachers page
-- [] infinite scroll feature in teachers page
+- [ ] phone book feature in teachers page
+- [ ] infinite scroll feature in teachers page
 - [x] seating plan feature
-- [] messenger feature in itinerary management page
-- [] integrate frontend into redux
+- [ ] messenger feature in itinerary management page
+- [ ] integrate frontend into redux
 
 ##### Last update on 14/8/2018 (Not Complete)
